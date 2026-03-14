@@ -216,14 +216,19 @@ body::after{
 }
 .reminder-toggle.on::after{transform:translateX(20px)}
 /* Shopping */
-.shop-tabs{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
-.shop-tabs::-webkit-scrollbar{display:none}
-.shop-tab{
-  padding:9px 16px;border-radius:24px;border:1.5px solid var(--linen);
-  background:var(--snow);font-size:0.76rem;font-weight:500;white-space:nowrap;
-  cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif;color:var(--stone);
-}
-.shop-tab.active{background:var(--clay);color:white;border-color:var(--clay)}
+.shop-day-card{background:var(--snow);border-radius:var(--radius);margin-bottom:12px;border:1px solid rgba(61,46,34,0.04);overflow:hidden;box-shadow:0 2px 8px var(--shadow)}
+.shop-day-header{padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:background 0.2s}
+.shop-day-header:active{background:rgba(61,46,34,0.02)}
+.shop-day-num{width:36px;height:36px;border-radius:50%;background:var(--clay-pale);display:flex;align-items:center;justify-content:center;font-family:'Literata',serif;font-weight:700;font-size:0.9rem;color:var(--clay);flex-shrink:0}
+.shop-day-info{flex:1}
+.shop-day-title{font-family:'Literata',serif;font-weight:600;font-size:0.88rem;color:var(--bark)}
+.shop-day-count{font-size:0.72rem;color:var(--stone);margin-top:2px}
+.shop-day-chevron{color:var(--stone);transition:transform 0.3s;font-size:0.8rem}
+.shop-day-card.open .shop-day-chevron{transform:rotate(90deg)}
+.shop-day-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.shop-day-card.open .shop-day-body{max-height:800px}
+.shop-day-items{padding:0 20px 16px}
+.shop-day-card.current{border-left:3px solid var(--clay)}
 .shop-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(61,46,34,0.05)}
 .shop-check{
   width:22px;height:22px;border-radius:8px;border:2px solid var(--linen);
@@ -318,10 +323,8 @@ body::after{
   </section>
   <section id="page-shopping" class="page">
     <h2 class="page-title">Lista de Compras</h2>
-    <p class="page-subtitle">Ingredientes de Plaza Vea / Metro</p>
-    <div class="shop-tabs" id="shopTabs"></div>
-    <div class="shop-progress" id="shopProgress"></div>
-    <div id="shopList"></div>
+    <p class="page-subtitle">Ingredientes por día — Plaza Vea / Metro</p>
+    <div id="shopDays"></div>
   </section>
   <section id="page-timers" class="page">
     <h2 class="page-title">Temporizador</h2>
@@ -735,22 +738,38 @@ function checkFeedReminder(){
 
 // ═══ SHOPPING ═══
 function renderShopping(){
-  const shop=getChallenge().shopping;
-  const tabsEl=document.getElementById('shopTabs');
-  if(!shop.find(s=>s.id===state.activeShopTab))state.activeShopTab=shop[0].id;
-  tabsEl.innerHTML=shop.map(s=>`<button class="shop-tab${s.id===state.activeShopTab?' active':''}" data-shop="${s.id}">${s.icon} ${s.title}</button>`).join('');
-  tabsEl.querySelectorAll('.shop-tab').forEach(t=>{t.addEventListener('click',()=>{state.activeShopTab=t.dataset.shop;saveState();renderShopping()})});
-  const list=shop.find(s=>s.id===state.activeShopTab);if(!list)return;
-  if(!state.checkedItems[list.id])state.checkedItems[list.id]=[];
-  const checked=state.checkedItems[list.id];
-  document.getElementById('shopProgress').textContent=`${checked.length} / ${list.items.length} — ${list.subtitle}`;
-  document.getElementById('shopList').innerHTML=list.items.map((item,i)=>{
-    const ch=checked.includes(i);
-    return `<div class="shop-item" data-idx="${i}"><div class="shop-check${ch?' checked':''}">${ch?'✓':''}</div><div class="shop-name${ch?' checked':''}">${item.name}</div><div class="shop-qty">${item.qty}</div></div>`
+  const ch=getChallenge();const currentDay=getNextDay();
+  const container=document.getElementById('shopDays');
+  container.innerHTML=ch.days.map(d=>{
+    const key=state.activeChallenge+'-day'+d.day;
+    if(!state.checkedItems[key])state.checkedItems[key]=[];
+    const checked=state.checkedItems[key];
+    const ingredients=d.ingredients.filter(i=>i!=='');
+    const checkedCount=checked.length;
+    const isCurrent=d.day===currentDay;
+    const isOpen=isCurrent;
+    return `<div class="shop-day-card${isOpen?' open':''}${isCurrent?' current':''}" data-shop-day="${d.day}">
+      <div class="shop-day-header">
+        <div class="shop-day-num">${d.day}</div>
+        <div class="shop-day-info">
+          <div class="shop-day-title">${d.title}</div>
+          <div class="shop-day-count">${checkedCount}/${ingredients.length} ingredientes</div>
+        </div>
+        <span class="shop-day-chevron">›</span>
+      </div>
+      <div class="shop-day-body"><div class="shop-day-items">
+        ${ingredients.map((item,i)=>{
+          const ch=checked.includes(i);
+          return `<div class="shop-item" data-idx="${i}" data-key="${key}"><div class="shop-check${ch?' checked':''}">${ch?'✓':''}</div><div class="shop-name${ch?' checked':''}">${item}</div></div>`
+        }).join('')}
+      </div></div>
+    </div>`;
   }).join('');
-  document.getElementById('shopList').querySelectorAll('.shop-item').forEach(item=>{
+  container.querySelectorAll('.shop-day-header').forEach(h=>{
+    h.addEventListener('click',()=>h.parentElement.classList.toggle('open'))});
+  container.querySelectorAll('.shop-item').forEach(item=>{
     item.addEventListener('click',()=>{
-      const idx=parseInt(item.dataset.idx);const key=state.activeShopTab;
+      const idx=parseInt(item.dataset.idx);const key=item.dataset.key;
       if(!state.checkedItems[key])state.checkedItems[key]=[];
       if(state.checkedItems[key].includes(idx))state.checkedItems[key]=state.checkedItems[key].filter(i=>i!==idx);
       else state.checkedItems[key].push(idx);saveState();renderShopping()})});
