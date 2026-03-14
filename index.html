@@ -522,9 +522,28 @@ const TIMER_PRESETS=[
 {name:'Fritura',min:6,emoji:'🍳'},{name:'Miel chancaca',min:35,emoji:'🍯'}
 ];
 
+// ═══ DATA: CHALLENGE 3 — MIXTO ═══
+const DAYS_3=[
+  {...DAYS_1[0],day:1},
+  {...DAYS_2[1],day:2},
+  {...DAYS_1[2],day:3},
+  {...DAYS_2[0],day:4},
+  {...DAYS_1[4],day:5},
+  {...DAYS_2[3],day:6},
+  {...DAYS_1[6],day:7},
+  {...DAYS_1[8],day:8},
+  {...DAYS_2[7],day:9},
+  {...DAYS_2[9],day:10},
+  {...DAYS_1[10],day:11},
+  {...DAYS_2[5],day:12},
+  {...DAYS_2[12],day:13},
+  {...DAYS_2[13],day:14},
+];
+
 const CHALLENGES=[
 {id:'pan-de-casa',name:'Pan de Casa',emoji:'🍞',subtitle:'De pan básico a sourdough',days:DAYS_1,shopping:SHOPPING_1},
-{id:'pan-peruano',name:'Pan Peruano',emoji:'🇵🇪',subtitle:'Pasteles y panes peruanos',days:DAYS_2,shopping:SHOPPING_2}
+{id:'pan-peruano',name:'Pan Peruano',emoji:'🇵🇪',subtitle:'Pasteles y panes peruanos',days:DAYS_2,shopping:SHOPPING_2},
+{id:'mixto',name:'Lo Mejor de Ambos',emoji:'🥐',subtitle:'Pan artesanal + pasteles peruanos',days:DAYS_3,shopping:[]}
 ];
 
 // ═══ STARTER GUIDE ═══
@@ -588,6 +607,21 @@ const SHOP_NEEDS={'pan-de-casa':{
   10:{harina:500,camote:500,zapallo:500,levadura:14,anis:5,chancaca:500,aceite_veg:500},
   11:{harina:500,manteca:200,azucar:100,levadura:7,sal:5,huevos:2,leche:80,anis:5},
   12:{harina:500,manteca:200,huevos:6,anis:10,chancaca:500},
+  13:{harina:450,harina_int:50,sal:10},
+  14:{harina:500,mantequilla:150,azucar:120,levadura:14,leche:120,huevos:6}
+},'mixto':{
+  1:{harina:500,levadura:7,sal:10,aceite_veg:15},
+  2:{harina:500,manteca:100,levadura:5,sal:10,azucar:15,aceite_veg:300},
+  3:{harina:50,mantequilla:50},
+  4:{harina:500,mantequilla:100,azucar:100,leche:150,levadura:7,sal:5,huevos:6},
+  5:{harina:500,leche:250,mantequilla:50,azucar:40,levadura:7,sal:8,huevos:2},
+  6:{harina:500,mantequilla:150,leche:150,azucar:50,levadura:7,sal:5,huevos:3},
+  7:{harina:50},
+  8:{harina:500,levadura:7,sal:10,aceite_oliva:90},
+  9:{maicena:200,harina:100,mantequilla:150,azucar_imp:80,huevos:3,manjar:250},
+  10:{harina:500,camote:500,zapallo:500,levadura:14,anis:5,chancaca:500,aceite_veg:500},
+  11:{harina:400,harina_int:100,sal:10},
+  12:{harina:500,manteca:100,huevos:4,sal:5},
   13:{harina:450,harina_int:50,sal:10},
   14:{harina:500,mantequilla:150,azucar:120,levadura:14,leche:120,huevos:6}
 }};
