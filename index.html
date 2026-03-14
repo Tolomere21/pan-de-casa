@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#1E1209">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Pan de Casa 🍞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --espresso:#1E1209;--dark-brown:#2A1810;--crust:#8B5E3C;
+  --golden:#C8913A;--honey:#D4A03C;--amber:#B8860B;
+  --cream:#FDF6EC;--flour:#FAF3E8;--dough:#E8D5B7;
+  --wheat:#B8956A;--success:#6B8F3C;--timer-active:#D4842A;
+  --danger:#C85A3A;--shadow:rgba(30,18,9,0.1);
+  --radius:16px;--radius-sm:10px;--nav-h:68px;
+}
+html{height:100%;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Nunito',sans-serif;background:var(--cream);color:var(--espresso);
+  min-height:100%;overscroll-behavior:none;position:relative;
+  -webkit-tap-highlight-color:transparent;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.018;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+
+/* HEADER */
+.app-header{
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(160deg,var(--espresso) 0%,var(--dark-brown) 100%);
+  padding:14px 20px;padding-top:calc(14px + env(safe-area-inset-top,0px));
+  box-shadow:0 4px 20px rgba(0,0,0,0.25);
+}
+.header-top{display:flex;align-items:center;justify-content:space-between}
+.header-title{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;color:var(--cream);letter-spacing:-0.02em}
+.header-day{font-size:0.8rem;color:var(--wheat);font-weight:600}
+.journey-bar{height:4px;background:rgba(255,255,255,0.12);border-radius:2px;margin-top:10px;overflow:hidden}
+.journey-fill{height:100%;background:linear-gradient(90deg,var(--golden),var(--honey));border-radius:2px;transition:width 0.6s ease;width:0%}
+
+/* MAIN */
+.app-main{position:relative;min-height:calc(100vh - 140px);padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 8px)}
+.page{display:none;padding:16px 16px 24px;animation:pageIn 0.3s ease}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.page-title{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;margin-bottom:16px;color:var(--espresso)}
+.page-subtitle{font-size:0.85rem;color:var(--crust);margin-top:-10px;margin-bottom:16px}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  background:var(--espresso);display:flex;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  box-shadow:0 -2px 20px rgba(0,0,0,0.3);
+}
+.nav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:8px 4px 6px;border:none;background:none;cursor:pointer;
+  transition:all 0.2s;position:relative;
+}
+.nav-icon{font-size:1.35rem;transition:transform 0.2s}
+.nav-label{font-size:0.65rem;font-weight:600;color:var(--wheat);transition:color 0.2s;letter-spacing:0.02em}
+.nav-btn.active .nav-label{color:var(--golden)}
+.nav-btn.active .nav-icon{transform:scale(1.15)}
+.nav-btn.active::after{
+  content:'';position:absolute;top:0;left:25%;right:25%;height:2.5px;
+  background:var(--golden);border-radius:0 0 2px 2px;
+}
+.nav-badge{
+  position:absolute;top:4px;right:calc(50% - 18px);width:8px;height:8px;
+  border-radius:50%;background:var(--danger);border:2px solid var(--espresso);
+}
+
+/* CARDS */
+.card{
+  background:white;border-radius:var(--radius);padding:16px;
+  margin-bottom:12px;box-shadow:0 2px 8px var(--shadow);
+  border:1px solid rgba(200,180,140,0.15);transition:transform 0.15s,box-shadow 0.15s;
+  cursor:pointer;
+}
+.card:active{transform:scale(0.985);box-shadow:0 1px 4px var(--shadow)}
+
+/* DAY CARDS */
+.day-card{display:flex;align-items:center;gap:14px;position:relative}
+.day-num{
+  font-family:'Fraunces',serif;font-size:2rem;font-weight:800;
+  color:var(--golden);min-width:44px;text-align:center;line-height:1;
+}
+.day-info{flex:1}
+.day-title{font-weight:700;font-size:1rem;color:var(--espresso);display:flex;align-items:center;gap:6px}
+.day-subtitle{font-size:0.8rem;color:var(--crust);margin-top:2px}
+.day-meta{display:flex;align-items:center;gap:10px;margin-top:6px;font-size:0.72rem;color:var(--wheat)}
+.day-dots{display:flex;gap:3px}
+.day-dot{width:6px;height:6px;border-radius:50%;background:var(--dough)}
+.day-dot.filled{background:var(--golden)}
+.day-check{
+  width:28px;height:28px;border-radius:50%;border:2.5px solid var(--dough);
+  display:flex;align-items:center;justify-content:center;font-size:0.85rem;
+  transition:all 0.3s;flex-shrink:0;
+}
+.day-check.done{background:var(--success);border-color:var(--success);color:white}
+.day-card.completed{opacity:0.6}
+.starter-badge{font-size:0.7rem;background:rgba(200,145,58,0.12);padding:1px 6px;border-radius:8px}
+
+/* RECIPE SHEET */
+.sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.3s;z-index:99}
+.sheet-overlay.active{opacity:1;pointer-events:auto}
+.recipe-sheet{
+  position:fixed;bottom:0;left:0;right:0;max-height:88vh;
+  background:var(--cream);border-radius:20px 20px 0 0;
+  transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  overflow-y:auto;z-index:100;padding:20px 20px calc(20px + env(safe-area-inset-bottom,0px));
+  -webkit-overflow-scrolling:touch;
+}
+.recipe-sheet.active{transform:translateY(0)}
+.sheet-handle{width:40px;height:4px;background:var(--dough);border-radius:2px;margin:0 auto 16px}
+.sheet-title{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px}
+.sheet-subtitle{font-size:0.85rem;color:var(--crust);margin-bottom:20px}
+.sheet-section{margin-bottom:20px}
+.sheet-section h3{font-family:'Fraunces',serif;font-size:1rem;font-weight:600;margin-bottom:10px;color:var(--crust);display:flex;align-items:center;gap:6px}
+.ingredient-list{list-style:none}
+.ingredient-list li{padding:6px 0;border-bottom:1px solid rgba(200,180,140,0.15);font-size:0.9rem;display:flex;align-items:center;gap:8px}
+.ingredient-list li::before{content:'•';color:var(--golden);font-weight:bold}
+.step-list{list-style:none;counter-reset:step}
+.step-list li{counter-increment:step;padding:8px 0 8px 36px;border-bottom:1px solid rgba(200,180,140,0.15);font-size:0.88rem;position:relative;line-height:1.5}
+.step-list li::before{
+  content:counter(step);position:absolute;left:0;top:8px;
+  width:24px;height:24px;border-radius:50%;background:var(--golden);color:white;
+  font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+}
+.sheet-tip{
+  background:rgba(200,145,58,0.08);border-left:3px solid var(--golden);
+  padding:12px 14px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  font-family:'Caveat',cursive;font-size:1.05rem;color:var(--crust);line-height:1.4;
+}
+.sheet-timers{display:flex;flex-wrap:wrap;gap:8px}
+.sheet-timer-btn{
+  padding:8px 14px;border-radius:20px;border:1.5px solid var(--golden);
+  background:rgba(200,145,58,0.08);color:var(--espresso);font-size:0.8rem;
+  font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif;
+}
+.sheet-timer-btn:active{background:var(--golden);color:white}
+
+/* STARTER PAGE */
+.starter-container{display:flex;flex-direction:column;align-items:center;gap:20px}
+.jar-wrapper{position:relative;width:180px;height:260px}
+.jar{
+  width:100%;height:100%;border:3px solid var(--crust);
+  border-radius:8px 8px 24px 24px;position:relative;overflow:hidden;
+  background:rgba(255,253,245,0.4);box-shadow:inset 0 0 20px rgba(139,94,60,0.05);
+}
+.jar-lid{
+  position:absolute;top:-14px;left:-6px;right:-6px;height:16px;
+  background:var(--crust);border-radius:6px 6px 2px 2px;z-index:2;
+  box-shadow:0 2px 4px rgba(0,0,0,0.15);
+}
+.jar-dough{
+  position:absolute;bottom:0;width:100%;
+  background:linear-gradient(to top,#E2CDB0,#EDE0CC);
+  transition:height 0.8s cubic-bezier(0.4,0,0.2,1);border-radius:0 0 21px 21px;
+}
+.jar-dough-surface{
+  position:absolute;top:-3px;left:0;right:0;height:8px;
+  background:linear-gradient(to bottom,#D4C4A8,transparent);border-radius:50%;
+}
+.bubble{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.6),rgba(255,255,255,0.1));
+  border:1px solid rgba(200,180,140,0.2);animation:rise var(--dur,4s) ease-in-out infinite;
+  animation-delay:var(--del,0s);
+}
+@keyframes rise{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  10%{opacity:0.7}
+  90%{opacity:0.5}
+  100%{transform:translateY(calc(-1 * var(--travel,150px))) scale(0.4);opacity:0}
+}
+.starter-status{text-align:center}
+.starter-level{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700}
+.starter-sublevel{font-size:0.85rem;color:var(--crust);margin-top:2px}
+.starter-actions{display:flex;gap:10px;width:100%;max-width:340px}
+.btn{
+  flex:1;padding:12px 16px;border-radius:var(--radius-sm);border:none;
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-primary{background:var(--golden);color:white;box-shadow:0 2px 8px rgba(200,145,58,0.3)}
+.btn-primary:active{background:var(--amber);transform:scale(0.97)}
+.btn-secondary{background:white;color:var(--espresso);border:1.5px solid var(--dough)}
+.btn-secondary:active{background:var(--flour)}
+.starter-timeline{
+  display:flex;gap:6px;width:100%;overflow-x:auto;padding:8px 0;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.starter-timeline::-webkit-scrollbar{display:none}
+.timeline-day{
+  min-width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.7rem;font-weight:700;border:2px solid var(--dough);
+  color:var(--wheat);flex-shrink:0;transition:all 0.3s;
+}
+.timeline-day.fed{background:var(--success);border-color:var(--success);color:white}
+.timeline-day.today{border-color:var(--golden);color:var(--golden)}
+.timeline-day.today.fed{background:var(--golden);border-color:var(--golden);color:white}
+.feed-log{width:100%;max-width:400px}
+.feed-entry{
+  padding:10px 0;border-bottom:1px solid rgba(200,180,140,0.15);
+  display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;
+}
+.feed-time{color:var(--golden);font-weight:600;min-width:60px;font-size:0.78rem}
+.feed-notes{color:var(--crust);font-family:'Caveat',cursive;font-size:1rem}
+.notes-input{
+  width:100%;padding:10px 14px;border:1.5px solid var(--dough);border-radius:var(--radius-sm);
+  font-family:'Caveat',cursive;font-size:1rem;background:white;color:var(--espresso);
+  resize:none;outline:none;transition:border-color 0.2s;
+}
+.notes-input:focus{border-color:var(--golden)}
+
+/* SHOPPING */
+.shop-tabs{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.shop-tabs::-webkit-scrollbar{display:none}
+.shop-tab{
+  padding:8px 16px;border-radius:20px;border:1.5px solid var(--dough);
+  background:white;font-size:0.8rem;font-weight:600;white-space:nowrap;
+  cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif;
+  color:var(--crust);
+}
+.shop-tab.active{background:var(--golden);color:white;border-color:var(--golden)}
+.shop-item{
+  display:flex;align-items:center;gap:12px;padding:12px 0;
+  border-bottom:1px solid rgba(200,180,140,0.1);
+}
+.shop-check{
+  width:22px;height:22px;border-radius:6px;border:2px solid var(--dough);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all 0.2s;flex-shrink:0;font-size:0.75rem;
+}
+.shop-check.checked{background:var(--success);border-color:var(--success);color:white}
+.shop-name{flex:1;font-size:0.9rem}
+.shop-name.checked{text-decoration:line-through;color:var(--wheat)}
+.shop-qty{font-size:0.78rem;color:var(--wheat);font-weight:600;white-space:nowrap}
+.shop-progress{font-size:0.78rem;color:var(--wheat);text-align:right;margin-bottom:12px}
+
+/* TIMER */
+.timer-container{display:flex;flex-direction:column;align-items:center;gap:24px;padding-top:8px}
+.timer-ring-wrap{position:relative;width:220px;height:220px}
+.timer-svg{width:100%;height:100%;transform:rotate(-90deg)}
+.timer-bg{fill:none;stroke:var(--dough);stroke-width:8}
+.timer-progress{fill:none;stroke:var(--golden);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 0.5s linear}
+.timer-center{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.timer-time{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--espresso);letter-spacing:-0.02em}
+.timer-name{font-size:0.85rem;color:var(--crust);font-weight:600;margin-top:2px}
+.timer-controls{display:flex;gap:12px}
+.timer-ctrl{
+  width:52px;height:52px;border-radius:50%;border:none;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  cursor:pointer;transition:all 0.2s;
+}
+.timer-ctrl.play{background:var(--golden);color:white;box-shadow:0 3px 12px rgba(200,145,58,0.35)}
+.timer-ctrl.play:active{transform:scale(0.92)}
+.timer-ctrl.reset{background:white;border:2px solid var(--dough);color:var(--crust)}
+.timer-presets{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:360px}
+.preset-btn{
+  padding:14px;border-radius:var(--radius-sm);border:1.5px solid rgba(200,180,140,0.2);
+  background:white;cursor:pointer;transition:all 0.2s;text-align:left;
+}
+.preset-btn:active{border-color:var(--golden);background:rgba(200,145,58,0.05)}
+.preset-btn.active-preset{border-color:var(--golden);background:rgba(200,145,58,0.08)}
+.preset-name{font-weight:700;font-size:0.88rem;color:var(--espresso)}
+.preset-time{font-size:0.78rem;color:var(--wheat);margin-top:2px}
+.timer-done{animation:pulse 0.6s ease infinite alternate}
+@keyframes pulse{from{opacity:1}to{opacity:0.5}}
+.custom-timer-row{display:flex;gap:8px;width:100%;max-width:360px;align-items:center}
+.custom-input{
+  flex:1;padding:12px;border-radius:var(--radius-sm);border:1.5px solid var(--dough);
+  font-family:'Nunito',sans-serif;font-size:0.9rem;text-align:center;
+  background:white;outline:none;
+}
+.custom-input:focus{border-color:var(--golden)}
+
+/* CHAT */
+.chat-container{display:flex;flex-direction:column;height:calc(100vh - 140px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+.chat-messages{flex:1;overflow-y:auto;padding:8px 0;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:10px}
+.chat-msg{max-width:85%;padding:12px 16px;border-radius:18px;font-size:0.9rem;line-height:1.5;word-wrap:break-word}
+.chat-msg.user{
+  align-self:flex-end;background:var(--golden);color:white;
+  border-bottom-right-radius:6px;
+}
+.chat-msg.assistant{
+  align-self:flex-start;background:white;color:var(--espresso);
+  border-bottom-left-radius:6px;box-shadow:0 1px 4px var(--shadow);
+}
+.chat-msg.system{
+  align-self:center;background:rgba(200,145,58,0.08);color:var(--crust);
+  font-size:0.8rem;text-align:center;border-radius:var(--radius-sm);
+  max-width:95%;
+}
+.chat-msg.assistant p{margin:0 0 8px}
+.chat-msg.assistant p:last-child{margin:0}
+.chat-msg.assistant strong{color:var(--golden)}
+.chat-msg.assistant ul,.chat-msg.assistant ol{margin:4px 0 8px 16px;font-size:0.88rem}
+.chat-msg.assistant code{background:rgba(0,0,0,0.05);padding:1px 5px;border-radius:4px;font-size:0.82rem}
+.chat-typing{align-self:flex-start;padding:12px 20px;display:flex;gap:4px}
+.typing-dot{width:7px;height:7px;border-radius:50%;background:var(--wheat);animation:typingBounce 1.4s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:0.2s}
+.typing-dot:nth-child(3){animation-delay:0.4s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-8px);opacity:1}}
+.chat-input-area{
+  display:flex;gap:8px;padding:12px 0 4px;border-top:1px solid rgba(200,180,140,0.2);
+}
+.chat-input{
+  flex:1;padding:10px 16px;border-radius:24px;border:1.5px solid var(--dough);
+  font-family:'Nunito',sans-serif;font-size:0.9rem;background:white;
+  outline:none;transition:border-color 0.2s;
+}
+.chat-input:focus{border-color:var(--golden)}
+.chat-send{
+  width:42px;height:42px;border-radius:50%;border:none;
+  background:var(--golden);color:white;font-size:1.1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;flex-shrink:0;
+}
+.chat-send:disabled{opacity:0.4;cursor:default}
+.chat-send:not(:disabled):active{transform:scale(0.92)}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:8px 0}
+.chat-suggest{
+  padding:6px 12px;border-radius:16px;border:1px solid var(--dough);
+  background:white;font-size:0.78rem;color:var(--crust);cursor:pointer;
+  transition:all 0.2s;font-family:'Nunito',sans-serif;
+}
+.chat-suggest:active{border-color:var(--golden);color:var(--golden)}
+.api-setup{
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  padding:32px 16px;text-align:center;
+}
+.api-setup h3{font-family:'Fraunces',serif;font-size:1.2rem}
+.api-setup p{font-size:0.85rem;color:var(--crust);line-height:1.5;max-width:320px}
+.api-input{
+  width:100%;max-width:320px;padding:12px 14px;border-radius:var(--radius-sm);
+  border:1.5px solid var(--dough);font-family:monospace;font-size:0.8rem;
+  background:white;outline:none;
+}
+.api-input:focus{border-color:var(--golden)}
+.api-note{font-size:0.75rem;color:var(--wheat);max-width:300px;line-height:1.4}
+.api-saved{display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap}
+.api-status{font-size:0.82rem;color:var(--success);font-weight:600}
+.api-change{font-size:0.78rem;color:var(--golden);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Nunito',sans-serif}
+
+/* UTILS */
+.empty-state{text-align:center;padding:40px 20px;color:var(--wheat)}
+.empty-state .empty-emoji{font-size:3rem;margin-bottom:12px}
+.empty-state p{font-size:0.9rem;line-height:1.5}
+.hidden{display:none!important}
+.context-banner{
+  background:rgba(200,145,58,0.08);border-radius:var(--radius-sm);
+  padding:10px 14px;margin-bottom:12px;font-size:0.78rem;color:var(--crust);
+  display:flex;align-items:center;gap:8px;
+}
+.context-banner strong{color:var(--espresso)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="header-top">
+    <span class="header-title">🍞 Pan de Casa</span>
+    <span class="header-day" id="headerDay">Día 1 / 14</span>
+  </div>
+  <div class="journey-bar"><div class="journey-fill" id="journeyFill"></div></div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="app-main">
+
+  <!-- PLAN PAGE -->
+  <section id="page-plan" class="page active">
+    <h2 class="page-title">📋 Tu Plan de 14 Días</h2>
+    <p class="page-subtitle">De pan básico a masa madre artesanal</p>
+    <div id="dayCards"></div>
+  </section>
+
+  <!-- STARTER PAGE -->
+  <section id="page-starter" class="page">
+    <h2 class="page-title">🫙 Tu Masa Madre</h2>
+    <div class="starter-container" id="starterContainer"></div>
+  </section>
+
+  <!-- SHOPPING PAGE -->
+  <section id="page-shopping" class="page">
+    <h2 class="page-title">🛒 Lista de Compras</h2>
+    <p class="page-subtitle">Ingredientes de Plaza Vea / Metro</p>
+    <div class="shop-tabs" id="shopTabs"></div>
+    <div class="shop-progress" id="shopProgress"></div>
+    <div id="shopList"></div>
+  </section>
+
+  <!-- TIMER PAGE -->
+  <section id="page-timers" class="page">
+    <h2 class="page-title">⏱️ Temporizador</h2>
+    <div class="timer-container" id="timerContainer"></div>
+  </section>
+
+  <!-- CHAT PAGE -->
+  <section id="page-chat" class="page">
+    <h2 class="page-title">💬 Pregúntale al Panadero</h2>
+    <div class="chat-container" id="chatContainer"></div>
+  </section>
+
+</main>
+
+<!-- RECIPE BOTTOM SHEET -->
+<div class="sheet-overlay" id="sheetOverlay"></div>
+<div class="recipe-sheet" id="recipeSheet">
+  <div class="sheet-handle"></div>
+  <div id="sheetContent"></div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-page="plan"><span class="nav-icon">📋</span><span class="nav-label">Plan</span></button>
+  <button class="nav-btn" data-page="starter"><span class="nav-icon">🫙</span><span class="nav-label">Starter</span></button>
+  <button class="nav-btn" data-page="shopping"><span class="nav-icon">🛒</span><span class="nav-label">Compras</span></button>
+  <button class="nav-btn" data-page="timers"><span class="nav-icon">⏱️</span><span class="nav-label">Timer</span></button>
+  <button class="nav-btn" data-page="chat"><span class="nav-icon">💬</span><span class="nav-label">Chat</span></button>
+</nav>
+
+<script>
+/* ═══════════════════════════════════════════
+   DATA
+   ═══════════════════════════════════════════ */
+const DAYS = [
+  {
+    day:1,emoji:'🍞',title:'Pan Básico',subtitle:'Tu primer pan casero — simple y delicioso',
+    difficulty:1,starter:false,totalTime:'2h 30min',
+    ingredients:['500g Harina sin preparar (Blanca Flor)','325ml Agua tibia','7g Levadura seca instantánea (Fleischmann)','10g Sal','1 cda Aceite vegetal'],
+    steps:['Mezcla la harina y la sal en un bowl grande. Agrega la levadura.','Agrega el agua tibia poco a poco, mezclando con las manos hasta formar una masa.','Pasa la masa a la mesa y amasa por 10 minutos. Debe quedar suave y elástica.','Forma una bola, colócala en un bowl aceitado. Cubre con plástico. Deja fermentar 1 hora.','Desinfla suavemente la masa. Forma un bollo redondo y colócalo en la bandeja con papel manteca.','Cubre y deja reposar 30 minutos más.','Precalienta el horno a 220°C. Haz un corte en forma de cruz en la superficie.','Hornea 25-30 minutos hasta que esté dorado. Golpea la base — debe sonar hueco.'],
+    tip:'El agua debe estar tibia como para un bebé. Si metes el dedo y no quema, está perfecta. No uses agua caliente — mata la levadura.',
+    timers:[{name:'Amasado',min:10},{name:'Fermentación',min:60},{name:'Reposo',min:30},{name:'Horneado',min:28}]
+  },
+  {
+    day:2,emoji:'🍞',title:'Pan Básico v2',subtitle:'Practica y mejora tu técnica de amasado',
+    difficulty:1,starter:false,totalTime:'2h 30min',
+    ingredients:['500g Harina sin preparar','340ml Agua tibia','7g Levadura seca instantánea','10g Sal','1 cda Aceite de oliva','Semillas de ajonjolí (opcional)'],
+    steps:['Repite el proceso del Día 1 con una pequeña diferencia: agrega un poco más de agua (340ml).','Enfócate en la técnica de amasado: empuja, dobla, gira. Repite.','Haz la prueba de la ventana: estira un pedacito de masa. Si se ve translúcida sin romperse, está lista.','Fermenta 1 hora tapada. Forma y deja reposar 30 min.','Antes de hornear, pinta con un poco de agua y espolvorea semillas de ajonjolí.','Hornea a 220°C por 25-30 minutos.'],
+    tip:'Hoy practica la "prueba de la ventana". Si la masa se rompe al estirarla, necesita más amasado. Con práctica, sentirás cuando está lista.',
+    timers:[{name:'Amasado',min:10},{name:'Fermentación',min:60},{name:'Reposo',min:30},{name:'Horneado',min:28}]
+  },
+  {
+    day:3,emoji:'🫙',title:'Iniciar Masa Madre',subtitle:'¡Hoy nace tu starter! + Pan de ajo fácil',
+    difficulty:2,starter:true,totalTime:'30min + días',
+    ingredients:['Para la masa madre:','50g Harina sin preparar','50ml Agua filtrada tibia','1 frasco de vidrio limpio con tapa','','Para el pan de ajo:','1 Pan básico del día anterior (o baguette de Metro)','4 dientes de ajo picados','50g Mantequilla (Laive)','Perejil picado','Sal'],
+    steps:['MASA MADRE: En un frasco limpio, mezcla 50g de harina con 50ml de agua tibia.','Mezcla bien hasta que no queden grumos. La consistencia debe ser como una pasta espesa.','Tapa sin cerrar completamente (necesita aire). Deja en un lugar tibio de la cocina.','Marca el nivel con una liga o marcador. Desde mañana, alimentarás cada 12 horas.','PAN DE AJO: Derrite la mantequilla, mezcla con ajo picado, perejil y sal.','Corta el pan en rebanadas sin llegar al fondo. Rellena con la mezcla de ajo.','Envuelve en papel aluminio. Hornea a 180°C por 15 minutos. ¡Listo!'],
+    tip:'Tu masa madre va a pasar por fases: primero burbujeará mucho (día 2-3), luego se calmará (día 4-5), y luego revivirá más fuerte. ¡No te desanimes en los días tranquilos!',
+    timers:[{name:'Horneado pan de ajo',min:15}]
+  },
+  {
+    day:4,emoji:'🌾',title:'Pan Integral',subtitle:'Pan saludable con harina integral + alimentar starter',
+    difficulty:2,starter:true,totalTime:'3h',
+    ingredients:['300g Harina integral','200g Harina sin preparar','350ml Agua tibia','7g Levadura seca','12g Sal','2 cdas Miel o azúcar rubia','2 cdas Aceite de oliva'],
+    steps:['Alimenta tu masa madre: descarta la mitad, agrega 50g harina + 50ml agua. Mezcla bien.','Mezcla ambas harinas con la sal. Disuelve la levadura en agua tibia con la miel.','Combina todo y amasa 12 minutos. La masa integral es más pegajosa — es normal.','Fermenta 1.5 horas (tarda más que el pan blanco).','Forma un óvalo, coloca en molde aceitado o bandeja. Reposo 40 min.','Haz 3 cortes diagonales en la superficie. Hornea a 200°C por 35 minutos.'],
+    tip:'La masa integral absorbe más agua y necesita más tiempo de fermentación. No agregues harina extra si está pegajosa — es normal así.',
+    timers:[{name:'Amasado',min:12},{name:'Fermentación',min:90},{name:'Reposo',min:40},{name:'Horneado',min:35}]
+  },
+  {
+    day:5,emoji:'🍞',title:'Pan de Molde',subtitle:'Pan suave para sándwiches + alimentar starter',
+    difficulty:2,starter:true,totalTime:'3h 30min',
+    ingredients:['500g Harina sin preparar','250ml Leche tibia (Gloria/Laive)','50g Mantequilla blanda','40g Azúcar','7g Levadura seca','8g Sal','1 Huevo'],
+    steps:['Alimenta tu masa madre (mañana y noche).','Disuelve la levadura en la leche tibia con el azúcar. Espera 5 min hasta que burbujee.','Mezcla harina y sal. Agrega la mezcla de leche, el huevo y la mantequilla blanda.','Amasa 12 minutos hasta obtener una masa suave y sedosa.','Fermenta 1.5 horas hasta que duplique su tamaño.','Desinfla, forma un rectángulo, enrolla y coloca en molde de pan (molde aceitado).','Deja subir 45 min hasta que sobresalga del molde. Pinta con huevo batido.','Hornea a 180°C por 30-35 minutos. Desmolda y enfría sobre una rejilla.'],
+    tip:'La mantequilla debe estar blanda, no derretida. Sácala del refri 30 minutos antes. El secreto de un pan de molde suave está en el amasado largo.',
+    timers:[{name:'Amasado',min:12},{name:'Fermentación',min:90},{name:'Reposo en molde',min:45},{name:'Horneado',min:33}]
+  },
+  {
+    day:6,emoji:'🥐',title:'Pancitos / Bollitos',subtitle:'Bollitos suaves para la mesa + alimentar starter',
+    difficulty:2,starter:true,totalTime:'2h 30min',
+    ingredients:['500g Harina sin preparar','280ml Leche tibia','50g Mantequilla blanda','30g Azúcar','7g Levadura seca','8g Sal','1 Huevo + 1 yema para pintar','Ajonjolí o semillas'],
+    steps:['Alimenta tu masa madre.','Prepara la masa igual que el pan de molde (Día 5).','Después de la fermentación (1h), divide la masa en 12 porciones iguales.','Forma bolitas: estira cada porción sobre la mesa con la mano en forma de garra, haciendo círculos.','Coloca en bandeja con separación de 3cm. Deja reposar 30 min tapados.','Pinta con yema batida + 1 cda de leche. Espolvorea semillas.','Hornea a 190°C por 15-18 minutos hasta que estén dorados.'],
+    tip:'Para bollitos uniformes, pesa cada porción (~75g cada una). El truco para darles forma perfecta: pon la masa en la mesa sin harina y usa la palma en forma de garra haciendo círculos.',
+    timers:[{name:'Amasado',min:10},{name:'Fermentación',min:60},{name:'Reposo',min:30},{name:'Horneado',min:17}]
+  },
+  {
+    day:7,emoji:'😌',title:'Día de Descanso',subtitle:'Solo alimenta tu starter — ¡tú descansas, ella trabaja!',
+    difficulty:0,starter:true,totalTime:'10min',
+    ingredients:['50g Harina sin preparar','50ml Agua filtrada'],
+    steps:['Hoy no horneas — pero tu masa madre sí trabaja.','Alimenta tu masa madre por la mañana y por la noche como de costumbre.','Observa: ¿ves más burbujas que antes? ¿Sube más después de alimentarla?','Toma una foto para comparar con el día 3. Deberías notar más actividad.','Aprovecha para limpiar tu área de trabajo y preparar ingredientes para la próxima semana.','Revisa la lista de compras de la Semana 2 — mañana empiezan las recetas italianas.'],
+    tip:'Tu masa madre tiene 4 días. Es normal que aún no esté super activa. La paciencia es clave. Sigue alimentándola consistentemente y verás resultados esta semana.',
+    timers:[]
+  },
+  {
+    day:8,emoji:'🫓',title:'Ciabatta',subtitle:'Pan italiano rústico con alvéolos grandes + starter',
+    difficulty:3,starter:true,totalTime:'4h (mucho reposo)',
+    ingredients:['500g Harina sin preparar','400ml Agua (¡alta hidratación!)','7g Levadura seca','10g Sal','2 cdas Aceite de oliva extra virgen'],
+    steps:['Alimenta tu masa madre.','Disuelve la levadura en toda el agua. Agrega la harina y mezcla. ¡La masa será MUY pegajosa!','No amases tradicionalmente. Haz "stretch and fold": estira y dobla desde cada lado. Repite 4 veces.','Deja reposar 30 min. Repite el stretch and fold. Haz esto 3 veces más (total 2h con descansos).','Vuelca la masa sobre mesa bien enharinada. Corta en 2-3 rectángulos con rasqueta. NO desgasifiques.','Estira suavemente cada pieza a lo largo. Transfiere a bandeja con papel. Reposo 30 min.','Hornea a 230°C con un recipiente de agua en el horno (para vapor) por 22-25 minutos.'],
+    tip:'¡La ciabatta es pegajosa y eso está BIEN! No agregues harina extra a la masa. Los alvéolos grandes vienen de la alta hidratación. Moja tus manos para manipularla.',
+    timers:[{name:'Stretch & Fold',min:30},{name:'Fermentación total',min:120},{name:'Reposo final',min:30},{name:'Horneado',min:24}]
+  },
+  {
+    day:9,emoji:'🫓',title:'Focaccia',subtitle:'Pan plano italiano con aceite de oliva y toppings',
+    difficulty:2,starter:true,totalTime:'3h',
+    ingredients:['500g Harina sin preparar','350ml Agua tibia','7g Levadura seca','10g Sal','6 cdas Aceite de oliva extra virgen','Sal gruesa / Sal de Maras','Romero fresco','Tomates cherry (opcional)','Aceitunas negras (opcional)'],
+    steps:['Alimenta tu masa madre.','Mezcla harina, levadura, sal y agua. Agrega 3 cdas de aceite de oliva.','Amasa 8 min o haz stretch & fold como la ciabatta.','Vierte 2 cdas de aceite en una bandeja o pyrex. Coloca la masa y voltea para cubrirla de aceite.','Fermenta 1.5 horas en la bandeja, cubierta con plástico.','Con los dedos aceitados, presiona la masa creando los hoyitos clásicos por toda la superficie.','Agrega romero, tomates, aceitunas. Rocía el resto del aceite. Espolvorea sal gruesa.','Hornea a 220°C por 20-25 minutos hasta que esté dorada y crujiente.'],
+    tip:'Los hoyitos de la focaccia no son decoración — atrapan el aceite de oliva y crean una textura increíble. Sé generoso con el aceite. La sal gruesa (Sal de Maras) hace toda la diferencia.',
+    timers:[{name:'Amasado',min:8},{name:'Fermentación',min:90},{name:'Horneado',min:22}]
+  },
+  {
+    day:10,emoji:'🫒',title:'Pan con Aceitunas',subtitle:'Pan rústico con aceitunas — último pan con levadura comercial',
+    difficulty:3,starter:true,totalTime:'3h',
+    ingredients:['500g Harina sin preparar','330ml Agua tibia','7g Levadura seca','10g Sal','100g Aceitunas negras (sin pepa, picadas)','2 cdas Aceite de oliva','Romero fresco picado'],
+    steps:['Alimenta tu masa madre. Observa: ¿duplica su tamaño en 4-6 horas después de alimentarla?','Prepara la masa como el pan básico. Amasa 10 minutos.','Incorpora las aceitunas picadas y el romero al final del amasado. Amasa 2 min más.','Fermenta 1 hora.','Forma un bollo ovalado (batard). Coloca en bandeja.','Reposo 35 min. Haz 3 cortes diagonales.','Hornea a 210°C por 30 minutos con vapor (bandeja con agua abajo del horno).','¡IMPORTANTE! Mañana horneas tu primer pan de masa madre. Haz una última alimentación HOY a la noche.'],
+    tip:'Si tu masa madre duplica su tamaño en 6 horas o menos después de alimentarla, ¡está lista para hacer pan! Si no, dale unos días más y usa un poquito de levadura comercial de respaldo.',
+    timers:[{name:'Amasado',min:12},{name:'Fermentación',min:60},{name:'Reposo',min:35},{name:'Horneado',min:30}]
+  },
+  {
+    day:11,emoji:'🥖',title:'¡Primer Pan de Masa Madre!',subtitle:'El gran día — tu primer sourdough',
+    difficulty:4,starter:true,totalTime:'8-24h (fermentación lenta)',
+    ingredients:['100g Masa madre activa (alimentada 4-6h antes)','400g Harina sin preparar','100g Harina integral','340ml Agua tibia','10g Sal','(Respaldo: 2g de levadura seca si tu starter no está muy activo)'],
+    steps:['Alimenta tu masa madre por la mañana. Espera 4-6 horas hasta que esté activa y burbujeante.','Haz la prueba del flotador: pon una cucharadita de masa madre en agua. Si flota, ¡está lista!','Mezcla harinas con agua. Deja reposar 30 min (autólisis). Luego agrega masa madre y sal.','Haz 4 rondas de stretch & fold, cada 30 minutos.','Fermenta 4-6 horas a temperatura ambiente (o toda la noche en la refri para más sabor).','Forma un bollo tenso: pliega los bordes hacia el centro, voltea, y usa tus manos para crear tensión.','Coloca en un bowl enharinado (banneton improvisado con bowl + trapo enharinado). Refrigera toda la noche.','Al día siguiente: hornea en olla de hierro o pyrex tapado a 240°C por 25 min tapado + 20 min destapado.'],
+    tip:'¡No te estreses si no sale perfecto! El primer sourdough es un aprendizaje. Si tu masa madre no pasó la prueba del flotador, agrega 2g de levadura seca como respaldo. No es trampa, es ser práctico.',
+    timers:[{name:'Autólisis',min:30},{name:'Stretch & Fold',min:30},{name:'Fermentación bulk',min:240},{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]
+  },
+  {
+    day:12,emoji:'🥖',title:'Sourdough Round 2',subtitle:'Aprende de ayer y mejora tu técnica',
+    difficulty:4,starter:true,totalTime:'8-24h',
+    ingredients:['120g Masa madre activa','450g Harina sin preparar','50g Harina integral','350ml Agua tibia','10g Sal'],
+    steps:['Alimenta tu masa madre temprano.','Repite el proceso del Día 11, pero hoy enfócate en la formación (shaping).','Ajusta según lo que aprendiste ayer: ¿masa muy pegajosa? Baja el agua. ¿Poco sabor? Fermenta más.','Practica la tensión superficial al formar: la superficie del pan debe estar lisa y tensa.','Si ayer no obtuviste buen "oído" (los hoyos internos), haz más stretch & fold.','Refrigera toda la noche para hornear mañana con scoring (cortes decorativos).'],
+    tip:'El sourdough mejora con cada intento. Los profesionales tardaron AÑOS en perfeccionarlo. Cada pan te enseña algo. Toma fotos del interior (la miga) para comparar.',
+    timers:[{name:'Autólisis',min:30},{name:'Stretch & Fold',min:30},{name:'Fermentación',min:240},{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]
+  },
+  {
+    day:13,emoji:'🎨',title:'Scoring — Arte en Pan',subtitle:'Aprende a hacer cortes decorativos en tu sourdough',
+    difficulty:4,starter:true,totalTime:'24h (con retardo)',
+    ingredients:['120g Masa madre activa','500g Harina sin preparar','350ml Agua tibia','10g Sal','Hoja de afeitar o cuchillo muy afilado','Harina de arroz para decorar (opcional)'],
+    steps:['Prepara la masa como el Día 11-12. Forma y refrigera toda la noche.','Antes de hornear: espolvorea harina sobre la superficie.','Con una hoja de afeitar (lame) o cuchillo afilado, practica estos cortes:','Básico: un corte largo y curvo (como una sonrisa) — este es el clásico.','Cruz: dos cortes perpendiculares formando una X.','Hojas: cortes curvos desde el centro hacia afuera, como pétalos.','El corte debe ser rápido, decisivo, y con ángulo de 30-45 grados.','Hornea inmediatamente después de cortar: 240°C, 25 min tapado + 20 min destapado.'],
+    tip:'El scoring no es solo decoración — permite que el pan se expanda controladamente en el horno. El truco: la masa debe estar FRÍA (directo de la refri) para que los cortes se mantengan definidos.',
+    timers:[{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]
+  },
+  {
+    day:14,emoji:'🏆',title:'Pan Maestro Final',subtitle:'¡Tu obra maestra! Sourdough con todo lo aprendido',
+    difficulty:5,starter:true,totalTime:'24h',
+    ingredients:['120g Masa madre activa','450g Harina sin preparar','50g Harina integral','350ml Agua tibia','10g Sal','Toppings opcionales: semillas, avena, ajonjolí'],
+    steps:['¡Último día del reto! Hoy aplicas todo lo que aprendiste.','Prepara tu mejor masa madre — aliméntala temprano.','Haz la masa con autólisis, stretch & fold, fermenta con paciencia.','Al formar: busca la máxima tensión superficial. La superficie debe estar lisa como un tambor.','Refrigera toda la noche para desarrollar sabor y facilitar el scoring.','Mañana: haz tu mejor scoring. Sé creativo — es TU pan, TU estilo.','Hornea con vapor a 240°C. Espera a que se enfríe completamente antes de cortar (¡lo más difícil!).','Toma foto del resultado. ¡Compártelo! Has completado el reto 🎉'],
+    tip:'¡FELICITACIONES! En 14 días pasaste de nunca haber hecho pan a crear sourdough artesanal con scoring. Tu masa madre ahora es parte de tu cocina. Sigue alimentándola (1 vez por semana en la refri) y horneando. ¡Eres panadero/a!',
+    timers:[{name:'Autólisis',min:30},{name:'Stretch & Fold',min:30},{name:'Fermentación',min:240},{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]
+  }
+];
+
+const SHOPPING = [
+  {
+    id:'basicos',title:'Compra Inicial',subtitle:'Para Días 1-7',icon:'🛒',
+    items:[
+      {name:'Harina sin preparar 1kg (Blanca Flor)',qty:'3 bolsas'},
+      {name:'Harina integral 1kg',qty:'1 bolsa'},
+      {name:'Levadura seca instantánea (Fleischmann)',qty:'3 sobres'},
+      {name:'Sal de mesa',qty:'1 bolsa'},
+      {name:'Azúcar blanca',qty:'½ kg'},
+      {name:'Aceite vegetal',qty:'1 botella'},
+      {name:'Aceite de oliva extra virgen',qty:'1 botella chica'},
+      {name:'Mantequilla sin sal (Laive)',qty:'200g'},
+      {name:'Huevos',qty:'6 unidades'},
+      {name:'Leche fresca (Gloria/Laive)',qty:'1 litro'},
+      {name:'Miel de abeja',qty:'1 frasco chico'},
+      {name:'Ajonjolí / semillas',qty:'1 bolsa'},
+      {name:'Ajo fresco',qty:'1 cabeza'},
+      {name:'Perejil fresco',qty:'1 atado'},
+      {name:'Papel manteca / papel para hornear',qty:'1 rollo'},
+      {name:'Film plástico (Alusa)',qty:'1 rollo'},
+      {name:'Frasco de vidrio con tapa (para masa madre)',qty:'1 unid'}
+    ]
+  },
+  {
+    id:'semana2',title:'Compra Semana 2',subtitle:'Para Días 8-14 (recetas italianas y sourdough)',icon:'🫒',
+    items:[
+      {name:'Harina sin preparar 1kg (Blanca Flor)',qty:'3 bolsas más'},
+      {name:'Harina integral',qty:'500g'},
+      {name:'Aceite de oliva extra virgen',qty:'1 botella'},
+      {name:'Aceitunas negras sin pepa',qty:'1 frasco'},
+      {name:'Romero fresco',qty:'1 atado'},
+      {name:'Tomates cherry',qty:'1 bandeja'},
+      {name:'Sal gruesa / Sal de Maras',qty:'1 bolsa'},
+      {name:'Harina de arroz (para decorar)',qty:'1 bolsa chica (opcional)'},
+      {name:'Semillas variadas (linaza, chía, girasol)',qty:'1 bolsa'},
+      {name:'Hojas de afeitar nuevas (para scoring)',qty:'1 paquete'}
+    ]
+  },
+  {
+    id:'utensilios',title:'Utensilios',subtitle:'Lo que necesitas en tu cocina',icon:'🍳',
+    items:[
+      {name:'Bowl grande para mezclar',qty:'1-2'},
+      {name:'Rasqueta / espátula de masa (scraaper)',qty:'1 (muy útil)'},
+      {name:'Bandeja para hornear',qty:'1-2'},
+      {name:'Pyrex o molde con tapa (para sourdough)',qty:'1'},
+      {name:'Molde para pan de molde',qty:'1'},
+      {name:'Trapo de cocina limpio',qty:'2-3'},
+      {name:'Balanza de cocina digital',qty:'1 (recomendado)'},
+      {name:'Termómetro de cocina (opcional)',qty:'1'},
+      {name:'Rociador de agua (spray)',qty:'1'}
+    ]
+  }
+];
+
+const TIMER_PRESETS = [
+  {name:'Amasado',min:10,emoji:'👐'},{name:'Reposo',min:15,emoji:'😌'},
+  {name:'Stretch & Fold',min:30,emoji:'🤲'},{name:'Fermentación',min:60,emoji:'⏳'},
+  {name:'Fermentación larga',min:240,emoji:'🕐'},{name:'Horneado',min:30,emoji:'🔥'},
+  {name:'Horneado tapado',min:25,emoji:'🫕'},{name:'Horneado destapado',min:20,emoji:'♨️'}
+];
+
+/* ═══════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════ */
+const STATE_KEY = 'pan-de-casa-v1';
+const defaultState = {
+  completedDays:[],starterFeedings:[],checkedItems:{},
+  currentTab:'plan',activeShopTab:'basicos',apiKey:'',chatHistory:[]
+};
+let state = loadState();
+let timerState = {running:false,paused:false,name:'',totalSec:0,remainSec:0,interval:null};
+
+function loadState(){
+  try{const s=localStorage.getItem(STATE_KEY);return s?{...defaultState,...JSON.parse(s)}:{...defaultState}}
+  catch(e){return{...defaultState}}
+}
+function saveState(){localStorage.setItem(STATE_KEY,JSON.stringify(state))}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════ */
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const page = btn.dataset.page;
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+page).classList.add('active');
+    state.currentTab = page;
+    saveState();
+    if(page==='starter') renderStarter();
+    if(page==='shopping') renderShopping();
+    if(page==='timers') renderTimers();
+    if(page==='chat') renderChat();
+  });
+});
+
+/* ═══════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════ */
+function updateHeader(){
+  const done = state.completedDays.length;
+  const next = getNextDay();
+  document.getElementById('headerDay').textContent = `Día ${next} / 14`;
+  document.getElementById('journeyFill').style.width = ((done/14)*100)+'%';
+}
+function getNextDay(){
+  for(let i=1;i<=14;i++) if(!state.completedDays.includes(i)) return i;
+  return 14;
+}
+
+/* ═══════════════════════════════════════════
+   PLAN PAGE
+   ═══════════════════════════════════════════ */
+function renderPlan(){
+  const container = document.getElementById('dayCards');
+  container.innerHTML = DAYS.map(d=>{
+    const done = state.completedDays.includes(d.day);
+    const dots = Array.from({length:5},(_, i)=>`<span class="day-dot${i<d.difficulty?' filled':''}"></span>`).join('');
+    return `
+    <div class="card day-card${done?' completed':''}" data-day="${d.day}">
+      <div class="day-num">${d.day}</div>
+      <div class="day-info">
+        <div class="day-title">${d.emoji} ${d.title}</div>
+        <div class="day-subtitle">${d.subtitle}</div>
+        <div class="day-meta">
+          <div class="day-dots">${dots}</div>
+          <span>⏱ ${d.totalTime}</span>
+          ${d.starter?'<span class="starter-badge">🫙 Alimentar</span>':''}
+        </div>
+      </div>
+      <div class="day-check${done?' done':''}" data-check="${d.day}">${done?'✓':''}</div>
+    </div>`;
+  }).join('');
+
+  container.querySelectorAll('.day-check').forEach(ch=>{
+    ch.addEventListener('click',e=>{
+      e.stopPropagation();
+      const day = parseInt(ch.dataset.check);
+      if(state.completedDays.includes(day)){
+        state.completedDays = state.completedDays.filter(d=>d!==day);
+      } else {
+        state.completedDays.push(day);
+      }
+      saveState(); renderPlan(); updateHeader();
+    });
+  });
+
+  container.querySelectorAll('.day-card').forEach(card=>{
+    card.addEventListener('click',()=> openRecipeSheet(parseInt(card.dataset.day)));
+  });
+}
+
+/* ═══════════════════════════════════════════
+   RECIPE SHEET
+   ═══════════════════════════════════════════ */
+function openRecipeSheet(dayNum){
+  const d = DAYS[dayNum-1];
+  const content = document.getElementById('sheetContent');
+  content.innerHTML = `
+    <div class="sheet-title">${d.emoji} Día ${d.day}: ${d.title}</div>
+    <div class="sheet-subtitle">${d.subtitle}</div>
+    <div class="sheet-section">
+      <h3>🧾 Ingredientes</h3>
+      <ul class="ingredient-list">
+        ${d.ingredients.map(i=>i===''?'<li style="border:none;padding:4px 0"></li>':`<li>${i}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="sheet-section">
+      <h3>👨‍🍳 Pasos</h3>
+      <ol class="step-list">${d.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    <div class="sheet-section">
+      <div class="sheet-tip">💡 ${d.tip}</div>
+    </div>
+    ${d.timers.length?`
+    <div class="sheet-section">
+      <h3>⏱️ Timers</h3>
+      <div class="sheet-timers">
+        ${d.timers.map(t=>`<button class="sheet-timer-btn" data-name="${t.name}" data-min="${t.min}">${t.name} — ${t.min} min</button>`).join('')}
+      </div>
+    </div>`:''}
+  `;
+  content.querySelectorAll('.sheet-timer-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      closeSheet();
+      setTimeout(()=>{
+        document.querySelector('[data-page="timers"]').click();
+        startTimerPreset(btn.dataset.name, parseInt(btn.dataset.min));
+      },350);
+    });
+  });
+  document.getElementById('sheetOverlay').classList.add('active');
+  document.getElementById('recipeSheet').classList.add('active');
+}
+function closeSheet(){
+  document.getElementById('sheetOverlay').classList.remove('active');
+  document.getElementById('recipeSheet').classList.remove('active');
+}
+document.getElementById('sheetOverlay').addEventListener('click',closeSheet);
+
+/* ═══════════════════════════════════════════
+   STARTER PAGE
+   ═══════════════════════════════════════════ */
+function getStarterActivity(){
+  const f=state.starterFeedings.length;
+  if(f===0) return {level:0,label:'Sin iniciar',emoji:'😴',desc:'Inicia tu masa madre el Día 3'};
+  if(f<4) return {level:1,label:'Recién nacida',emoji:'🌱',desc:'Sigue alimentando 2x al día'};
+  if(f<10) return {level:2,label:'Despertando',emoji:'🫧',desc:'Ya muestra señales de vida'};
+  if(f<18) return {level:3,label:'Activa',emoji:'💪',desc:'¡Casi lista para hacer pan!'};
+  return {level:4,label:'¡Muy activa!',emoji:'🔥',desc:'¡Lista para sourdough!'};
+}
+
+function renderStarter(){
+  const c = document.getElementById('starterContainer');
+  const act = getStarterActivity();
+  const doughHeight = Math.min(75, 20 + act.level * 14);
+  const bubbleCount = act.level * 4;
+  let bubblesHTML = '';
+  for(let i=0;i<bubbleCount;i++){
+    const size = 4 + Math.random()*8;
+    const left = 10 + Math.random()*80;
+    const dur = 2 + Math.random()*3;
+    const del = Math.random()*3;
+    const travel = 60 + Math.random()*120;
+    bubblesHTML += `<div class="bubble" style="width:${size}px;height:${size}px;left:${left}%;bottom:5%;--dur:${dur}s;--del:${del}s;--travel:${travel}px"></div>`;
+  }
+
+  // Build feeding days (days 3-14 of the challenge)
+  const fedDays = new Set(state.starterFeedings.map(f=>f.day));
+  let timelineHTML = '';
+  for(let d=3;d<=14;d++){
+    const isFed = fedDays.has(d);
+    const isToday = d === getNextDay();
+    timelineHTML += `<div class="timeline-day${isFed?' fed':''}${isToday?' today':''}">${d}</div>`;
+  }
+
+  const recentFeedings = [...state.starterFeedings].reverse().slice(0,8);
+
+  c.innerHTML = `
+    <div class="jar-wrapper">
+      <div class="jar-lid"></div>
+      <div class="jar">
+        <div class="jar-dough" style="height:${doughHeight}%">
+          <div class="jar-dough-surface"></div>
+        </div>
+        ${bubblesHTML}
+      </div>
+    </div>
+    <div class="starter-status">
+      <div class="starter-level">${act.emoji} ${act.label}</div>
+      <div class="starter-sublevel">${act.desc} — ${state.starterFeedings.length} alimentaciones</div>
+    </div>
+    <div class="starter-timeline">${timelineHTML}</div>
+    <textarea class="notes-input" id="feedNotes" rows="2" placeholder="Notas: burbujas, olor, actividad..."></textarea>
+    <div class="starter-actions">
+      <button class="btn btn-primary" id="feedBtn">🫙 Alimentar Ahora</button>
+      <button class="btn btn-secondary" id="feedHistoryBtn">📋 Historial</button>
+    </div>
+    <div class="feed-log" id="feedLog" style="display:none">
+      <h3 style="font-family:Fraunces,serif;font-size:1rem;margin:12px 0 8px">Últimas alimentaciones</h3>
+      ${recentFeedings.length?recentFeedings.map(f=>`
+        <div class="feed-entry">
+          <div class="feed-time">${new Date(f.timestamp).toLocaleDateString('es-PE',{day:'numeric',month:'short'})} ${new Date(f.timestamp).toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'})}</div>
+          <div><strong>Día ${f.day}</strong>${f.notes?`<div class="feed-notes">"${f.notes}"</div>`:''}</div>
+        </div>
+      `).join(''):'<p class="empty-state"><span class="empty-emoji">🫙</span><br>Aún no hay alimentaciones</p>'}
+    </div>
+  `;
+
+  document.getElementById('feedBtn').addEventListener('click',()=>{
+    const notes = document.getElementById('feedNotes').value.trim();
+    state.starterFeedings.push({
+      timestamp: Date.now(),
+      day: getNextDay(),
+      notes
+    });
+    saveState();
+    renderStarter();
+  });
+
+  document.getElementById('feedHistoryBtn').addEventListener('click',()=>{
+    const log = document.getElementById('feedLog');
+    log.style.display = log.style.display==='none'?'block':'none';
+  });
+}
+
+/* ═══════════════════════════════════════════
+   SHOPPING PAGE
+   ═══════════════════════════════════════════ */
+function renderShopping(){
+  const tabsEl = document.getElementById('shopTabs');
+  tabsEl.innerHTML = SHOPPING.map(s=>
+    `<button class="shop-tab${s.id===state.activeShopTab?' active':''}" data-shop="${s.id}">${s.icon} ${s.title}</button>`
+  ).join('');
+  tabsEl.querySelectorAll('.shop-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      state.activeShopTab = t.dataset.shop;
+      saveState(); renderShopping();
+    });
+  });
+
+  const list = SHOPPING.find(s=>s.id===state.activeShopTab);
+  if(!list) return;
+
+  const checkedKey = list.id;
+  if(!state.checkedItems[checkedKey]) state.checkedItems[checkedKey] = [];
+
+  const checkedCount = state.checkedItems[checkedKey].length;
+  document.getElementById('shopProgress').textContent =
+    `${checkedCount} / ${list.items.length} items — ${list.subtitle}`;
+
+  const listEl = document.getElementById('shopList');
+  listEl.innerHTML = list.items.map((item,i)=>{
+    const checked = state.checkedItems[checkedKey].includes(i);
+    return `
+    <div class="shop-item" data-idx="${i}">
+      <div class="shop-check${checked?' checked':''}">${checked?'✓':''}</div>
+      <div class="shop-name${checked?' checked':''}">${item.name}</div>
+      <div class="shop-qty">${item.qty}</div>
+    </div>`;
+  }).join('');
+
+  listEl.querySelectorAll('.shop-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+      const idx = parseInt(item.dataset.idx);
+      const key = state.activeShopTab;
+      if(!state.checkedItems[key]) state.checkedItems[key]=[];
+      if(state.checkedItems[key].includes(idx)){
+        state.checkedItems[key] = state.checkedItems[key].filter(i=>i!==idx);
+      } else {
+        state.checkedItems[key].push(idx);
+      }
+      saveState(); renderShopping();
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════
+   TIMER PAGE
+   ═══════════════════════════════════════════ */
+function renderTimers(){
+  const c = document.getElementById('timerContainer');
+  const circumference = 2 * Math.PI * 90;
+  const offset = timerState.totalSec > 0
+    ? circumference * (1 - timerState.remainSec / timerState.totalSec)
+    : 0;
+  const mm = String(Math.floor(timerState.remainSec/60)).padStart(2,'0');
+  const ss = String(timerState.remainSec%60).padStart(2,'0');
+  const isDone = timerState.totalSec>0 && timerState.remainSec===0 && !timerState.running;
+
+  c.innerHTML = `
+    <div class="timer-ring-wrap">
+      <svg viewBox="0 0 200 200" class="timer-svg">
+        <circle cx="100" cy="100" r="90" class="timer-bg"/>
+        <circle cx="100" cy="100" r="90" class="timer-progress"
+          stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
+          ${isDone?'style="stroke:var(--danger)"':''}/>
+      </svg>
+      <div class="timer-center">
+        <div class="timer-time${isDone?' timer-done':''}">${mm}:${ss}</div>
+        <div class="timer-name">${timerState.name||'Selecciona un timer'}</div>
+      </div>
+    </div>
+    <div class="timer-controls">
+      <button class="timer-ctrl reset" id="timerReset">↺</button>
+      <button class="timer-ctrl play" id="timerPlay">${timerState.running?'⏸':'▶'}</button>
+    </div>
+    <div class="timer-presets">
+      ${TIMER_PRESETS.map(p=>`
+        <button class="preset-btn${timerState.name===p.name?' active-preset':''}" data-name="${p.name}" data-min="${p.min}">
+          <div class="preset-name">${p.emoji} ${p.name}</div>
+          <div class="preset-time">${p.min} minutos</div>
+        </button>
+      `).join('')}
+    </div>
+    <div class="custom-timer-row">
+      <input type="number" class="custom-input" id="customMin" placeholder="Minutos" min="1" max="999">
+      <button class="btn btn-primary" id="customStart" style="flex:0 0 auto;padding:12px 20px">Iniciar</button>
+    </div>
+  `;
+
+  c.querySelectorAll('.preset-btn').forEach(btn=>{
+    btn.addEventListener('click',()=> startTimerPreset(btn.dataset.name, parseInt(btn.dataset.min)));
+  });
+  document.getElementById('timerPlay').addEventListener('click',toggleTimer);
+  document.getElementById('timerReset').addEventListener('click',resetTimer);
+  document.getElementById('customStart').addEventListener('click',()=>{
+    const min = parseInt(document.getElementById('customMin').value);
+    if(min>0) startTimerPreset('Personalizado',min);
+  });
+}
+
+function startTimerPreset(name,min){
+  clearInterval(timerState.interval);
+  timerState = {running:true,paused:false,name,totalSec:min*60,remainSec:min*60,interval:null};
+  timerState.interval = setInterval(tickTimer,1000);
+  renderTimers();
+  requestNotificationPermission();
+}
+function toggleTimer(){
+  if(timerState.totalSec===0) return;
+  if(timerState.running){
+    clearInterval(timerState.interval);
+    timerState.running=false; timerState.paused=true;
+  } else if(timerState.remainSec>0){
+    timerState.running=true; timerState.paused=false;
+    timerState.interval = setInterval(tickTimer,1000);
+  }
+  renderTimers();
+}
+function resetTimer(){
+  clearInterval(timerState.interval);
+  timerState = {running:false,paused:false,name:'',totalSec:0,remainSec:0,interval:null};
+  renderTimers();
+}
+function tickTimer(){
+  if(timerState.remainSec>0){
+    timerState.remainSec--;
+    updateTimerDisplay();
+    if(timerState.remainSec===0){
+      clearInterval(timerState.interval);
+      timerState.running=false;
+      onTimerDone();
+    }
+  }
+}
+function updateTimerDisplay(){
+  const mm=String(Math.floor(timerState.remainSec/60)).padStart(2,'0');
+  const ss=String(timerState.remainSec%60).padStart(2,'0');
+  const timeEl=document.querySelector('.timer-time');
+  if(timeEl) timeEl.textContent=mm+':'+ss;
+  const circumference=2*Math.PI*90;
+  const offset=circumference*(1-timerState.remainSec/timerState.totalSec);
+  const prog=document.querySelector('.timer-progress');
+  if(prog) prog.setAttribute('stroke-dashoffset',offset);
+  // Update page title with timer
+  document.title = `${mm}:${ss} — Pan de Casa`;
+}
+function onTimerDone(){
+  playChime();
+  sendNotification(`⏱️ ¡${timerState.name} listo!`,`Tu ${timerState.name.toLowerCase()} de ${Math.round(timerState.totalSec/60)} minutos ha terminado.`);
+  renderTimers();
+  // Reset title
+  document.title = 'Pan de Casa 🍞';
+}
+
+/* ═══════════════════════════════════════════
+   AUDIO
+   ═══════════════════════════════════════════ */
+function playChime(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const notes=[523.25,659.25,783.99,1046.5];
+    notes.forEach((freq,i)=>{
+      const osc=ctx.createOscillator();
+      const gain=ctx.createGain();
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.frequency.value=freq;osc.type='sine';
+      const t=ctx.currentTime+i*0.18;
+      gain.gain.setValueAtTime(0.18,t);
+      gain.gain.exponentialRampToValueAtTime(0.001,t+0.6);
+      osc.start(t);osc.stop(t+0.6);
+    });
+  }catch(e){}
+}
+
+/* ═══════════════════════════════════════════
+   NOTIFICATIONS
+   ═══════════════════════════════════════════ */
+function requestNotificationPermission(){
+  if('Notification' in window && Notification.permission==='default'){
+    Notification.requestPermission();
+  }
+}
+function sendNotification(title,body){
+  if('Notification' in window && Notification.permission==='granted'){
+    new Notification(title,{body,icon:'🍞',badge:'🍞'});
+  }
+}
+
+/* ═══════════════════════════════════════════
+   CHAT PAGE
+   ═══════════════════════════════════════════ */
+function renderChat(){
+  const c = document.getElementById('chatContainer');
+  const hasKey = !!state.apiKey;
+
+  if(!hasKey){
+    c.innerHTML = `
+      <div class="api-setup">
+        <div style="font-size:3rem">💬🍞</div>
+        <h3>Tu Asistente Panadero</h3>
+        <p>Conecta tu API key de Anthropic para hacer preguntas mientras horneas. El chat sabe qué día estás, tu receta actual, y el estado de tu masa madre.</p>
+        <input type="password" class="api-input" id="apiKeyInput" placeholder="sk-ant-...">
+        <button class="btn btn-primary" id="saveApiKey" style="width:100%;max-width:320px">Guardar API Key</button>
+        <p class="api-note">Tu key se guarda solo en tu teléfono (localStorage). Nunca se comparte. Consíguela en <strong>console.anthropic.com</strong></p>
+      </div>
+    `;
+    document.getElementById('saveApiKey').addEventListener('click',()=>{
+      const key = document.getElementById('apiKeyInput').value.trim();
+      if(key){state.apiKey=key;saveState();renderChat()}
+    });
+    return;
+  }
+
+  const currentDay = DAYS[getNextDay()-1];
+  const act = getStarterActivity();
+  const msgs = state.chatHistory.map(m=>
+    `<div class="chat-msg ${m.role}">${m.role==='assistant'?formatMarkdown(m.content):escapeHTML(m.content)}</div>`
+  ).join('');
+
+  const suggestions = getSuggestions();
+
+  c.innerHTML = `
+    <div class="context-banner">
+      📍 <strong>Día ${currentDay.day}:</strong> ${currentDay.title} &nbsp;|&nbsp; 🫙 ${act.label}
+    </div>
+    <div class="api-saved">
+      <span class="api-status">✓ API conectada</span>
+      <button class="api-change" id="changeKey">cambiar key</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      ${msgs || '<div class="chat-msg system">¡Hola! Soy tu asistente panadero 🍞 Pregúntame cualquier cosa sobre las recetas, técnicas, o tu masa madre. Tengo contexto completo de tu progreso.</div>'}
+    </div>
+    <div class="chat-suggestions" id="chatSuggestions">
+      ${suggestions.map(s=>`<button class="chat-suggest">${s}</button>`).join('')}
+    </div>
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Pregunta algo..." autocomplete="off">
+      <button class="chat-send" id="chatSend">➤</button>
+    </div>
+  `;
+
+  document.getElementById('changeKey').addEventListener('click',()=>{
+    state.apiKey='';state.chatHistory=[];saveState();renderChat();
+  });
+
+  const input = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSend');
+  sendBtn.addEventListener('click',()=>sendChatMessage());
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')sendChatMessage()});
+
+  document.querySelectorAll('.chat-suggest').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      input.value = btn.textContent;
+      sendChatMessage();
+    });
+  });
+
+  scrollChatToBottom();
+}
+
+function getSuggestions(){
+  const day = getNextDay();
+  const base = ['¿Mi masa madre está lista?','¿Qué hago si mi pan no sube?'];
+  if(day<=2) return ['¿Cómo sé si amasé suficiente?','Tips para mi primer pan',...base];
+  if(day<=7) return ['¿Cómo alimentar mi starter?','¿Es normal este olor?',...base];
+  if(day<=10) return ['Tips para la ciabatta','¿Cuánta agua uso?',...base];
+  return ['¿Cómo hago el scoring?','Tips para sourdough',...base];
+}
+
+async function sendChatMessage(){
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value = '';
+
+  state.chatHistory.push({role:'user',content:msg});
+  saveState();
+  renderChatMessages();
+
+  // Show typing indicator
+  const messagesEl = document.getElementById('chatMessages');
+  const typingEl = document.createElement('div');
+  typingEl.className = 'chat-typing';
+  typingEl.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  messagesEl.appendChild(typingEl);
+  scrollChatToBottom();
+
+  try{
+    const systemPrompt = buildSystemPrompt();
+    const messages = state.chatHistory.slice(-16).map(m=>({role:m.role,content:m.content}));
+
+    const response = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':state.apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:1024,
+        system:systemPrompt,
+        messages
+      })
+    });
+
+    if(!response.ok){
+      const err = await response.json().catch(()=>({}));
+      throw new Error(err.error?.message || `Error ${response.status}`);
+    }
+
+    const data = await response.json();
+    const reply = data.content[0]?.text || 'No pude responder. Intenta de nuevo.';
+
+    // Remove typing indicator
+    typingEl.remove();
+
+    state.chatHistory.push({role:'assistant',content:reply});
+    saveState();
+    renderChatMessages();
+  }catch(err){
+    typingEl.remove();
+    const errorMsg = err.message.includes('401') || err.message.includes('invalid')
+      ? '❌ API key inválida. Verifica tu key en console.anthropic.com'
+      : `❌ Error: ${err.message}`;
+    state.chatHistory.push({role:'assistant',content:errorMsg});
+    saveState();
+    renderChatMessages();
+  }
+}
+
+function buildSystemPrompt(){
+  const day = getNextDay();
+  const recipe = DAYS[day-1];
+  const act = getStarterActivity();
+  const completedList = state.completedDays.length ? state.completedDays.sort((a,b)=>a-b).join(', ') : 'ninguno';
+
+  return `Eres un panadero experto, cálido y motivador. Estás guiando a un principiante en un reto de 14 días para aprender a hacer pan. El usuario es de Perú y compra en Plaza Vea o Metro.
+
+CONTEXTO ACTUAL DEL USUARIO:
+- Día actual del reto: ${day}/14
+- Receta de hoy: Día ${recipe.day} — ${recipe.title}: ${recipe.subtitle}
+- Ingredientes de hoy: ${recipe.ingredients.filter(i=>i!=='').join(', ')}
+- Estado de la masa madre: ${act.label} (${act.desc})
+- Total de alimentaciones del starter: ${state.starterFeedings.length}
+- Días completados: ${completedList}
+- Progreso: ${Math.round((state.completedDays.length/14)*100)}%
+
+INSTRUCCIONES:
+- Responde en español, de forma concisa y práctica (máximo 2-3 párrafos)
+- Si preguntan sobre ingredientes, recomienda marcas y productos disponibles en Plaza Vea o Metro de Perú
+- Usa temperaturas en °C
+- Sé motivador pero honesto — si algo salió mal, explica por qué y cómo mejorar
+- Si preguntan algo no relacionado con panadería, responde brevemente pero redirige al pan
+- Usa un tono amigable, como un amigo que sabe mucho de pan`;
+}
+
+function renderChatMessages(){
+  const el = document.getElementById('chatMessages');
+  if(!el) return;
+  el.innerHTML = state.chatHistory.map(m=>
+    `<div class="chat-msg ${m.role}">${m.role==='assistant'?formatMarkdown(m.content):escapeHTML(m.content)}</div>`
+  ).join('');
+  scrollChatToBottom();
+  // Update suggestions
+  const sugEl = document.getElementById('chatSuggestions');
+  if(sugEl && state.chatHistory.length > 0) sugEl.style.display = 'none';
+}
+
+function scrollChatToBottom(){
+  const el = document.getElementById('chatMessages');
+  if(el) setTimeout(()=>el.scrollTop=el.scrollHeight,50);
+}
+
+function escapeHTML(str){
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function formatMarkdown(text){
+  // Simple markdown formatting
+  let html = escapeHTML(text);
+  // Bold
+  html = html.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  // Inline code
+  html = html.replace(/`(.+?)`/g,'<code>$1</code>');
+  // Line breaks to paragraphs
+  html = html.split('\n\n').map(p=>'<p>'+p+'</p>').join('');
+  html = html.replace(/\n/g,'<br>');
+  // Lists
+  html = html.replace(/<br>- /g,'<br>• ');
+  return html;
+}
+
+/* ═══════════════════════════════════════════
+   PWA MANIFEST
+   ═══════════════════════════════════════════ */
+function setupPWA(){
+  const manifest = {
+    name:'Pan de Casa — Reto de 14 Días',
+    short_name:'Pan de Casa',
+    description:'Tu asistente para aprender a hacer pan en 14 días',
+    start_url:'.',
+    display:'standalone',
+    background_color:'#1E1209',
+    theme_color:'#1E1209',
+    orientation:'portrait',
+    icons:[{
+      src:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="100" fill="#2A1810"/><text x="256" y="350" font-size="280" text-anchor="middle">🍞</text></svg>'),
+      sizes:'512x512',type:'image/svg+xml',purpose:'any'
+    }]
+  };
+  const link = document.createElement('link');
+  link.rel='manifest';
+  link.href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/json'}));
+  document.head.appendChild(link);
+}
+
+/* ═══════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════ */
+function init(){
+  setupPWA();
+  updateHeader();
+  renderPlan();
+  // Restore last tab
+  const tab = state.currentTab;
+  if(tab && tab !== 'plan'){
+    const btn = document.querySelector(`[data-page="${tab}"]`);
+    if(btn) btn.click();
+  }
+}
+
+init();
+</script>
+</body>
+</html>
