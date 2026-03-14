@@ -536,6 +536,62 @@ const STARTER_GUIDE=[
 {title:'🆘 Rescate — Starter Lenta',body:`<p>Si tu starter no responde después de varios días:</p><p>1. <strong>Cambia de harina:</strong> Usa harina integral o de centeno para 2-3 alimentaciones — tiene más nutrientes.</p><p>2. <strong>Más calor:</strong> Colócala cerca del horno encendido o en un lugar tibio (25-30°C ideal).</p><p>3. <strong>Alimenta más seguido:</strong> Cada 8h en vez de cada 12h.</p><p>4. <strong>Prueba con jugo de piña:</strong> Reemplaza el agua con jugo de piña las primeras 3 alimentaciones. La acidez ayuda.</p>`}
 ];
 
+// ═══ PANTRY & SMART SHOPPING ═══
+const PANTRY_CATALOG={
+  harina:{label:'Harina sin preparar',brand:'Blanca Flor',storeLabel:'1kg bolsa',storeQty:1000,unit:'g'},
+  harina_int:{label:'Harina integral',brand:'',storeLabel:'1kg bolsa',storeQty:1000,unit:'g'},
+  harina_arroz:{label:'Harina de arroz',brand:'',storeLabel:'500g bolsa',storeQty:500,unit:'g'},
+  levadura:{label:'Levadura seca',brand:'Fleischmann',storeLabel:'1 sobre (11g)',storeQty:11,unit:'g'},
+  sal:{label:'Sal',brand:'',storeLabel:'1kg bolsa',storeQty:1000,unit:'g'},
+  azucar:{label:'Azúcar blanca',brand:'',storeLabel:'1kg bolsa',storeQty:1000,unit:'g'},
+  azucar_imp:{label:'Azúcar impalpable',brand:'',storeLabel:'250g bolsa',storeQty:250,unit:'g'},
+  aceite_veg:{label:'Aceite vegetal',brand:'',storeLabel:'500ml botella',storeQty:500,unit:'ml'},
+  aceite_oliva:{label:'Aceite de oliva',brand:'extra virgen',storeLabel:'200ml botella',storeQty:200,unit:'ml'},
+  mantequilla:{label:'Mantequilla sin sal',brand:'Laive',storeLabel:'200g barra',storeQty:200,unit:'g'},
+  manteca:{label:'Manteca de cerdo',brand:'',storeLabel:'500g paquete',storeQty:500,unit:'g'},
+  huevos:{label:'Huevos',brand:'',storeLabel:'6 unidades',storeQty:6,unit:'un'},
+  leche:{label:'Leche fresca',brand:'Gloria',storeLabel:'1 litro',storeQty:1000,unit:'ml'},
+  miel:{label:'Miel de abeja',brand:'',storeLabel:'1 frasco (250g)',storeQty:250,unit:'g'},
+  ajonjoli:{label:'Ajonjolí',brand:'',storeLabel:'1 bolsa (100g)',storeQty:100,unit:'g'},
+  anis:{label:'Anís en grano',brand:'',storeLabel:'1 bolsa (50g)',storeQty:50,unit:'g'},
+  maicena:{label:'Maicena',brand:'Duryea',storeLabel:'200g caja',storeQty:200,unit:'g'},
+  manjar:{label:'Manjar blanco',brand:'Gloria',storeLabel:'1 frasco (500g)',storeQty:500,unit:'g'},
+  chancaca:{label:'Chancaca (panela)',brand:'',storeLabel:'500g bloque',storeQty:500,unit:'g'},
+  camote:{label:'Camote amarillo',brand:'',storeLabel:'½kg',storeQty:500,unit:'g'},
+  zapallo:{label:'Zapallo macre',brand:'',storeLabel:'½kg',storeQty:500,unit:'g'},
+};
+const SHOP_NEEDS={'pan-de-casa':{
+  1:{harina:500,levadura:7,sal:10,aceite_veg:15},
+  2:{harina:500,levadura:7,sal:10,aceite_oliva:15,ajonjoli:5},
+  3:{harina:50,mantequilla:50},
+  4:{harina_int:300,harina:200,levadura:7,sal:12,miel:30,aceite_oliva:30},
+  5:{harina:500,leche:250,mantequilla:50,azucar:40,levadura:7,sal:8,huevos:2},
+  6:{harina:500,leche:280,mantequilla:50,azucar:30,levadura:7,sal:8,huevos:3,ajonjoli:5},
+  7:{harina:50},
+  8:{harina:500,levadura:7,sal:10,aceite_oliva:30},
+  9:{harina:500,levadura:7,sal:10,aceite_oliva:90},
+  10:{harina:500,levadura:7,sal:10,aceite_oliva:30},
+  11:{harina:400,harina_int:100,sal:10},
+  12:{harina:450,harina_int:50,sal:10},
+  13:{harina:500,sal:10,harina_arroz:20},
+  14:{harina:450,harina_int:50,sal:10}
+},'pan-peruano':{
+  1:{harina:500,mantequilla:100,azucar:100,leche:150,levadura:7,sal:5,huevos:6},
+  2:{harina:500,manteca:100,levadura:5,sal:10,azucar:15,aceite_veg:300},
+  3:{harina:500,manteca:50,levadura:7,sal:10},
+  4:{harina:500,mantequilla:150,leche:150,azucar:50,levadura:7,sal:5,huevos:3},
+  5:{harina:500,manteca:50,levadura:7,sal:10,azucar:8,camote:100,anis:5},
+  6:{harina:500,manteca:100,huevos:4,sal:5},
+  7:{harina:500,mantequilla:80,leche:200,azucar:80,levadura:7,sal:5,huevos:2,anis:15,ajonjoli:10},
+  8:{maicena:200,harina:100,mantequilla:150,azucar_imp:80,huevos:3,manjar:250},
+  9:{harina:500,manteca:150,azucar:100,levadura:7,sal:5,huevos:3,leche:100},
+  10:{harina:500,camote:500,zapallo:500,levadura:14,anis:5,chancaca:500,aceite_veg:500},
+  11:{harina:500,manteca:200,azucar:100,levadura:7,sal:5,huevos:2,leche:80,anis:5},
+  12:{harina:500,manteca:200,huevos:6,anis:10,chancaca:500},
+  13:{harina:450,harina_int:50,sal:10},
+  14:{harina:500,mantequilla:150,azucar:120,levadura:14,leche:120,huevos:6}
+}};
+
 // ═══ STATE ═══
 const STATE_KEY='pan-de-casa-v2';
 const defaultState={
@@ -736,43 +792,83 @@ function checkFeedReminder(){
       state.lastFeedNotif=today+'-'+ft;saveState();}});
 }
 
-// ═══ SHOPPING ═══
+// ═══ SHOPPING (Smart Carry-Over) ═══
+function calcStockAtDay(chId,targetDay){
+  const needs=SHOP_NEEDS[chId]||{};const stock={};
+  for(let day=1;day<targetDay;day++){
+    const dn=needs[day]||{};const bought=state.checkedItems[chId+'-shop-'+day]||[];
+    Object.entries(dn).forEach(([key,need])=>{
+      if(!stock[key])stock[key]=0;
+      if(bought.includes(key)){
+        const cat=PANTRY_CATALOG[key];if(!cat)return;
+        const deficit=Math.max(0,need-stock[key]);
+        stock[key]+=Math.ceil(deficit/cat.storeQty)*cat.storeQty;
+      }
+    });
+    Object.entries(dn).forEach(([key,need])=>{
+      if(stock[key])stock[key]=Math.max(0,stock[key]-need);
+    });
+  }
+  return stock;
+}
+function fmtQty(val,unit){
+  if(unit==='g'&&val>=1000)return (val/1000)+'kg';
+  if(unit==='ml'&&val>=1000)return (val/1000)+'L';
+  if(unit==='un')return val+(val===1?' unidad':' unidades');
+  return val+unit;
+}
 function renderShopping(){
-  const ch=getChallenge();const currentDay=getNextDay();
-  const container=document.getElementById('shopDays');
-  container.innerHTML=ch.days.map(d=>{
-    const key=state.activeChallenge+'-day'+d.day;
-    if(!state.checkedItems[key])state.checkedItems[key]=[];
-    const checked=state.checkedItems[key];
-    const ingredients=d.ingredients.filter(i=>i!=='');
-    const checkedCount=checked.length;
+  const ch=getChallenge();const currentDay=getNextDay();const chId=state.activeChallenge;
+  const needs=SHOP_NEEDS[chId]||{};const container=document.getElementById('shopDays');
+  let html='';
+  ch.days.forEach(d=>{
+    const dayNeeds=needs[d.day]||{};
+    if(Object.keys(dayNeeds).length===0)return;
     const isCurrent=d.day===currentDay;
-    const isOpen=isCurrent;
-    return `<div class="shop-day-card${isOpen?' open':''}${isCurrent?' current':''}" data-shop-day="${d.day}">
-      <div class="shop-day-header">
-        <div class="shop-day-num">${d.day}</div>
-        <div class="shop-day-info">
-          <div class="shop-day-title">${d.title}</div>
-          <div class="shop-day-count">${checkedCount}/${ingredients.length} ingredientes</div>
-        </div>
-        <span class="shop-day-chevron">›</span>
-      </div>
-      <div class="shop-day-body"><div class="shop-day-items">
-        ${ingredients.map((item,i)=>{
-          const ch=checked.includes(i);
-          return `<div class="shop-item" data-idx="${i}" data-key="${key}"><div class="shop-check${ch?' checked':''}">${ch?'✓':''}</div><div class="shop-name${ch?' checked':''}">${item}</div></div>`
-        }).join('')}
-      </div></div>
-    </div>`;
-  }).join('');
+    const stock=calcStockAtDay(chId,d.day);
+    const buyKey=chId+'-shop-'+d.day;
+    const bought=state.checkedItems[buyKey]||[];
+    let itemsHtml='';let toBuyCount=0;
+    Object.entries(dayNeeds).forEach(([key,need])=>{
+      const cat=PANTRY_CATALOG[key];if(!cat)return;
+      const have=stock[key]||0;
+      if(have>=need){
+        itemsHtml+=`<div class="shop-item" style="opacity:0.5">
+          <div class="shop-check checked" style="background:var(--sage);border-color:var(--sage)">✓</div>
+          <div class="shop-name" style="color:var(--stone)">${cat.label}</div>
+          <div class="shop-qty" style="color:var(--sage)">Tienes ${fmtQty(have,cat.unit)}</div></div>`;
+      } else {
+        const deficit=need-have;const units=Math.ceil(deficit/cat.storeQty);
+        const isBought=bought.includes(key);
+        if(!isBought)toBuyCount++;
+        const label=cat.label+(cat.brand?' ('+cat.brand+')':'');
+        itemsHtml+=`<div class="shop-item" data-day="${d.day}" data-key="${key}">
+          <div class="shop-check${isBought?' checked':''}">${isBought?'✓':''}</div>
+          <div class="shop-name${isBought?' checked':''}">${label}
+            <div style="font-size:0.7rem;color:var(--stone);margin-top:2px;font-weight:400">
+              Necesitas ${fmtQty(need,cat.unit)}${have>0?' · tienes '+fmtQty(have,cat.unit):''}</div></div>
+          <div class="shop-qty">${units>1?units+'× ':''}${cat.storeLabel}</div></div>`;
+      }
+    });
+    const statusText=toBuyCount===0?'Todo listo':toBuyCount+' por comprar';
+    html+=`<div class="shop-day-card${isCurrent?' open current':''}" data-shop-day="${d.day}">
+      <div class="shop-day-header"><div class="shop-day-num">${d.day}</div>
+        <div class="shop-day-info"><div class="shop-day-title">${d.title}</div>
+          <div class="shop-day-count">${statusText}</div></div>
+        <span class="shop-day-chevron">›</span></div>
+      <div class="shop-day-body"><div class="shop-day-items">${itemsHtml}</div></div></div>`;
+  });
+  container.innerHTML=html;
   container.querySelectorAll('.shop-day-header').forEach(h=>{
     h.addEventListener('click',()=>h.parentElement.classList.toggle('open'))});
-  container.querySelectorAll('.shop-item').forEach(item=>{
+  container.querySelectorAll('.shop-item[data-key]').forEach(item=>{
     item.addEventListener('click',()=>{
-      const idx=parseInt(item.dataset.idx);const key=item.dataset.key;
-      if(!state.checkedItems[key])state.checkedItems[key]=[];
-      if(state.checkedItems[key].includes(idx))state.checkedItems[key]=state.checkedItems[key].filter(i=>i!==idx);
-      else state.checkedItems[key].push(idx);saveState();renderShopping()})});
+      const day=item.dataset.day;const key=item.dataset.key;const bk=chId+'-shop-'+day;
+      if(!state.checkedItems[bk])state.checkedItems[bk]=[];
+      const arr=state.checkedItems[bk];
+      if(arr.includes(key))state.checkedItems[bk]=arr.filter(k=>k!==key);
+      else arr.push(key);saveState();renderShopping()});
+  });
 }
 
 // ═══ TIMER ═══
