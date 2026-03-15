@@ -298,6 +298,71 @@ body::after{
 .context-banner{background:rgba(192,124,90,0.06);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:14px;font-size:0.76rem;color:var(--stone);display:flex;align-items:center;gap:8px}
 .context-banner strong{color:var(--bark)}
 .section-divider{font-family:'Literata',serif;font-size:0.92rem;font-weight:600;color:var(--stone);margin:18px 0 10px;padding-top:10px;border-top:1px solid rgba(61,46,34,0.06)}
+/* Starter Tabs */
+.starter-tabs{display:flex;gap:0;margin-bottom:20px;border-radius:var(--radius-sm);overflow:hidden;border:1.5px solid var(--linen)}
+.starter-tab{flex:1;padding:12px;text-align:center;font-weight:600;font-size:0.85rem;cursor:pointer;background:var(--snow);color:var(--stone);transition:all 0.2s;border:none;font-family:'Outfit',sans-serif}
+.starter-tab.active{background:var(--clay);color:white}
+/* Creation Day Nav */
+.creation-days{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;padding:4px 0;justify-content:center}
+.creation-days::-webkit-scrollbar{display:none}
+.creation-day-btn{min-width:42px;height:42px;border-radius:50%;border:2px solid var(--linen);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;background:var(--snow);color:var(--stone);flex-shrink:0;font-family:'Outfit',sans-serif}
+.creation-day-btn.current{border-color:var(--clay);color:var(--clay);background:rgba(192,124,90,0.06)}
+.creation-day-btn.completed{background:var(--sage);border-color:var(--sage);color:white}
+.creation-day-btn.has-data{border-color:var(--clay-light)}
+/* Visual Picker */
+.diag-section{margin-bottom:20px;width:100%;max-width:400px}
+.diag-label{font-family:'Literata',serif;font-weight:600;font-size:0.92rem;margin-bottom:10px;color:var(--bark);display:flex;align-items:center;gap:8px}
+.diag-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.diag-options.three-col{grid-template-columns:1fr 1fr 1fr}
+.diag-option{padding:14px 12px;border-radius:var(--radius-sm);border:1.5px solid var(--linen);background:var(--snow);cursor:pointer;transition:all 0.2s;text-align:center}
+.diag-option:active{transform:scale(0.97)}
+.diag-option.selected{border-color:var(--clay);background:rgba(192,124,90,0.06)}
+.diag-option.warning{border-color:var(--danger);background:rgba(200,90,58,0.06)}
+.diag-emoji{font-size:1.5rem;margin-bottom:4px}
+.diag-name{font-weight:600;font-size:0.78rem;color:var(--bark)}
+.diag-desc{font-size:0.68rem;color:var(--stone);margin-top:3px;line-height:1.3}
+/* Diagnostic Tips */
+.diag-tip{background:rgba(192,124,90,0.06);border-left:3px solid var(--clay-light);padding:12px 14px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.82rem;color:var(--stone);line-height:1.5;margin:8px 0;width:100%;max-width:400px}
+.diag-tip.danger{background:rgba(200,90,58,0.08);border-left-color:var(--danger)}
+.diag-tip strong{color:var(--bark)}
+.diag-tip.good{background:rgba(139,171,127,0.08);border-left-color:var(--sage)}
+/* Readiness Checklist */
+.readiness-list{list-style:none;width:100%;max-width:400px}
+.readiness-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(61,46,34,0.06);cursor:pointer}
+.readiness-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--linen);display:flex;align-items:center;justify-content:center;font-size:0.7rem;transition:all 0.2s;flex-shrink:0}
+.readiness-check.checked{background:var(--sage);border-color:var(--sage);color:white}
+.readiness-info{flex:1}
+.readiness-label{font-weight:600;font-size:0.88rem;color:var(--bark)}
+.readiness-desc{font-size:0.76rem;color:var(--stone);margin-top:2px}
+/* Day 1 Setup */
+.setup-hero{text-align:center;margin-bottom:24px}
+.setup-hero-emoji{font-size:3.5rem;margin-bottom:8px}
+.setup-hero-title{font-family:'Literata',serif;font-size:1.2rem;font-weight:700;color:var(--bark)}
+.setup-hero-sub{font-size:0.82rem;color:var(--stone);margin-top:4px}
+.setup-section{width:100%;max-width:400px;margin-bottom:20px}
+.setup-section h3{font-family:'Literata',serif;font-size:0.95rem;font-weight:600;margin-bottom:12px;color:var(--bark);display:flex;align-items:center;gap:8px}
+.setup-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(61,46,34,0.06);font-size:0.86rem;color:var(--bark)}
+.setup-item-emoji{font-size:1.1rem;min-width:28px;text-align:center}
+.setup-steps{width:100%;max-width:400px}
+.setup-steps ol{list-style:none;counter-reset:setup-step}
+.setup-steps li{counter-increment:setup-step;padding:10px 0 10px 40px;border-bottom:1px solid rgba(61,46,34,0.06);font-size:0.84rem;position:relative;line-height:1.6;color:var(--bark)}
+.setup-steps li::before{content:counter(setup-step);position:absolute;left:0;top:10px;width:26px;height:26px;border-radius:50%;background:var(--clay-pale);color:var(--clay);font-size:0.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Literata',serif}
+/* Maintenance Calendar */
+.maint-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:100%;max-width:360px;margin-bottom:16px}
+.maint-cal-header{font-size:0.65rem;color:var(--stone);text-align:center;padding:4px 0;font-weight:600}
+.maint-cal-day{aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:500;cursor:pointer;transition:all 0.2s;background:var(--snow);border:1px solid rgba(61,46,34,0.06)}
+.maint-cal-day.fed{background:var(--sage);color:white;border-color:var(--sage)}
+.maint-cal-day.today{border-color:var(--clay);font-weight:700}
+.maint-cal-day.empty{background:transparent;border-color:transparent;cursor:default}
+/* Congrats */
+.congrats-screen{text-align:center;padding:32px 16px}
+.congrats-emoji{font-size:3.5rem;margin-bottom:16px}
+.congrats-title{font-family:'Literata',serif;font-size:1.4rem;font-weight:700;color:var(--bark);margin-bottom:8px}
+.congrats-text{font-size:0.88rem;color:var(--stone);line-height:1.6;max-width:320px;margin:0 auto 24px}
+/* Day info banner */
+.day-info-banner{background:rgba(139,171,127,0.08);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:18px;font-size:0.82rem;color:var(--stone);line-height:1.5;width:100%;max-width:400px}
+.day-info-banner strong{color:var(--bark)}
+.day-info-banner .expected{color:var(--sage);font-weight:600}
 </style>
 </head>
 <body>
@@ -555,6 +620,85 @@ const STARTER_GUIDE=[
 {title:'🆘 Rescate — Starter Lenta',body:`<p>Si tu starter no responde después de varios días:</p><p>1. <strong>Cambia de harina:</strong> Usa harina integral o de centeno para 2-3 alimentaciones — tiene más nutrientes.</p><p>2. <strong>Más calor:</strong> Colócala cerca del horno encendido o en un lugar tibio (25-30°C ideal).</p><p>3. <strong>Alimenta más seguido:</strong> Cada 8h en vez de cada 12h.</p><p>4. <strong>Prueba con jugo de piña:</strong> Reemplaza el agua con jugo de piña las primeras 3 alimentaciones. La acidez ayuda.</p>`}
 ];
 
+// ═══ STARTER DIAGNOSTICS DATA ═══
+const STARTER_DAY_EXPECTATIONS={
+  2:{bubbles:['none','few_small'],smell:['flour_paste','rotten'],rise:['none','slight','tripled'],surface:['smooth','bubbly'],consistency:['thick_paste','pancake_batter'],
+    info:'Día 2: Es normal ver mucha actividad (falso ascenso por bacterias Leuconostoc) O ninguna actividad. Ambos son normales.'},
+  3:{bubbles:['none','few_small'],smell:['flour_paste','rotten','vinegary'],rise:['none'],surface:['smooth'],consistency:['thick_paste','pancake_batter'],
+    info:'Día 3: La actividad del día 2 puede desaparecer. Las bacterias iniciales están muriendo. Es normal y necesario.'},
+  4:{bubbles:['none','few_small'],smell:['rotten','vinegary','acetone'],rise:['none'],surface:['smooth'],consistency:['thick_paste','pancake_batter'],
+    info:'Día 4: Periodo tranquilo. Las levaduras silvestres se están estableciendo aunque parezca inactiva.'},
+  5:{bubbles:['few_small','many_small'],smell:['yogurt_fruity','vinegary'],rise:['none','slight'],surface:['smooth','bubbly'],consistency:['pancake_batter'],
+    info:'Día 5: Las primeras señales reales de vida deberían aparecer. Burbujas pequeñas y olores más suaves.'},
+  6:{bubbles:['many_small','large_active'],smell:['yogurt_fruity','vinegary'],rise:['slight','good'],surface:['bubbly'],consistency:['pancake_batter','stretchy'],
+    info:'Día 6: Tu starter debería mostrar actividad creciente. Más burbujas, mejor olor.'},
+  7:{bubbles:['many_small','large_active'],smell:['yogurt_fruity','vinegary'],rise:['good','doubled','tripled'],surface:['bubbly'],consistency:['pancake_batter','stretchy'],
+    info:'Día 7: Si duplica su tamaño en 6-8 horas, ¡casi lista! Si no, sigue alimentando — muchas starters necesitan 10-14 días.'}
+};
+
+const STARTER_DIAGNOSTICS={
+  bubbles:{label:'Burbujas',emoji:'🫧',options:[
+    {id:'none',emoji:'⬜',label:'Ninguna',desc:'Sin burbujas visibles en la mezcla'},
+    {id:'few_small',emoji:'◽',label:'Pocas pequeñas',desc:'Algunas burbujas pequeñas, sobre todo en la superficie'},
+    {id:'many_small',emoji:'🔘',label:'Muchas pequeñas',desc:'Red densa de burbujas pequeñas por toda la masa'},
+    {id:'large_active',emoji:'🫧',label:'Grandes y activas',desc:'Burbujas grandes y pequeñas, se ven subir'}
+  ]},
+  smell:{label:'Olor',emoji:'👃',options:[
+    {id:'flour_paste',emoji:'🌾',label:'Harina / neutro',desc:'Huele a harina cruda, sin olor fuerte'},
+    {id:'yogurt_fruity',emoji:'🍋',label:'Yogurt / frutal',desc:'Olor agradable, ácido suave, como yogurt natural'},
+    {id:'vinegary',emoji:'🍶',label:'Avinagrado',desc:'Olor ácido fuerte, como vinagre'},
+    {id:'acetone',emoji:'💅',label:'Acetona',desc:'Olor químico, como quitaesmalte de uñas'},
+    {id:'rotten',emoji:'🤢',label:'Podrido / fuerte',desc:'Olor desagradable, a queso viejo o huevos'},
+    {id:'musty_moldy',emoji:'🟤',label:'Moho / húmedo',desc:'Olor a sótano húmedo o a moho'}
+  ]},
+  rise:{label:'Volumen',emoji:'📏',options:[
+    {id:'none',emoji:'➖',label:'Sin cambio',desc:'Mismo nivel que después de alimentar'},
+    {id:'slight',emoji:'📈',label:'Subió ~25%',desc:'Subió un poco, apenas se nota'},
+    {id:'good',emoji:'⬆️',label:'Subió ~50%',desc:'Subió claramente a la mitad del camino'},
+    {id:'doubled',emoji:'⏫',label:'Duplicó',desc:'Duplicó su tamaño desde la marca'},
+    {id:'tripled',emoji:'🚀',label:'Triplicó+',desc:'Más del doble de su tamaño'}
+  ]},
+  surface:{label:'Superficie',emoji:'🔍',options:[
+    {id:'smooth',emoji:'🪞',label:'Lisa',desc:'Superficie plana, sin actividad visible'},
+    {id:'bubbly',emoji:'🫧',label:'Burbujeante',desc:'Burbujas rompiendo en la superficie'},
+    {id:'hooch',emoji:'🟫',label:'Líquido oscuro',desc:'Capa de líquido gris/marrón encima (hooch)'},
+    {id:'mold_spots',emoji:'🟢',label:'Manchas de moho',desc:'Puntos peludos de cualquier color'}
+  ]},
+  consistency:{label:'Consistencia',emoji:'🥄',options:[
+    {id:'thick_paste',emoji:'🧱',label:'Pasta espesa',desc:'Densa, difícil de revolver, mantiene su forma'},
+    {id:'pancake_batter',emoji:'🥞',label:'Masa de panqueque',desc:'Se vierte lentamente, espesa pero fluida'},
+    {id:'stretchy',emoji:'🧀',label:'Elástica',desc:'Se estira al levantar con cuchara, como hilos'},
+    {id:'runny',emoji:'💧',label:'Muy líquida',desc:'Muy aguada, se vierte como agua'},
+    {id:'dry_stiff',emoji:'🏜️',label:'Seca / dura',desc:'No se vierte, más como masa que como mezcla'}
+  ]}
+};
+
+const STARTER_TROUBLESHOOTING={
+  'bubbles_none_late':'<strong>Sin burbujas después del día 5:</strong> Mueve tu starter a un lugar más tibio (24-27°C). Prueba alimentar con harina integral por 2-3 días — tiene más levaduras silvestres. Verifica que el agua no tenga cloro (hierve y enfría).',
+  'smell_acetone':'<strong>Olor a acetona:</strong> Tu starter tiene hambre extrema. Alimenta inmediatamente con proporción alta: conserva solo 10g de starter, agrega 50g harina + 50g agua. Repite 1-2 veces hasta que el olor mejore.',
+  'smell_rotten_late':'<strong>Olor podrido persistente:</strong> Después del día 5 debería mejorar. Haz una alimentación alta (10g starter + 50g harina + 50g agua) en un frasco limpio. Usa agua filtrada. Agrega 25% harina integral.',
+  'smell_rotten_early':'<strong>No te preocupes:</strong> Los olores fuertes en días 2-4 son completamente normales. Son las bacterias iniciales del grano muriendo. Sigue alimentando normal — el olor mejorará.',
+  'smell_musty':'<strong>Olor a moho:</strong> Revisa visualmente si hay manchas peludas. Si confirmas moho, descarta todo y empieza de nuevo con un frasco limpio.',
+  'rise_none_late':'<strong>Sin actividad después del día 5:</strong> Lugar más tibio (arriba de la refri, dentro del horno con solo la luz encendida). Alimenta con 50% harina integral. Prueba alimentar cada 8h en vez de cada 12h. Muchas starters necesitan 10-14 días.',
+  'rise_tripled_early':'<strong>Falso ascenso (día 2-3):</strong> Esta explosión de actividad NO es levadura real. Son bacterias Leuconostoc del grano que producen gas pero morirán pronto. La actividad caerá — es completamente normal. NO cambies nada.',
+  'surface_hooch':'<strong>Líquido oscuro (hooch):</strong> Tu starter tiene hambre, no está dañada. Si es poca cantidad, revuélvela antes de alimentar. Si es mucha, descártala y alimenta. Alimenta más seguido o usa proporción 1:2:2.',
+  'surface_mold':'<strong>PELIGRO — Moho detectado:</strong> Descarta TODO el starter inmediatamente. El moho tiene raíces invisibles que penetran toda la mezcla. No intentes salvarlo. Lava y esteriliza el frasco con agua hirviendo. Empieza de nuevo.',
+  'consistency_runny':'<strong>Muy líquida:</strong> Agrega un poco más de harina en la próxima alimentación (55-60g harina por 50g agua). La consistencia ideal es como masa de panqueque espesa.',
+  'consistency_dry':'<strong>Muy seca:</strong> Agrega 5-10g más de agua en la próxima alimentación. Una masa muy densa fermenta más lento porque los microbios no se mueven bien.',
+  'general_no_activity_day3':'<strong>Sin actividad al día 3:</strong> Es muy temprano para preocuparse. Muchas starters no muestran señales hasta el día 4-5. Verifica: lugar tibio, agua sin cloro, harina sin preparar (NO preparada). Sigue alimentando.',
+  'general_false_rise_crash':'<strong>Subió mucho y luego cayó:</strong> Esto es el ciclo normal de Leuconostoc. La actividad real vendrá en días 5-7. No cambies nada — la paciencia es la clave.'
+};
+
+const STARTER_READINESS=[
+  {id:'doubling',label:'Duplica predeciblemente',desc:'Duplica su tamaño en 4-8 horas después de alimentar, de manera consistente'},
+  {id:'float',label:'Prueba del flotador',desc:'Una cucharadita de starter flota en un vaso de agua (hacer en el pico de actividad)'},
+  {id:'aroma',label:'Aroma agradable',desc:'Huele a yogurt, frutas fermentadas o levemente ácido — no a podrido ni a acetona'},
+  {id:'bubbling',label:'Burbujeo vigoroso',desc:'Muchas burbujas activas en toda la mezcla, no solo en la superficie'},
+  {id:'timing',label:'Timing predecible',desc:'Puedes predecir cuándo sube y cuándo baja. El ciclo es consistente'},
+  {id:'texture',label:'Buena textura',desc:'En su pico: ligera, aireada, se estira. Cuando la sacas con cuchara se siente liviana'},
+  {id:'age',label:'Mínimo 7 días',desc:'Tu starter tiene al menos 7 días de vida (idealmente 14+ para mejores resultados)'}
+];
+
 // ═══ PANTRY & SMART SHOPPING ═══
 const PANTRY_CATALOG={
   harina:{label:'Harina sin preparar',brand:'Blanca Flor',storeLabel:'1kg bolsa',storeQty:1000,unit:'g'},
@@ -632,14 +776,27 @@ const defaultState={
   completedDays:{},starterFeedings:[],checkedItems:{},
   currentTab:'plan',activeChallenge:'pan-de-casa',activeShopTab:'basicos1',
   apiKey:'',chatHistory:[],
-  feedingTimes:['08:00','20:00'],remindersOn:false,lastFeedNotif:''
+  feedingTimes:['08:00','20:00'],remindersOn:false,lastFeedNotif:'',
+  starter:{mode:'creation',creationDay:1,creationStartDate:null,dailyCheckins:{},readinessChecks:[],creationCompleted:false}
 };
 let state=loadState();
 let timerState={running:false,paused:false,name:'',totalSec:0,remainSec:0,interval:null};
 
 function loadState(){
-  try{const s=localStorage.getItem(STATE_KEY);return s?{...defaultState,...JSON.parse(s)}:{...defaultState}}
-  catch(e){return{...defaultState}}
+  try{
+    const s=localStorage.getItem(STATE_KEY);
+    let parsed=s?{...defaultState,...JSON.parse(s)}:{...defaultState};
+    if(!parsed.starter){
+      parsed.starter={...defaultState.starter};
+      if(parsed.starterFeedings&&parsed.starterFeedings.length>0){
+        const earliest=Math.min(...parsed.starterFeedings.map(f=>f.timestamp));
+        parsed.starter.creationStartDate=new Date(earliest).toISOString().split('T')[0];
+        const uniqueDays=new Set(parsed.starterFeedings.map(f=>f.day));
+        parsed.starter.creationDay=Math.min(7,uniqueDays.size+1);
+      }
+    }
+    return parsed;
+  }catch(e){return{...defaultState}}
 }
 function saveState(){localStorage.setItem(STATE_KEY,JSON.stringify(state))}
 function getChallenge(){return CHALLENGES.find(c=>c.id===state.activeChallenge)||CHALLENGES[0]}
@@ -745,65 +902,446 @@ function getStarterActivity(){
   return{level:4,label:'¡Muy activa!',emoji:'🔥',desc:'¡Lista para sourdough!'};
 }
 
-function renderStarter(){
-  const c=document.getElementById('starterContainer');const act=getStarterActivity();
-  const dH=Math.min(75,20+act.level*14);const bCount=act.level*4;
+function renderJarSVG(level){
+  const dH=Math.min(75,20+(level||0)*14);const bCount=(level||0)*4;
   let bubbles='';
   for(let i=0;i<bCount;i++){const sz=4+Math.random()*8;const l=10+Math.random()*80;const du=2+Math.random()*3;const de=Math.random()*3;const tr=60+Math.random()*120;
     bubbles+=`<div class="bubble" style="width:${sz}px;height:${sz}px;left:${l}%;bottom:5%;--dur:${du}s;--del:${de}s;--travel:${tr}px"></div>`}
-  const fedDays=new Set(state.starterFeedings.map(f=>f.day));
-  let timeline='';for(let d=1;d<=14;d++){const isFed=fedDays.has(d);const isToday=d===getNextDay();
-    timeline+=`<div class="timeline-day${isFed?' fed':''}${isToday?' today':''}">${d}</div>`}
-  const recent=[...state.starterFeedings].reverse().slice(0,6);
+  return `<div class="jar-wrapper">
+    <svg class="jar-svg" viewBox="0 0 160 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="42" y="8" width="76" height="18" rx="4" fill="#C07C5A" opacity="0.3" stroke="#C07C5A" stroke-width="1.5"/>
+      <path d="M38 26 C38 26 32 34 32 48 L32 190 C32 210 44 222 62 222 L98 222 C116 222 128 210 128 190 L128 48 C128 34 122 26 122 26" fill="rgba(192,124,90,0.04)" stroke="#C07C5A" stroke-width="1.8" stroke-linecap="round"/>
+      <rect x="34" y="${Math.round(222-(222-48)*(dH/100))}" width="92" height="${Math.round((222-48)*(dH/100))}" rx="0" fill="#F3DFD0" opacity="0.6" clip-path="url(#jarClip)"/>
+      <defs><clipPath id="jarClip"><path d="M32 48 L32 190 C32 210 44 222 62 222 L98 222 C116 222 128 210 128 190 L128 48 Z"/></clipPath></defs>
+      <ellipse cx="80" cy="${Math.round(222-(222-48)*(dH/100))}" rx="46" ry="4" fill="#E8C4A0" opacity="0.5"/>
+      <line x1="50" y1="80" x2="50" y2="180" stroke="#C07C5A" opacity="0.06" stroke-width="0.8"/>
+      <line x1="110" y1="80" x2="110" y2="180" stroke="#C07C5A" opacity="0.06" stroke-width="0.8"/>
+    </svg>${bubbles}</div>`;
+}
+
+// ═══ STARTER ROUTER ═══
+function renderStarter(){
+  const c=document.getElementById('starterContainer');
+  const mode=state.starter.mode;
+  c.innerHTML=`
+    <div class="starter-tabs">
+      <button class="starter-tab${mode==='creation'?' active':''}" data-smode="creation">Crear Starter</button>
+      <button class="starter-tab${mode==='maintenance'?' active':''}" data-smode="maintenance">Mantenimiento</button>
+    </div>
+    <div id="starterModeContent"></div>`;
+  c.querySelectorAll('.starter-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      state.starter.mode=tab.dataset.smode;saveState();renderStarter();
+    });
+  });
+  if(mode==='creation')renderCreationMode();
+  else renderMaintenanceMode();
+}
+
+// ═══ CREATION MODE ═══
+function renderCreationMode(){
+  const mc=document.getElementById('starterModeContent');
+  const currentDay=state.starter.creationDay;
+  let dayNav='<div class="creation-days">';
+  for(let d=1;d<=7;d++){
+    const checkin=state.starter.dailyCheckins[d];
+    const isCurrent=d===currentDay;
+    const isCompleted=checkin&&checkin.completed;
+    let cls='creation-day-btn';
+    if(isCurrent)cls+=' current';
+    if(isCompleted)cls+=' completed';
+    else if(checkin)cls+=' has-data';
+    dayNav+=`<button class="${cls}" data-cday="${d}">${isCompleted?'✓':d}</button>`;
+  }
+  dayNav+='</div>';
+  mc.innerHTML=dayNav+'<div id="creationDayContent"></div>';
+  mc.querySelectorAll('.creation-day-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      state.starter.creationDay=parseInt(btn.dataset.cday);saveState();renderCreationMode();
+    });
+  });
+  if(currentDay===1)renderCreationDay1();
+  else renderCreationDayCheckin(currentDay);
+}
+
+function renderCreationDay1(){
+  const el=document.getElementById('creationDayContent');
+  const isCompleted=state.starter.dailyCheckins[1]&&state.starter.dailyCheckins[1].completed;
+  el.innerHTML=`
+    <div class="setup-hero">
+      <div class="setup-hero-emoji">🫙</div>
+      <div class="setup-hero-title">Crea tu Masa Madre</div>
+      <div class="setup-hero-sub">Todo empieza con harina, agua y paciencia</div>
+    </div>
+    <div class="setup-section">
+      <h3>🛒 Lo que necesitas</h3>
+      <div class="setup-item"><span class="setup-item-emoji">🫙</span> Frasco de vidrio 500ml-1L (de mermelada, aceitunas, etc.)</div>
+      <div class="setup-item"><span class="setup-item-emoji">🌾</span> Harina sin preparar (Blanca Flor / Nicolini) — NO preparada</div>
+      <div class="setup-item"><span class="setup-item-emoji">💧</span> Agua filtrada o hervida y enfriada (sin cloro)</div>
+      <div class="setup-item"><span class="setup-item-emoji">⚖️</span> Balanza digital (en gramos)</div>
+      <div class="setup-item"><span class="setup-item-emoji">🍴</span> Tenedor o cuchara para mezclar</div>
+      <div class="setup-item"><span class="setup-item-emoji">📏</span> Liga / elástico para marcar el nivel</div>
+      <div class="setup-item"><span class="setup-item-emoji">🧻</span> Trapo o tapa suelta (necesita respirar)</div>
+    </div>
+    <div class="setup-section">
+      <h3>👩‍🍳 Preparación — Día 1</h3>
+      <div class="setup-steps"><ol>
+        <li>Limpia el frasco con agua caliente. Sin residuos de jabón.</li>
+        <li><strong>Pesa 50g de harina sin preparar</strong> directo en el frasco. Si tienes harina integral, usa 25g integral + 25g sin preparar (mejor arranque).</li>
+        <li><strong>Pesa 50g de agua tibia</strong> (25-27°C). En Perú: hierve agua del grifo, déjala enfriar a temperatura ambiente.</li>
+        <li><strong>Mezcla bien</strong> con tenedor hasta que no queden grumos. Raspa las paredes. Consistencia de pasta espesa.</li>
+        <li><strong>Marca el nivel</strong> con una liga en el exterior del frasco. Así verás si sube.</li>
+        <li><strong>Tapa sin cerrar del todo</strong> — usa tapa floja, trapo con liga, o film con hoyitos. Necesita salir el CO2.</li>
+        <li><strong>Coloca en lugar tibio</strong> (24-27°C). Arriba de la refri, en un armario cerca de la cocina, o dentro del horno apagado con solo la luz encendida.</li>
+        <li><strong>Espera 24 horas.</strong> No revuelvas, no espíes mucho. Deja que la naturaleza trabaje.</li>
+      </ol></div>
+    </div>
+    <div class="diag-tip good" style="margin:0 auto">
+      <strong>Desde mañana:</strong> Cada día descarta la mitad de tu starter y alimenta con 50g harina + 50g agua tibia. Siempre a la misma hora. ¡Pon alarma!
+    </div>
+    <div style="text-align:center;margin-top:24px;width:100%;max-width:400px">
+      <button class="btn btn-primary" id="day1Done" style="width:100%;padding:16px">${isCompleted?'✓ Día 1 completado — revisar':'¡Listo, empezamos!'}</button>
+    </div>`;
+  document.getElementById('day1Done').addEventListener('click',()=>{
+    if(!state.starter.creationStartDate)state.starter.creationStartDate=new Date().toISOString().split('T')[0];
+    state.starter.dailyCheckins[1]={date:new Date().toISOString(),completed:true};
+    state.starter.creationDay=2;saveState();renderCreationMode();
+  });
+}
+
+function renderCreationDayCheckin(day){
+  const el=document.getElementById('creationDayContent');
+  const checkin=state.starter.dailyCheckins[day]||{};
+  const expectations=STARTER_DAY_EXPECTATIONS[day]||{};
+
+  // Day info banner
+  let html=`<div class="day-info-banner"><strong>Día ${day}:</strong> ${expectations.info||''}</div>`;
+
+  // Feeding reminder
+  html+=`<div class="diag-tip good" style="margin:0 auto 20px">
+    <strong>Alimentación diaria:</strong> Descarta la mitad → agrega 50g harina + 50g agua tibia → mezcla bien → tapa → lugar tibio.
+  </div>`;
+
+  // Visual pickers for each diagnostic category
+  const categories=['bubbles','smell','rise','surface','consistency'];
+  categories.forEach(cat=>{
+    const diag=STARTER_DIAGNOSTICS[cat];
+    const selected=checkin[cat]||'';
+    const colClass=diag.options.length>4?' three-col':'';
+    html+=`<div class="diag-section">
+      <div class="diag-label">${diag.emoji} ${diag.label}</div>
+      <div class="diag-options${colClass}">
+        ${diag.options.map(opt=>{
+          const isSel=selected===opt.id;
+          const isDanger=(cat==='surface'&&opt.id==='mold_spots')||(cat==='smell'&&opt.id==='musty_moldy');
+          let cls='diag-option';
+          if(isSel&&isDanger)cls+=' warning';
+          else if(isSel)cls+=' selected';
+          return `<div class="${cls}" data-cat="${cat}" data-val="${opt.id}">
+            <div class="diag-emoji">${opt.emoji}</div>
+            <div class="diag-name">${opt.label}</div>
+            <div class="diag-desc">${opt.desc}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  });
+
+  // Notes
+  html+=`<div class="diag-section">
+    <div class="diag-label">📝 Notas personales</div>
+    <textarea class="notes-input" id="checkinNotes" rows="2" placeholder="Observaciones, fotos tomadas, dudas...">${checkin.notes||''}</textarea>
+  </div>`;
+
+  // Diagnostic tips area
+  html+='<div id="diagTips"></div>';
+
+  // Navigation buttons
+  html+=`<div style="display:flex;gap:10px;width:100%;max-width:400px;margin-top:8px">
+    ${day>1?`<button class="btn btn-secondary" id="prevDay">← Día ${day-1}</button>`:''}
+    <button class="btn btn-primary" id="completeDay" style="flex:2">${checkin.completed?'✓ Completado — actualizar':'Completar día '+day}</button>
+    ${day<7?`<button class="btn btn-secondary" id="nextDay">Día ${day+1} →</button>`:''}
+  </div>`;
+
+  // Readiness check button (from day 7)
+  if(day>=7){
+    html+=`<div style="width:100%;max-width:400px;margin-top:16px">
+      <button class="btn btn-secondary" id="readinessBtn" style="width:100%;border-color:var(--sage);color:var(--sage)">🔍 ¿Mi starter está lista?</button>
+    </div>`;
+  }
+
+  el.innerHTML=html;
+
+  // Event: visual picker selection
+  el.querySelectorAll('.diag-option').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      const cat=opt.dataset.cat;const val=opt.dataset.val;
+      if(!state.starter.dailyCheckins[day])state.starter.dailyCheckins[day]={date:new Date().toISOString()};
+      state.starter.dailyCheckins[day][cat]=val;saveState();
+      // Update selection UI
+      opt.closest('.diag-options').querySelectorAll('.diag-option').forEach(o=>o.classList.remove('selected','warning'));
+      const isDanger=(cat==='surface'&&val==='mold_spots')||(cat==='smell'&&val==='musty_moldy');
+      opt.classList.add(isDanger?'warning':'selected');
+      // Show diagnostics
+      renderDiagnosticTips(day);
+    });
+  });
+
+  // Event: notes
+  const notesEl=document.getElementById('checkinNotes');
+  if(notesEl){
+    notesEl.addEventListener('input',()=>{
+      if(!state.starter.dailyCheckins[day])state.starter.dailyCheckins[day]={date:new Date().toISOString()};
+      state.starter.dailyCheckins[day].notes=notesEl.value;saveState();
+    });
+  }
+
+  // Event: complete day
+  document.getElementById('completeDay').addEventListener('click',()=>{
+    if(!state.starter.dailyCheckins[day])state.starter.dailyCheckins[day]={date:new Date().toISOString()};
+    state.starter.dailyCheckins[day].completed=true;
+    // Also log a feeding in starterFeedings for maintenance mode
+    state.starterFeedings.push({timestamp:Date.now(),day:day,notes:checkin.notes||''});
+    if(day<7)state.starter.creationDay=day+1;
+    saveState();renderCreationMode();
+  });
+
+  // Event: prev/next day
+  const prevBtn=document.getElementById('prevDay');
+  if(prevBtn)prevBtn.addEventListener('click',()=>{state.starter.creationDay=day-1;saveState();renderCreationMode()});
+  const nextBtn=document.getElementById('nextDay');
+  if(nextBtn)nextBtn.addEventListener('click',()=>{state.starter.creationDay=day+1;saveState();renderCreationMode()});
+
+  // Event: readiness check
+  const readBtn=document.getElementById('readinessBtn');
+  if(readBtn)readBtn.addEventListener('click',()=>renderReadinessCheck());
+
+  // Show tips for any already-selected diagnostics
+  renderDiagnosticTips(day);
+}
+
+function compareDiagnostics(day,checkin){
+  const exp=STARTER_DAY_EXPECTATIONS[day];
+  if(!exp)return[];
+  const tips=[];
+
+  // Check each category
+  const checks=[
+    {cat:'bubbles',label:'Burbujas'},
+    {cat:'smell',label:'Olor'},
+    {cat:'rise',label:'Volumen'},
+    {cat:'surface',label:'Superficie'},
+    {cat:'consistency',label:'Consistencia'}
+  ];
+
+  checks.forEach(({cat})=>{
+    const val=checkin[cat];if(!val)return;
+    const expected=exp[cat];if(!expected)return;
+    const isExpected=expected.includes(val);
+
+    // Danger conditions always show
+    if(cat==='surface'&&val==='mold_spots'){
+      tips.push({cat,tip:STARTER_TROUBLESHOOTING['surface_mold'],isDanger:true});return;
+    }
+    if(cat==='smell'&&val==='musty_moldy'){
+      tips.push({cat,tip:STARTER_TROUBLESHOOTING['smell_musty'],isDanger:true});return;
+    }
+
+    if(!isExpected){
+      // Find specific troubleshooting key
+      let key='';
+      if(cat==='bubbles'&&val==='none'&&day>=5)key='bubbles_none_late';
+      else if(cat==='smell'&&val==='acetone')key='smell_acetone';
+      else if(cat==='smell'&&val==='rotten'&&day<=4)key='smell_rotten_early';
+      else if(cat==='smell'&&val==='rotten'&&day>4)key='smell_rotten_late';
+      else if(cat==='rise'&&val==='none'&&day>=5)key='rise_none_late';
+      else if(cat==='rise'&&(val==='tripled'||val==='doubled')&&day<=3)key='rise_tripled_early';
+      else if(cat==='surface'&&val==='hooch')key='surface_hooch';
+      else if(cat==='consistency'&&(val==='runny'||val==='dry_stiff'))key=val==='runny'?'consistency_runny':'consistency_dry';
+      else if(cat==='bubbles'&&val==='none'&&day===3)key='general_no_activity_day3';
+
+      if(key&&STARTER_TROUBLESHOOTING[key]){
+        tips.push({cat,tip:STARTER_TROUBLESHOOTING[key],isDanger:false});
+      }
+    }
+  });
+
+  return tips;
+}
+
+function renderDiagnosticTips(day){
+  const tipsEl=document.getElementById('diagTips');if(!tipsEl)return;
+  const checkin=state.starter.dailyCheckins[day]||{};
+  const tips=compareDiagnostics(day,checkin);
+
+  if(tips.length===0){
+    // Check if any selections made
+    const hasSel=['bubbles','smell','rise','surface','consistency'].some(c=>checkin[c]);
+    if(hasSel){
+      tipsEl.innerHTML='<div class="diag-tip good" style="margin:0 auto">✅ <strong>Todo se ve normal para el día '+day+'.</strong> ¡Sigue así!</div>';
+    }else{
+      tipsEl.innerHTML='';
+    }
+    return;
+  }
+
+  tipsEl.innerHTML=tips.map(t=>
+    `<div class="diag-tip${t.isDanger?' danger':''}" style="margin:4px auto">${t.tip}</div>`
+  ).join('');
+}
+
+// ═══ READINESS CHECK ═══
+function renderReadinessCheck(){
+  const el=document.getElementById('creationDayContent');
+  const lastCheck=state.starter.readinessChecks.length>0?state.starter.readinessChecks[state.starter.readinessChecks.length-1]:null;
+  const results=lastCheck?lastCheck.results:{};
+
+  let html=`
+    <div class="setup-hero">
+      <div class="setup-hero-emoji">🔍</div>
+      <div class="setup-hero-title">¿Tu starter está lista?</div>
+      <div class="setup-hero-sub">Marca cada criterio que tu starter cumple</div>
+    </div>
+    <ul class="readiness-list" style="margin:0 auto">`;
+
+  STARTER_READINESS.forEach(r=>{
+    const checked=results[r.id]||false;
+    html+=`<li class="readiness-item" data-rid="${r.id}">
+      <div class="readiness-check${checked?' checked':''}">${checked?'✓':''}</div>
+      <div class="readiness-info">
+        <div class="readiness-label">${r.label}</div>
+        <div class="readiness-desc">${r.desc}</div>
+      </div>
+    </li>`;
+  });
+
+  html+=`</ul>
+    <div id="readinessResult"></div>
+    <div style="display:flex;gap:10px;width:100%;max-width:400px;margin:20px auto 0">
+      <button class="btn btn-secondary" id="readinessBack">← Volver</button>
+      <button class="btn btn-primary" id="readinessVerify" style="flex:2">Verificar</button>
+    </div>`;
+
+  el.innerHTML=html;
+
+  // Toggle readiness items
+  const currentResults={...results};
+  el.querySelectorAll('.readiness-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+      const rid=item.dataset.rid;
+      currentResults[rid]=!currentResults[rid];
+      const check=item.querySelector('.readiness-check');
+      check.classList.toggle('checked');
+      check.textContent=currentResults[rid]?'✓':'';
+    });
+  });
+
+  // Back button
+  document.getElementById('readinessBack').addEventListener('click',()=>{
+    renderCreationDayCheckin(state.starter.creationDay);
+  });
+
+  // Verify button
+  document.getElementById('readinessVerify').addEventListener('click',()=>{
+    const allPassed=STARTER_READINESS.every(r=>currentResults[r.id]);
+    state.starter.readinessChecks.push({date:new Date().toISOString(),results:{...currentResults},passed:allPassed});
+    saveState();
+
+    const resultEl=document.getElementById('readinessResult');
+    if(allPassed){
+      state.starter.creationCompleted=true;saveState();
+      resultEl.innerHTML=`
+        <div class="congrats-screen">
+          <div class="congrats-emoji">🎉🍞</div>
+          <div class="congrats-title">¡Tu masa madre está lista!</div>
+          <div class="congrats-text">¡Felicitaciones! Tu starter cumple todos los criterios. Está lista para hacer pan sourdough. Ahora pasa a modo mantenimiento para seguir cuidándola.</div>
+          <button class="btn btn-primary" id="goMaintenance" style="margin:0 auto;display:block;padding:16px 32px">Ir a Mantenimiento →</button>
+        </div>`;
+      document.getElementById('goMaintenance').addEventListener('click',()=>{
+        state.starter.mode='maintenance';saveState();renderStarter();
+      });
+    }else{
+      const failed=STARTER_READINESS.filter(r=>!currentResults[r.id]);
+      resultEl.innerHTML=`
+        <div class="diag-tip" style="margin:16px auto">
+          <strong>Aún no está lista, ¡pero vas bien!</strong><br>
+          Le falta: ${failed.map(r=>'<strong>'+r.label.toLowerCase()+'</strong>').join(', ')}.<br><br>
+          Sigue alimentando 1-2 veces al día. Muchas starters necesitan 10-14 días para estar completamente activas. La paciencia es la clave. 💪
+        </div>`;
+    }
+  });
+}
+
+// ═══ MAINTENANCE MODE ═══
+function renderMaintenanceMode(){
+  const mc=document.getElementById('starterModeContent');
+  const act=getStarterActivity();
   const ft=state.feedingTimes||['08:00','20:00'];
 
-  c.innerHTML=`
-    <div class="jar-wrapper">
-      <svg class="jar-svg" viewBox="0 0 160 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="42" y="8" width="76" height="18" rx="4" fill="#C07C5A" opacity="0.3" stroke="#C07C5A" stroke-width="1.5"/>
-        <path d="M38 26 C38 26 32 34 32 48 L32 190 C32 210 44 222 62 222 L98 222 C116 222 128 210 128 190 L128 48 C128 34 122 26 122 26" fill="rgba(192,124,90,0.04)" stroke="#C07C5A" stroke-width="1.8" stroke-linecap="round"/>
-        <rect x="34" y="${Math.round(222 - (222-48)*(dH/100))}" width="92" height="${Math.round((222-48)*(dH/100))}" rx="0" fill="#F3DFD0" opacity="0.6" clip-path="url(#jarClip)"/>
-        <defs><clipPath id="jarClip"><path d="M32 48 L32 190 C32 210 44 222 62 222 L98 222 C116 222 128 210 128 190 L128 48 Z"/></clipPath></defs>
-        <ellipse cx="80" cy="${Math.round(222 - (222-48)*(dH/100))}" rx="46" ry="4" fill="#E8C4A0" opacity="0.5"/>
-        <line x1="50" y1="80" x2="50" y2="180" stroke="#C07C5A" opacity="0.06" stroke-width="0.8"/>
-        <line x1="110" y1="80" x2="110" y2="180" stroke="#C07C5A" opacity="0.06" stroke-width="0.8"/>
-      </svg>
-      ${bubbles}
-    </div>
+  // Calendar data
+  const now=new Date();
+  const year=now.getFullYear();const month=now.getMonth();
+  const firstDay=new Date(year,month,1).getDay();
+  const daysInMonth=new Date(year,month+1,0).getDate();
+  const todayDate=now.getDate();
+  const monthName=now.toLocaleDateString('es-PE',{month:'long',year:'numeric'});
+
+  // Find fed days this month
+  const fedDatesThisMonth=new Set();
+  state.starterFeedings.forEach(f=>{
+    const d=new Date(f.timestamp);
+    if(d.getFullYear()===year&&d.getMonth()===month)fedDatesThisMonth.add(d.getDate());
+  });
+
+  // Build calendar grid
+  const dayHeaders=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  let calHtml=dayHeaders.map(d=>`<div class="maint-cal-header">${d}</div>`).join('');
+  for(let i=0;i<firstDay;i++)calHtml+='<div class="maint-cal-day empty"></div>';
+  for(let d=1;d<=daysInMonth;d++){
+    const isFed=fedDatesThisMonth.has(d);
+    const isToday=d===todayDate;
+    calHtml+=`<div class="maint-cal-day${isFed?' fed':''}${isToday?' today':''}">${d}</div>`;
+  }
+
+  const recent=[...state.starterFeedings].reverse().slice(0,5);
+
+  mc.innerHTML=`
+    ${renderJarSVG(act.level)}
     <div class="starter-status"><div class="starter-level">${act.label}</div>
       <div class="starter-sublevel">${act.desc} — ${state.starterFeedings.length} alimentaciones</div></div>
-    <div class="starter-timeline">${timeline}</div>
-    <textarea class="notes-input" id="feedNotes" rows="2" placeholder="Notas: burbujas, olor, actividad..."></textarea>
+    <div class="section-divider" style="width:100%;max-width:360px;text-align:center">${monthName}</div>
+    <div class="maint-calendar">${calHtml}</div>
+    <textarea class="notes-input" id="maintNotes" rows="2" placeholder="Notas: burbujas, olor, actividad..." style="margin-bottom:12px"></textarea>
     <div class="starter-actions">
-      <button class="btn btn-primary" id="feedBtn">Alimentar</button>
-      <button class="btn btn-secondary" id="guideToggle">Guía</button>
-      <button class="btn btn-secondary" id="logToggle">Log</button>
+      <button class="btn btn-primary" id="maintFeedBtn">Alimentar</button>
+      <button class="btn btn-secondary" id="maintLogToggle">Historial</button>
     </div>
-    <div class="section-divider">Recordatorios de Alimentación</div>
+    <div class="section-divider" style="width:100%;max-width:360px">Recordatorios</div>
     <div class="reminder-row">
       <span class="reminder-label">Mañana:</span><input type="time" class="time-input" id="ft1" value="${ft[0]}">
       <span class="reminder-label">Noche:</span><input type="time" class="time-input" id="ft2" value="${ft[1]}">
       <button class="reminder-toggle${state.remindersOn?' on':''}" id="reminderToggle"></button>
     </div>
-    <div id="guideSection" style="display:none;width:100%;max-width:400px;margin-top:8px">
-      <div class="section-divider">Guía Completa de Masa Madre</div>
-      ${STARTER_GUIDE.map(g=>`<div class="guide-card"><div class="guide-header" onclick="this.parentElement.classList.toggle('open')">${g.title}</div><div class="guide-body">${g.body}</div></div>`).join('')}
-    </div>
-    <div id="feedLog" style="display:none;width:100%;max-width:400px;margin-top:8px">
-      <div class="section-divider">Historial de Alimentaciones</div>
+    <div id="maintLog" style="display:none;width:100%;max-width:400px;margin-top:8px">
+      <div class="section-divider">Últimas alimentaciones</div>
       ${recent.length?recent.map(f=>`<div class="feed-entry"><div class="feed-time">${new Date(f.timestamp).toLocaleDateString('es-PE',{day:'numeric',month:'short'})} ${new Date(f.timestamp).toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'})}</div><div><strong>Día ${f.day}</strong>${f.notes?`<div class="feed-notes">"${f.notes}"</div>`:''}</div></div>`).join(''):'<p style="text-align:center;color:var(--stone);padding:20px">Aún no hay alimentaciones</p>'}
+    </div>
+    <div id="maintGuide" style="width:100%;max-width:400px;margin-top:8px">
+      <div class="section-divider">Guía rápida</div>
+      ${STARTER_GUIDE.map(g=>`<div class="guide-card"><div class="guide-header" onclick="this.parentElement.classList.toggle('open')">${g.title}</div><div class="guide-body">${g.body}</div></div>`).join('')}
     </div>`;
 
-  document.getElementById('feedBtn').addEventListener('click',()=>{
-    const notes=document.getElementById('feedNotes').value.trim();
-    state.starterFeedings.push({timestamp:Date.now(),day:getNextDay(),notes});saveState();renderStarter()});
-  document.getElementById('guideToggle').addEventListener('click',()=>{
-    const s=document.getElementById('guideSection');s.style.display=s.style.display==='none'?'block':'none';document.getElementById('feedLog').style.display='none'});
-  document.getElementById('logToggle').addEventListener('click',()=>{
-    const s=document.getElementById('feedLog');s.style.display=s.style.display==='none'?'block':'none';document.getElementById('guideSection').style.display='none'});
+  document.getElementById('maintFeedBtn').addEventListener('click',()=>{
+    const notes=document.getElementById('maintNotes').value.trim();
+    state.starterFeedings.push({timestamp:Date.now(),day:getNextDay(),notes});saveState();renderMaintenanceMode();
+  });
+  document.getElementById('maintLogToggle').addEventListener('click',()=>{
+    const s=document.getElementById('maintLog');s.style.display=s.style.display==='none'?'block':'none';
+  });
   document.getElementById('reminderToggle').addEventListener('click',function(){
     state.remindersOn=!state.remindersOn;this.classList.toggle('on');saveState();
-    if(state.remindersOn){requestNotificationPermission();setupReminders()}});
+    if(state.remindersOn){requestNotificationPermission();setupReminders()}
+  });
   document.getElementById('ft1').addEventListener('change',function(){state.feedingTimes[0]=this.value;saveState()});
   document.getElementById('ft2').addEventListener('change',function(){state.feedingTimes[1]=this.value;saveState()});
 }
