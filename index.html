@@ -3,30 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#FBF7F2">
+<meta name="theme-color" content="#1A0F0A">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Pan de Casa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Outfit:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Outfit:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --cloud:#FBF7F2;--snow:#FFFFFF;--linen:#F5EDE3;
-  --clay:#C07C5A;--clay-light:#E8C4A0;--clay-pale:#F3DFD0;
-  --bark:#3D2E22;--stone:#9B8A7A;--sage:#8BAB7F;
-  --danger:#C85A3A;--shadow:rgba(61,46,34,0.06);
+  --cloud:#1A0F0A;--snow:#2C1D12;--linen:#5C3D2E;
+  --clay:#C4713B;--clay-light:#D4A07A;--clay-pale:rgba(196,113,59,0.15);
+  --bark:#E8D5B7;--stone:#A68B6B;--sage:#7DB867;
+  --danger:#C25B4A;--shadow:rgba(0,0,0,0.25);
   --radius:20px;--radius-sm:12px;--nav-h:72px;
+  --doodle-stroke:#5C3D2E;
 }
 html{height:100%;-webkit-text-size-adjust:100%}
 body{
   font-family:'Outfit',sans-serif;background:var(--cloud);color:var(--bark);
   min-height:100%;overscroll-behavior:none;position:relative;
   -webkit-tap-highlight-color:transparent;font-weight:400;
+  background-image:url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%235C3D2E' stroke-width='0.8' opacity='0.25'%3E%3Ccircle cx='50' cy='50' r='8'/%3E%3Ccircle cx='50' cy='50' r='3'/%3E%3Cpath d='M150 30 Q160 20 170 30 Q180 40 190 30'/%3E%3Cpath d='M280 60 L290 50 L300 60 L290 70Z'/%3E%3Cpath d='M350 150 Q355 140 365 145 Q370 155 360 158 Q350 155 350 150'/%3E%3Ccircle cx='80' cy='180' r='5'/%3E%3Cpath d='M200 200 L205 195 M210 200 L215 195 M220 200 L225 195'/%3E%3Cpath d='M30 280 Q40 270 50 280 T70 280'/%3E%3Ccircle cx='320' cy='280' r='6'/%3E%3Ccircle cx='320' cy='280' r='2'/%3E%3Cpath d='M150 350 L160 340 L170 350'/%3E%3Cpath d='M370 350 Q375 345 380 350 Q375 355 370 350'/%3E%3Cpath d='M100 120 Q105 115 110 120 Q115 125 120 120'/%3E%3Cpath d='M250 140 L255 130 L260 140 L250 140'/%3E%3Ccircle cx='180' cy='100' r='4'/%3E%3Cpath d='M300 200 Q310 195 315 205 Q310 210 300 205'/%3E%3Cpath d='M60 350 L65 345 L70 350 L65 355Z'/%3E%3Cpath d='M230 300 Q240 290 250 300'/%3E%3Ccircle cx='130' cy='250' r='3'/%3E%3Cpath d='M380 100 L385 95 L390 100'/%3E%3C/g%3E%3C/svg%3E");
 }
 body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.015;
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.03;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:200px 200px;
 }
@@ -34,26 +37,26 @@ body::after{
   position:sticky;top:0;z-index:50;
   background:var(--cloud);
   padding:14px 20px;padding-top:calc(14px + env(safe-area-inset-top,0px));
-  border-bottom:1px solid rgba(61,46,34,0.08);
+  border-bottom:1px solid var(--linen);
 }
 .header-top{display:flex;align-items:center;justify-content:space-between}
 .header-brand{display:flex;align-items:center;gap:10px}
-.header-title{font-family:'Literata',serif;font-weight:700;font-size:1.35rem;color:var(--bark);letter-spacing:-0.02em}
+.header-title{font-family:'Patrick Hand',cursive;font-weight:400;font-size:1.5rem;color:var(--bark);letter-spacing:0.01em}
 .header-day{font-size:0.78rem;color:var(--stone);font-weight:500;font-family:'Outfit',sans-serif}
 .journey-bar{height:3px;background:var(--linen);border-radius:2px;margin-top:10px;overflow:hidden}
-.journey-fill{height:100%;background:linear-gradient(90deg,var(--clay),var(--clay-light));border-radius:2px;transition:width 0.6s ease;width:0%}
+.journey-fill{height:100%;background:linear-gradient(90deg,var(--clay),var(--clay-light));border-radius:50% 20%/10% 40%;transition:width 0.6s ease;width:0%;background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,0.1) 2px,rgba(255,255,255,0.1) 4px)}
 .app-main{position:relative;min-height:calc(100vh - 140px);padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 8px)}
 .page{display:none;padding:20px 20px 28px;animation:pageIn 0.4s ease}
 .page.active{display:block}
 @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.page-title{font-family:'Literata',serif;font-size:1.3rem;font-weight:700;margin-bottom:18px;color:var(--bark)}
+.page-title{font-family:'Patrick Hand',cursive;font-size:1.5rem;font-weight:400;margin-bottom:18px;color:var(--bark)}
 .page-subtitle{font-size:0.82rem;color:var(--stone);margin-top:-12px;margin-bottom:18px;font-weight:400}
 .bottom-nav{
   position:fixed;bottom:0;left:0;right:0;z-index:50;
   background:var(--snow);display:flex;
   padding-bottom:env(safe-area-inset-bottom,0px);
-  box-shadow:0 -1px 12px rgba(61,46,34,0.06);
-  border-top:1px solid rgba(61,46,34,0.05);
+  box-shadow:0 -1px 12px rgba(0,0,0,0.3);
+  border-top:1px solid var(--linen);
 }
 .nav-btn{
   flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
@@ -72,7 +75,7 @@ body::after{
 .card{
   background:var(--snow);border-radius:var(--radius);padding:20px;
   margin-bottom:14px;box-shadow:0 2px 12px var(--shadow);
-  border:1px solid rgba(61,46,34,0.04);transition:transform 0.15s,box-shadow 0.15s;
+  border:2px solid var(--linen);transition:transform 0.15s,box-shadow 0.15s;
   cursor:pointer;
 }
 .card:active{transform:scale(0.985);box-shadow:0 1px 6px var(--shadow)}
@@ -83,7 +86,7 @@ body::after{
   background:var(--clay-pale);border-radius:50%;line-height:1;flex-shrink:0;
 }
 .day-info{flex:1}
-.day-title{font-family:'Literata',serif;font-weight:600;font-size:0.95rem;color:var(--bark);display:flex;align-items:center;gap:6px}
+.day-title{font-family:'Patrick Hand',cursive;font-weight:400;font-size:1.05rem;color:var(--bark);display:flex;align-items:center;gap:6px}
 .day-subtitle{font-size:0.78rem;color:var(--stone);margin-top:3px;font-weight:400}
 .day-meta{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:0.7rem;color:var(--stone)}
 .day-dots{display:flex;gap:3px}
@@ -104,31 +107,31 @@ body::after{
   flex:1;min-width:140px;padding:16px;border-radius:var(--radius);border:1.5px solid var(--linen);
   background:var(--snow);cursor:pointer;transition:all 0.2s;text-align:center;
 }
-.challenge-tab.active{border-color:var(--clay);background:rgba(192,124,90,0.06)}
+.challenge-tab.active{border-color:var(--clay);background:rgba(196,113,59,0.15)}
 .challenge-tab .ct-emoji{font-size:1.4rem}
-.challenge-tab .ct-name{font-family:'Literata',serif;font-weight:600;font-size:0.85rem;margin-top:4px;color:var(--bark)}
+.challenge-tab .ct-name{font-family:'Patrick Hand',cursive;font-weight:400;font-size:1rem;margin-top:4px;color:var(--bark)}
 .challenge-tab .ct-progress{font-size:0.7rem;color:var(--stone);margin-top:3px}
 /* Sheet */
-.sheet-overlay{position:fixed;inset:0;background:rgba(61,46,34,0.3);opacity:0;pointer-events:none;transition:opacity 0.3s;z-index:99}
+.sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.3s;z-index:99}
 .sheet-overlay.active{opacity:1;pointer-events:auto}
 .recipe-sheet{
   position:fixed;bottom:0;left:0;right:0;max-height:88vh;
-  background:var(--cloud);border-radius:24px 24px 0 0;
+  background:var(--snow);border-radius:24px 24px 0 0;border-top:2px solid var(--linen);
   transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
   overflow-y:auto;z-index:100;padding:20px 24px calc(24px + env(safe-area-inset-bottom,0px));
   -webkit-overflow-scrolling:touch;
 }
 .recipe-sheet.active{transform:translateY(0)}
 .sheet-handle{width:36px;height:4px;background:var(--linen);border-radius:2px;margin:0 auto 18px}
-.sheet-title{font-family:'Literata',serif;font-size:1.3rem;font-weight:700;margin-bottom:4px;color:var(--bark)}
+.sheet-title{font-family:'Patrick Hand',cursive;font-size:1.5rem;font-weight:400;margin-bottom:4px;color:var(--bark)}
 .sheet-subtitle{font-size:0.82rem;color:var(--stone);margin-bottom:22px}
 .sheet-section{margin-bottom:24px}
 .sheet-section h3{font-family:'Literata',serif;font-size:0.95rem;font-weight:600;margin-bottom:12px;color:var(--stone);display:flex;align-items:center;gap:8px}
 .ingredient-list{list-style:none}
-.ingredient-list li{padding:8px 0;border-bottom:1px solid rgba(61,46,34,0.06);font-size:0.88rem;display:flex;align-items:center;gap:8px}
+.ingredient-list li{padding:8px 0;border-bottom:1px solid rgba(92,61,46,0.3);font-size:0.88rem;display:flex;align-items:center;gap:8px}
 .ingredient-list li::before{content:'·';color:var(--clay);font-weight:bold;font-size:1.2rem}
 .step-list{list-style:none;counter-reset:step}
-.step-list li{counter-increment:step;padding:10px 0 10px 40px;border-bottom:1px solid rgba(61,46,34,0.06);font-size:0.86rem;position:relative;line-height:1.6}
+.step-list li{counter-increment:step;padding:10px 0 10px 40px;border-bottom:1px solid rgba(92,61,46,0.3);font-size:0.86rem;position:relative;line-height:1.6}
 .step-list li::before{
   content:counter(step);position:absolute;left:0;top:10px;
   width:26px;height:26px;border-radius:50%;background:var(--clay-pale);color:var(--clay);
@@ -136,14 +139,14 @@ body::after{
   font-family:'Literata',serif;
 }
 .sheet-tip{
-  background:rgba(139,171,127,0.08);border-left:3px solid var(--sage);
+  background:rgba(196,113,59,0.1);border-left:3px solid var(--clay-light);
   padding:14px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;
   font-family:'Caveat',cursive;font-size:1.05rem;color:var(--stone);line-height:1.4;
 }
 .sheet-timers{display:flex;flex-wrap:wrap;gap:8px}
 .sheet-timer-btn{
   padding:10px 16px;border-radius:24px;border:1.5px solid var(--clay-light);
-  background:rgba(192,124,90,0.05);color:var(--bark);font-size:0.78rem;
+  background:rgba(196,113,59,0.12);color:var(--bark);font-size:0.78rem;
   font-weight:500;cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif;
 }
 .sheet-timer-btn:active{background:var(--clay);color:white;border-color:var(--clay)}
@@ -153,23 +156,23 @@ body::after{
 .jar-svg{width:100%;height:100%}
 .bubble{
   position:absolute;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,rgba(192,124,90,0.15),rgba(192,124,90,0.03));
-  border:1px solid rgba(192,124,90,0.1);animation:rise var(--dur,4s) ease-in-out infinite;
+  background:radial-gradient(circle at 30% 30%,rgba(196,113,59,0.2),rgba(196,113,59,0.08));
+  border:1px solid rgba(196,113,59,0.15);animation:rise var(--dur,4s) ease-in-out infinite;
   animation-delay:var(--del,0s);
 }
 @keyframes rise{0%{transform:translateY(0) scale(1);opacity:0}10%{opacity:0.6}90%{opacity:0.4}100%{transform:translateY(calc(-1 * var(--travel,150px))) scale(0.4);opacity:0}}
 .starter-status{text-align:center}
-.starter-level{font-family:'Literata',serif;font-size:1.2rem;font-weight:700;color:var(--bark)}
+.starter-level{font-family:'Patrick Hand',cursive;font-size:1.4rem;font-weight:400;color:var(--bark)}
 .starter-sublevel{font-size:0.82rem;color:var(--stone);margin-top:3px}
 .btn{
   flex:1;padding:13px 18px;border-radius:var(--radius-sm);border:none;
   font-family:'Outfit',sans-serif;font-weight:600;font-size:0.88rem;
   cursor:pointer;transition:all 0.2s;
 }
-.btn-primary{background:var(--clay);color:white;box-shadow:0 2px 10px rgba(192,124,90,0.25)}
-.btn-primary:active{background:#A8694D;transform:scale(0.97)}
-.btn-secondary{background:var(--snow);color:var(--bark);border:1.5px solid var(--linen)}
-.btn-secondary:active{background:var(--linen)}
+.btn-primary{background:var(--clay);color:#FBF7F2;box-shadow:0 2px 10px rgba(196,113,59,0.35);border-radius:24px}
+.btn-primary:active{background:#A85E30;transform:scale(0.97)}
+.btn-secondary{background:var(--snow);color:var(--bark);border:1.5px solid var(--linen);border-radius:24px}
+.btn-secondary:active{background:var(--linen);color:var(--cloud)}
 .starter-actions{display:flex;gap:10px;width:100%;max-width:360px}
 .starter-timeline{display:flex;gap:5px;width:100%;overflow-x:auto;padding:8px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch;justify-content:center;flex-wrap:wrap}
 .starter-timeline::-webkit-scrollbar{display:none}
@@ -186,11 +189,11 @@ body::after{
   resize:none;outline:none;transition:border-color 0.2s;
 }
 .notes-input:focus{border-color:var(--clay)}
-.feed-entry{padding:12px 0;border-bottom:1px solid rgba(61,46,34,0.06);display:flex;align-items:flex-start;gap:12px;font-size:0.85rem}
+.feed-entry{padding:12px 0;border-bottom:1px solid rgba(92,61,46,0.3);display:flex;align-items:flex-start;gap:12px;font-size:0.85rem}
 .feed-time{color:var(--clay);font-weight:600;min-width:60px;font-size:0.76rem}
 .feed-notes{color:var(--stone);font-family:'Caveat',cursive;font-size:1rem}
 /* Guide cards */
-.guide-card{background:var(--snow);border-radius:var(--radius);margin-bottom:10px;border:1px solid rgba(61,46,34,0.06);overflow:hidden;width:100%;max-width:400px}
+.guide-card{background:var(--snow);border-radius:var(--radius);margin-bottom:10px;border:2px solid var(--linen);overflow:hidden;width:100%;max-width:400px}
 .guide-header{padding:16px 18px;font-weight:600;font-size:0.88rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--bark)}
 .guide-header::after{content:'›';color:var(--stone);transition:transform 0.3s;font-size:1rem}
 .guide-card.open .guide-header::after{transform:rotate(90deg)}
@@ -216,12 +219,12 @@ body::after{
 }
 .reminder-toggle.on::after{transform:translateX(20px)}
 /* Shopping */
-.shop-day-card{background:var(--snow);border-radius:var(--radius);margin-bottom:12px;border:1px solid rgba(61,46,34,0.04);overflow:hidden;box-shadow:0 2px 8px var(--shadow)}
+.shop-day-card{background:var(--snow);border-radius:var(--radius);margin-bottom:12px;border:2px solid var(--linen);overflow:hidden;box-shadow:0 2px 8px var(--shadow)}
 .shop-day-header{padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:background 0.2s}
-.shop-day-header:active{background:rgba(61,46,34,0.02)}
+.shop-day-header:active{background:rgba(92,61,46,0.15)}
 .shop-day-num{width:36px;height:36px;border-radius:50%;background:var(--clay-pale);display:flex;align-items:center;justify-content:center;font-family:'Literata',serif;font-weight:700;font-size:0.9rem;color:var(--clay);flex-shrink:0}
 .shop-day-info{flex:1}
-.shop-day-title{font-family:'Literata',serif;font-weight:600;font-size:0.88rem;color:var(--bark)}
+.shop-day-title{font-family:'Patrick Hand',cursive;font-weight:400;font-size:1rem;color:var(--bark)}
 .shop-day-count{font-size:0.72rem;color:var(--stone);margin-top:2px}
 .shop-day-chevron{color:var(--stone);transition:transform 0.3s;font-size:0.8rem}
 .shop-day-card.open .shop-day-chevron{transform:rotate(90deg)}
@@ -229,7 +232,7 @@ body::after{
 .shop-day-card.open .shop-day-body{max-height:800px}
 .shop-day-items{padding:0 20px 16px}
 .shop-day-card.current{border-left:3px solid var(--clay)}
-.shop-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(61,46,34,0.05)}
+.shop-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(92,61,46,0.25)}
 .shop-check{
   width:22px;height:22px;border-radius:8px;border:2px solid var(--linen);
   display:flex;align-items:center;justify-content:center;cursor:pointer;
@@ -247,17 +250,17 @@ body::after{
 .timer-bg{fill:none;stroke:var(--linen);stroke-width:7}
 .timer-progress{fill:none;stroke:var(--clay);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 0.5s linear}
 .timer-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.timer-time{font-family:'Literata',serif;font-size:2.8rem;font-weight:700;color:var(--bark);letter-spacing:-0.02em}
+.timer-time{font-family:'Patrick Hand',cursive;font-size:3rem;font-weight:400;color:var(--bark);letter-spacing:0}
 .timer-name{font-size:0.82rem;color:var(--stone);font-weight:500;margin-top:4px}
 .timer-controls{display:flex;gap:14px}
 .timer-ctrl{width:52px;height:52px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;transition:all 0.2s}
-.timer-ctrl.play{background:var(--clay);color:white;box-shadow:0 3px 14px rgba(192,124,90,0.3)}
+.timer-ctrl.play{background:var(--clay);color:white;box-shadow:0 3px 14px rgba(196,113,59,0.4)}
 .timer-ctrl.play:active{transform:scale(0.92)}
 .timer-ctrl.reset{background:var(--snow);border:2px solid var(--linen);color:var(--stone)}
 .timer-presets{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:360px}
-.preset-btn{padding:16px;border-radius:var(--radius);border:1.5px solid rgba(61,46,34,0.06);background:var(--snow);cursor:pointer;transition:all 0.2s;text-align:left}
-.preset-btn:active{border-color:var(--clay);background:rgba(192,124,90,0.04)}
-.preset-btn.active-preset{border-color:var(--clay);background:rgba(192,124,90,0.06)}
+.preset-btn{padding:16px;border-radius:var(--radius);border:1.5px solid rgba(92,61,46,0.3);background:var(--snow);cursor:pointer;transition:all 0.2s;text-align:left}
+.preset-btn:active{border-color:var(--clay);background:rgba(196,113,59,0.1)}
+.preset-btn.active-preset{border-color:var(--clay);background:rgba(196,113,59,0.15)}
 .preset-name{font-weight:600;font-size:0.86rem;color:var(--bark)}
 .preset-time{font-size:0.76rem;color:var(--stone);margin-top:3px}
 .timer-done{animation:pulse 0.6s ease infinite alternate}
@@ -270,15 +273,15 @@ body::after{
 .chat-messages{flex:1;overflow-y:auto;padding:8px 0;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:12px}
 .chat-msg{max-width:85%;padding:14px 18px;border-radius:20px;font-size:0.88rem;line-height:1.55;word-wrap:break-word}
 .chat-msg.user{align-self:flex-end;background:var(--clay);color:white;border-bottom-right-radius:6px}
-.chat-msg.assistant{align-self:flex-start;background:var(--snow);color:var(--bark);border-bottom-left-radius:6px;box-shadow:0 2px 8px var(--shadow)}
-.chat-msg.system{align-self:center;background:rgba(192,124,90,0.06);color:var(--stone);font-size:0.78rem;text-align:center;border-radius:var(--radius-sm);max-width:95%}
+.chat-msg.assistant{align-self:flex-start;background:#3D2517;color:var(--bark);border-bottom-left-radius:6px;box-shadow:0 2px 8px var(--shadow);border:1px solid var(--linen)}
+.chat-msg.system{align-self:center;background:rgba(196,113,59,0.15);color:var(--stone);font-size:0.78rem;text-align:center;border-radius:var(--radius-sm);max-width:95%}
 .chat-msg.assistant p{margin:0 0 8px}.chat-msg.assistant p:last-child{margin:0}
 .chat-msg.assistant strong{color:var(--clay)}
 .chat-typing{align-self:flex-start;padding:14px 22px;display:flex;gap:4px}
 .typing-dot{width:7px;height:7px;border-radius:50%;background:var(--clay-light);animation:typingBounce 1.4s ease-in-out infinite}
 .typing-dot:nth-child(2){animation-delay:0.2s}.typing-dot:nth-child(3){animation-delay:0.4s}
 @keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-8px);opacity:1}}
-.chat-input-area{display:flex;gap:8px;padding:14px 0 4px;border-top:1px solid rgba(61,46,34,0.06)}
+.chat-input-area{display:flex;gap:8px;padding:14px 0 4px;border-top:1px solid rgba(92,61,46,0.3)}
 .chat-input{flex:1;padding:12px 18px;border-radius:24px;border:1.5px solid var(--linen);font-family:'Outfit',sans-serif;font-size:0.88rem;background:var(--snow);outline:none;transition:border-color 0.2s}
 .chat-input:focus{border-color:var(--clay)}
 .chat-send{width:44px;height:44px;border-radius:50%;border:none;background:var(--clay);color:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0}
@@ -287,7 +290,7 @@ body::after{
 .chat-suggest{padding:7px 14px;border-radius:20px;border:1px solid var(--linen);background:var(--snow);font-size:0.76rem;color:var(--stone);cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif}
 .chat-suggest:active{border-color:var(--clay);color:var(--clay)}
 .api-setup{display:flex;flex-direction:column;align-items:center;gap:18px;padding:36px 16px;text-align:center}
-.api-setup h3{font-family:'Literata',serif;font-size:1.15rem;color:var(--bark)}
+.api-setup h3{font-family:'Patrick Hand',cursive;font-size:1.3rem;color:var(--bark)}
 .api-setup p{font-size:0.84rem;color:var(--stone);line-height:1.55;max-width:320px}
 .api-input{width:100%;max-width:320px;padding:13px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--linen);font-family:monospace;font-size:0.8rem;background:var(--snow);outline:none}
 .api-input:focus{border-color:var(--clay)}
@@ -295,9 +298,9 @@ body::after{
 .api-saved{display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap}
 .api-status{font-size:0.8rem;color:var(--sage);font-weight:600}
 .api-change{font-size:0.76rem;color:var(--clay);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Outfit',sans-serif}
-.context-banner{background:rgba(192,124,90,0.06);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:14px;font-size:0.76rem;color:var(--stone);display:flex;align-items:center;gap:8px}
+.context-banner{background:rgba(196,113,59,0.15);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:14px;font-size:0.76rem;color:var(--stone);display:flex;align-items:center;gap:8px}
 .context-banner strong{color:var(--bark)}
-.section-divider{font-family:'Literata',serif;font-size:0.92rem;font-weight:600;color:var(--stone);margin:18px 0 10px;padding-top:10px;border-top:1px solid rgba(61,46,34,0.06)}
+.section-divider{font-family:'Patrick Hand',cursive;font-size:1.05rem;font-weight:400;color:var(--stone);margin:18px 0 10px;padding-top:10px;border-top:1px solid var(--linen)}
 /* Starter Tabs */
 .starter-tabs{display:flex;gap:0;margin-bottom:20px;border-radius:var(--radius-sm);overflow:hidden;border:1.5px solid var(--linen)}
 .starter-tab{flex:1;padding:12px;text-align:center;font-weight:600;font-size:0.85rem;cursor:pointer;background:var(--snow);color:var(--stone);transition:all 0.2s;border:none;font-family:'Outfit',sans-serif}
@@ -306,29 +309,32 @@ body::after{
 .creation-days{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;padding:4px 0;justify-content:center}
 .creation-days::-webkit-scrollbar{display:none}
 .creation-day-btn{min-width:42px;height:42px;border-radius:50%;border:2px solid var(--linen);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;background:var(--snow);color:var(--stone);flex-shrink:0;font-family:'Outfit',sans-serif}
-.creation-day-btn.current{border-color:var(--clay);color:var(--clay);background:rgba(192,124,90,0.06)}
+.creation-day-btn.current{border-color:var(--clay);color:var(--clay);background:rgba(196,113,59,0.15)}
 .creation-day-btn.completed{background:var(--sage);border-color:var(--sage);color:white}
 .creation-day-btn.has-data{border-color:var(--clay-light)}
 /* Visual Picker */
 .diag-section{margin-bottom:20px;width:100%;max-width:400px}
-.diag-label{font-family:'Literata',serif;font-weight:600;font-size:0.92rem;margin-bottom:10px;color:var(--bark);display:flex;align-items:center;gap:8px}
+.diag-label{font-family:'Patrick Hand',cursive;font-weight:400;font-size:1.1rem;margin-bottom:10px;color:var(--bark);display:flex;align-items:center;gap:8px}
 .diag-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .diag-options.three-col{grid-template-columns:1fr 1fr 1fr}
-.diag-option{padding:14px 12px;border-radius:var(--radius-sm);border:1.5px solid var(--linen);background:var(--snow);cursor:pointer;transition:all 0.2s;text-align:center}
+.diag-option{padding:14px 12px;border-radius:var(--radius-sm);border:1.5px solid var(--linen);background:var(--snow);cursor:pointer;transition:all 0.2s;text-align:center;position:relative}
 .diag-option:active{transform:scale(0.97)}
-.diag-option.selected{border-color:var(--clay);background:rgba(192,124,90,0.06)}
-.diag-option.warning{border-color:var(--danger);background:rgba(200,90,58,0.06)}
+.diag-option.selected{border-color:var(--clay);background:rgba(196,113,59,0.15)}
 .diag-emoji{font-size:1.5rem;margin-bottom:4px}
 .diag-name{font-weight:600;font-size:0.78rem;color:var(--bark)}
 .diag-desc{font-size:0.68rem;color:var(--stone);margin-top:3px;line-height:1.3}
+/* Corner status badge */
+.diag-badge{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;line-height:1;z-index:2;border:2px solid var(--snow)}
+.diag-badge.good{background:var(--sage);color:white}
+.diag-badge.bad{background:var(--danger);color:white}
 /* Diagnostic Tips */
-.diag-tip{background:rgba(192,124,90,0.06);border-left:3px solid var(--clay-light);padding:12px 14px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.82rem;color:var(--stone);line-height:1.5;margin:8px 0;width:100%;max-width:400px}
-.diag-tip.danger{background:rgba(200,90,58,0.08);border-left-color:var(--danger)}
+.diag-tip{background:rgba(196,113,59,0.15);border-left:3px solid var(--clay-light);padding:12px 14px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.82rem;color:var(--stone);line-height:1.5;margin:8px 0;width:100%;max-width:400px}
+.diag-tip.danger{background:rgba(194,91,74,0.18);border-left-color:var(--danger)}
 .diag-tip strong{color:var(--bark)}
-.diag-tip.good{background:rgba(139,171,127,0.08);border-left-color:var(--sage)}
+.diag-tip.good{background:rgba(196,113,59,0.1);border-left-color:var(--clay-light)}
 /* Readiness Checklist */
 .readiness-list{list-style:none;width:100%;max-width:400px}
-.readiness-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(61,46,34,0.06);cursor:pointer}
+.readiness-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(92,61,46,0.3);cursor:pointer}
 .readiness-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--linen);display:flex;align-items:center;justify-content:center;font-size:0.7rem;transition:all 0.2s;flex-shrink:0}
 .readiness-check.checked{background:var(--sage);border-color:var(--sage);color:white}
 .readiness-info{flex:1}
@@ -337,39 +343,82 @@ body::after{
 /* Day 1 Setup */
 .setup-hero{text-align:center;margin-bottom:24px}
 .setup-hero-emoji{font-size:3.5rem;margin-bottom:8px}
-.setup-hero-title{font-family:'Literata',serif;font-size:1.2rem;font-weight:700;color:var(--bark)}
+.setup-hero-title{font-family:'Patrick Hand',cursive;font-size:1.4rem;font-weight:400;color:var(--bark)}
 .setup-hero-sub{font-size:0.82rem;color:var(--stone);margin-top:4px}
 .setup-section{width:100%;max-width:400px;margin-bottom:20px}
 .setup-section h3{font-family:'Literata',serif;font-size:0.95rem;font-weight:600;margin-bottom:12px;color:var(--bark);display:flex;align-items:center;gap:8px}
-.setup-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(61,46,34,0.06);font-size:0.86rem;color:var(--bark)}
+.setup-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(92,61,46,0.3);font-size:0.86rem;color:var(--bark)}
 .setup-item-emoji{font-size:1.1rem;min-width:28px;text-align:center}
 .setup-steps{width:100%;max-width:400px}
 .setup-steps ol{list-style:none;counter-reset:setup-step}
-.setup-steps li{counter-increment:setup-step;padding:10px 0 10px 40px;border-bottom:1px solid rgba(61,46,34,0.06);font-size:0.84rem;position:relative;line-height:1.6;color:var(--bark)}
+.setup-steps li{counter-increment:setup-step;padding:10px 0 10px 40px;border-bottom:1px solid rgba(92,61,46,0.3);font-size:0.84rem;position:relative;line-height:1.6;color:var(--bark)}
 .setup-steps li::before{content:counter(setup-step);position:absolute;left:0;top:10px;width:26px;height:26px;border-radius:50%;background:var(--clay-pale);color:var(--clay);font-size:0.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Literata',serif}
 /* Maintenance Calendar */
 .maint-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:100%;max-width:360px;margin-bottom:16px}
 .maint-cal-header{font-size:0.65rem;color:var(--stone);text-align:center;padding:4px 0;font-weight:600}
-.maint-cal-day{aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:500;cursor:pointer;transition:all 0.2s;background:var(--snow);border:1px solid rgba(61,46,34,0.06)}
+.maint-cal-day{aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:500;cursor:pointer;transition:all 0.2s;background:var(--snow);border:1px solid rgba(92,61,46,0.3)}
 .maint-cal-day.fed{background:var(--sage);color:white;border-color:var(--sage)}
 .maint-cal-day.today{border-color:var(--clay);font-weight:700}
 .maint-cal-day.empty{background:transparent;border-color:transparent;cursor:default}
 /* Congrats */
 .congrats-screen{text-align:center;padding:32px 16px}
 .congrats-emoji{font-size:3.5rem;margin-bottom:16px}
-.congrats-title{font-family:'Literata',serif;font-size:1.4rem;font-weight:700;color:var(--bark);margin-bottom:8px}
+.congrats-title{font-family:'Patrick Hand',cursive;font-size:1.6rem;font-weight:400;color:var(--bark);margin-bottom:8px}
 .congrats-text{font-size:0.88rem;color:var(--stone);line-height:1.6;max-width:320px;margin:0 auto 24px}
 /* Day info banner */
-.day-info-banner{background:rgba(139,171,127,0.08);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:18px;font-size:0.82rem;color:var(--stone);line-height:1.5;width:100%;max-width:400px}
+.day-info-banner{background:rgba(196,113,59,0.12);border:1.5px solid var(--linen);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:18px;font-size:0.82rem;color:var(--stone);line-height:1.5;width:100%;max-width:400px}
 .day-info-banner strong{color:var(--bark)}
-.day-info-banner .expected{color:var(--sage);font-weight:600}
+.day-info-banner .expected{color:var(--clay-light);font-weight:600}
+/* Star celebration animation */
+@keyframes starPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8) rotate(15deg)}}
+/* Bread buddy animations */
+@keyframes breadIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes breadHappy{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-6px) rotate(-3deg)}50%{transform:translateY(0) rotate(0deg)}75%{transform:translateY(-6px) rotate(3deg)}}
+@keyframes breadSick{0%,100%{transform:translateX(0) rotate(0deg)}25%{transform:translateX(-2px) rotate(-2deg)}75%{transform:translateX(2px) rotate(2deg)}}
+@keyframes breadMad{0%,100%{transform:translateX(0)}20%{transform:translateX(-3px)}40%{transform:translateX(3px)}60%{transform:translateX(-2px)}80%{transform:translateX(2px)}}
+@keyframes breadCelebrate{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-8px) rotate(-5deg)}50%{transform:translateY(-2px) rotate(0deg)}75%{transform:translateY(-8px) rotate(5deg)}}
+.bread-buddy{position:absolute;bottom:-14px;right:-20px;z-index:6;pointer-events:none}
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--cloud)}
+::-webkit-scrollbar-thumb{background:var(--linen);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--stone)}
+/* Dark mode input overrides */
+input,textarea,select{color-scheme:dark}
+/* Selection color */
+::selection{background:rgba(196,113,59,0.3);color:var(--bark)}
+/* Doodle border effect — asymmetric border-radius from Stitch */
+.doodle-border{border-radius:255px 15px 225px 15px/15px 225px 15px 255px;border:2px solid var(--linen)}
+.card{border-radius:255px 15px 225px 15px/15px 225px 15px 255px !important}
+.diag-option{border-radius:255px 15px 225px 15px/15px 225px 15px 255px !important}
+.challenge-tab{border-radius:255px 15px 225px 15px/15px 225px 15px 255px !important}
+.guide-card{border-radius:255px 15px 225px 15px/15px 225px 15px 255px !important;overflow:visible !important}
+.shop-day-card{border-radius:255px 15px 225px 15px/15px 225px 15px 255px !important;overflow:visible !important}
+.recipe-sheet{border-radius:255px 15px 0 0/15px 225px 0 0 !important}
+.sketch-card{border:2px solid var(--clay);border-radius:2% 6% 5% 4%/1% 1% 2% 4%;box-shadow:3px 3px 0px rgba(196,113,59,0.2)}
+/* Bumpy organic circles — for day buttons, checks */
+.bumpy-circle{border-radius:48% 52% 56% 44%/45% 55% 45% 55% !important}
+.creation-day-btn{border-radius:48% 52% 56% 44%/45% 55% 45% 55% !important}
+.day-num{border-radius:48% 52% 56% 44%/45% 55% 45% 55% !important}
+.day-check{border-radius:48% 52% 56% 44%/45% 55% 45% 55% !important}
+.timeline-day{border-radius:48% 52% 56% 44%/45% 55% 45% 55% !important}
+.maint-cal-day{border-radius:48% 52% 56% 44%/45% 55% 45% 55% !important}
+.nav-btn.active::after{border-radius:50% 20%/10% 40%}
+/* Pencil hatching texture */
+.pencil-texture{background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(196,113,59,0.1) 2px,rgba(196,113,59,0.1) 4px)}
+/* Sketch line */
+.sketch-line{height:3px;background:var(--linen);border-radius:50% 20%/10% 40%}
+/* Material Symbols for doodle icons */
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga'}
+.diag-icon{font-size:32px;margin:0 auto 6px;color:var(--clay-light);display:flex;align-items:center;justify-content:center}
+.diag-label .diag-icon{font-size:24px;margin:0;display:inline-flex}
 </style>
 </head>
 <body>
 <header class="app-header">
   <div class="header-top">
     <div class="header-brand">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="16" rx="11" ry="8" fill="#F3DFD0" stroke="#C07C5A" stroke-width="1.5"/><path d="M8 14c2-4 5-5 6-5s4 1 6 5" fill="none" stroke="#C07C5A" stroke-width="1" stroke-linecap="round"/><line x1="14" y1="10" x2="14" y2="15" stroke="#C07C5A" stroke-width="1" stroke-linecap="round"/></svg>
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="16" rx="11" ry="8" fill="rgba(196,113,59,0.2)" stroke="#C4713B" stroke-width="1.5"/><path d="M8 14c2-4 5-5 6-5s4 1 6 5" fill="none" stroke="#C4713B" stroke-width="1" stroke-linecap="round"/><line x1="14" y1="10" x2="14" y2="15" stroke="#C4713B" stroke-width="1" stroke-linecap="round"/></svg>
       <span class="header-title">Pan de Casa</span>
     </div>
     <span class="header-day" id="headerDay">Día 1 / 14</span>
@@ -410,214 +459,85 @@ body::after{
   <button class="nav-btn" data-page="chat"><span class="nav-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.8L3 21l1.8-4A7.5 7.5 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></span><span class="nav-label">Chat</span></button>
 </nav>
 <script>
-// ═══ DATA: CHALLENGE 1 — PAN DE CASA ═══
-const DAYS_1=[
-{day:1,emoji:'🍞',title:'Pan Básico',subtitle:'Tu primer pan casero',difficulty:1,starter:false,totalTime:'2h 30m',
-ingredients:['500g Harina sin preparar (Blanca Flor)','325ml Agua tibia','7g Levadura seca (Fleischmann)','10g Sal','1 cda Aceite vegetal'],
-steps:['Mezcla harina y sal. Agrega levadura.','Agrega agua tibia poco a poco, mezcla hasta formar masa.','Amasa 10 min sobre la mesa — debe quedar suave y elástica.','Bola en bowl aceitado, cubre con plástico. Fermenta 1 hora.','Desinfla, forma bollo redondo en bandeja con papel manteca.','Reposo 30 min cubierto.','Precalienta horno a 220°C. Corte en cruz.','Hornea 25-30 min hasta dorado. Debe sonar hueco al golpear la base.'],
-tip:'El agua tibia como para bebé. Si metes el dedo y no quema, perfecta.',timers:[{name:'Amasado',min:10},{name:'Fermentación',min:60},{name:'Reposo',min:30},{name:'Horneado',min:28}]},
-{day:2,emoji:'🍞',title:'Pan Básico v2',subtitle:'Practica tu técnica de amasado',difficulty:1,starter:false,totalTime:'2h 30m',
-ingredients:['500g Harina sin preparar','340ml Agua tibia','7g Levadura seca','10g Sal','1 cda Aceite de oliva','Semillas de ajonjolí'],
-steps:['Repite el Día 1 con un poco más de agua (340ml).','Enfócate en amasado: empuja, dobla, gira.','Prueba de ventana: estira masa fina — si no se rompe, lista.','Fermenta 1h. Forma. Reposo 30 min.','Pinta con agua, espolvorea ajonjolí.','Hornea 220°C, 25-30 min.'],
-tip:'La prueba de ventana: si la masa se rompe al estirar, necesita más amasado.',timers:[{name:'Amasado',min:10},{name:'Fermentación',min:60},{name:'Reposo',min:30},{name:'Horneado',min:28}]},
-{day:3,emoji:'🫙',title:'Iniciar Masa Madre',subtitle:'Hoy nace tu starter + Pan de ajo',difficulty:2,starter:true,totalTime:'30m + días',
+// ═══ DATA: 14-DAY CHALLENGE ═══
+const DAYS=[
+{day:1,title:'Strudel de Manzana',subtitle:'Masa estirada a mano + crème fraîche',difficulty:2,starter:false,totalTime:'2h',
+ingredients:['Masa: 250g Harina sin preparar, 1 Huevo, 2 cdas Aceite vegetal, 100ml Agua tibia, ½ cdta Sal, 1 cdta Vinagre blanco','Relleno: 4 Manzanas verdes (Granny Smith), 80g Azúcar, 50g Pasas (remojadas en ron o jugo de naranja), 50g Nueces picadas, 1 cdta Canela, Ralladura de 1 limón','Armado: 80g Mantequilla derretida, 50g Pan rallado, Azúcar impalpable','Crème fraîche: 200ml Crema de leche, 2 cdas Azúcar impalpable, 1 cdta Vainilla'],
+steps:['MASA: Mezcla harina y sal. Agrega huevo, aceite y agua tibia. Amasa 10 min hasta elástica y lisa.','Forma bola, pinta con aceite, cubre con bowl tibio. Reposa 30 min mínimo (el gluten se relaja).','RELLENO: Pela y corta manzanas en láminas finas. Mezcla con azúcar, canela, ralladura, pasas y nueces.','Dora pan rallado en 2 cdas mantequilla hasta crujiente. Reserva.','ESTIRA LA MASA: Sobre un mantel enharinado, estira con rodillo primero. Luego con los puños por debajo, estira desde el centro hacia afuera.','Debe quedar tan fina que puedas leer a través de ella. Recorta bordes gruesos.','Pinta toda la superficie con mantequilla derretida. Espolvorea pan rallado dorado.','Distribuye relleno en una línea a lo largo de un borde. Enrolla usando el mantel como ayuda.','Pasa a bandeja con papel manteca, forma media luna. Pinta con mantequilla.','Hornea 190°C, 30-35 min hasta dorado y crujiente. Espolvorea azúcar impalpable.','CRÈME: Bate crema + azúcar + vainilla hasta firme. Sirve una cucharada generosa al lado. Attendez la crème.'],
+tip:'El secreto del strudel es la paciencia al estirar. Usa los PUÑOS (no dedos) por debajo de la masa, estirando del centro hacia afuera. Si se rompe un poco, no pasa nada — al enrollar se sella. La crème fraîche fría contra el strudel caliente es el contraste perfecto.',timers:[{name:'Reposo masa',min:30},{name:'Horneado',min:33}],video:'https://www.youtube.com/watch?v=7H3z3J50XCs',videoLabel:'Binging with Babish: Strudel (Inglourious Basterds)'},
+{day:2,title:'Brownie de Chocolate',subtitle:'Fudgy, intenso, irresistible',difficulty:1,starter:false,totalTime:'1h',
+ingredients:['200g Chocolate bitter (Winters o Sol del Cusco)','150g Mantequilla sin sal','200g Azúcar','3 Huevos','80g Harina sin preparar','30g Cocoa en polvo','1 cdta Esencia de vainilla','Pizca de sal'],
+steps:['Precalienta horno a 175°C. Engrasa molde cuadrado 20cm con mantequilla.','Derrite chocolate + mantequilla a baño maría o microondas (30s intervals). Mezcla bien.','Agrega azúcar y vainilla. Mezcla.','Agrega huevos uno a uno, batiendo bien cada vez.','Tamiza harina + cocoa + sal encima. Incorpora con espátula suavemente — NO batir de más.','Vierte en molde. Hornea 24-28 min. Prueba del movimiento: agita el molde — bordes firmes, centro con ligero temblor.','IMPORTANTE: Enfría completamente en molde antes de cortar. NO uses palillo — si sale limpio, ya te pasaste.'],
+tip:'El test del palillo es tu ENEMIGO para brownies. Para fudgy, el palillo debe salir con migajas húmedas y un poco de masa. Si sale limpio, ya es cake. Mejor usa el test del temblor: agita el molde, los bordes no se mueven pero el centro tiembla como gelatina.',timers:[{name:'Horneado',min:26}],video:'https://www.youtube.com/results?search_query=joshua+weissman+fudgy+brownies',videoLabel:'Joshua Weissman: Fudgy Brownies'},
+{day:3,title:'Masa Madre + Pan de Ajo',subtitle:'Hoy nace tu starter',difficulty:2,starter:true,totalTime:'30m + días',
 ingredients:['Masa madre: 50g Harina sin preparar, 50g Agua filtrada tibia, 1 frasco de vidrio','Pan de ajo: Pan del día anterior, 4 dientes ajo, 50g Mantequilla, Perejil, Sal'],
-steps:['MASA MADRE: Mezcla 50g harina + 50g agua tibia en frasco limpio.','Sin grumos, consistencia de pasta espesa.','Tapa sin cerrar del todo (necesita aire). Lugar tibio.','Marca el nivel con liga. Desde mañana: alimentar cada 12h.','PAN DE AJO: Derrite mantequilla, mezcla con ajo picado y perejil.','Corta pan en rebanadas sin llegar al fondo. Rellena.','Envuelve en aluminio. Hornea 180°C, 15 min.'],
-tip:'Tu starter pasará fases: muchas burbujas (día 2-3), se calma (día 4-5), revive fuerte. No te desanimes en días tranquilos.',timers:[{name:'Horneado pan de ajo',min:15}]},
-{day:4,emoji:'🌾',title:'Pan Integral',subtitle:'Pan saludable + alimentar starter',difficulty:2,starter:true,totalTime:'3h',
-ingredients:['300g Harina integral','200g Harina sin preparar','350ml Agua tibia','7g Levadura seca','12g Sal','2 cdas Miel','2 cdas Aceite de oliva'],
-steps:['Alimenta masa madre: descarta mitad, agrega 50g harina + 50g agua.','Mezcla ambas harinas y sal. Disuelve levadura en agua con miel.','Amasa 12 min. La masa integral es más pegajosa — es normal.','Fermenta 1.5 horas.','Forma óvalo en molde aceitado. Reposo 40 min.','3 cortes diagonales. Hornea 200°C, 35 min.'],
-tip:'La masa integral absorbe más agua. No agregues harina extra si está pegajosa.',timers:[{name:'Amasado',min:12},{name:'Fermentación',min:90},{name:'Reposo',min:40},{name:'Horneado',min:35}]},
-{day:5,emoji:'🍞',title:'Pan de Molde',subtitle:'Pan suave para sándwiches + starter',difficulty:2,starter:true,totalTime:'3h 30m',
-ingredients:['500g Harina sin preparar','250ml Leche tibia','50g Mantequilla blanda','40g Azúcar','7g Levadura seca','8g Sal','1 Huevo'],
-steps:['Alimenta masa madre.','Disuelve levadura en leche tibia con azúcar. Espera 5 min.','Mezcla harina y sal. Agrega leche, huevo, mantequilla.','Amasa 12 min — masa suave y sedosa.','Fermenta 1.5h hasta duplicar.','Desinfla, forma rectángulo, enrolla, coloca en molde aceitado.','Sube 45 min. Pinta con huevo batido.','Hornea 180°C, 30-35 min. Desmolda y enfría en rejilla.'],
-tip:'Mantequilla blanda, no derretida. Sácala del refri 30 min antes.',timers:[{name:'Amasado',min:12},{name:'Fermentación',min:90},{name:'Reposo en molde',min:45},{name:'Horneado',min:33}]},
-{day:6,emoji:'🥐',title:'Pancitos / Bollitos',subtitle:'Bollitos suaves + alimentar starter',difficulty:2,starter:true,totalTime:'2h 30m',
-ingredients:['500g Harina sin preparar','280ml Leche tibia','50g Mantequilla blanda','30g Azúcar','7g Levadura seca','8g Sal','1 Huevo + 1 yema','Ajonjolí'],
-steps:['Alimenta masa madre.','Masa como el pan de molde (Día 5).','Después de fermentar 1h, divide en 12 porciones (~75g c/u).','Forma bolitas con la mano en garra sobre la mesa.','Bandeja con 3cm de separación. Reposo 30 min tapados.','Pinta con yema + 1 cda leche. Semillas.','Hornea 190°C, 15-18 min hasta dorados.'],
-tip:'Para bollitos uniformes, pesa cada porción. Mano en forma de garra haciendo círculos = forma perfecta.',timers:[{name:'Amasado',min:10},{name:'Fermentación',min:60},{name:'Reposo',min:30},{name:'Horneado',min:17}]},
-{day:7,emoji:'😌',title:'Día de Descanso',subtitle:'Solo alimenta tu starter — descansa',difficulty:0,starter:true,totalTime:'10m',
-ingredients:['50g Harina sin preparar','50ml Agua filtrada'],
-steps:['Hoy no horneas — tu masa madre sí trabaja.','Alimenta mañana y noche.','¿Ves más burbujas? ¿Sube más después de alimentar?','Toma foto para comparar con día 3.','Revisa lista de compras Semana 2.'],
-tip:'Tu starter tiene 4 días. Normal que no esté super activa. Paciencia.',timers:[]},
-{day:8,emoji:'🫓',title:'Ciabatta',subtitle:'Pan italiano rústico + starter',difficulty:3,starter:true,totalTime:'4h',
-ingredients:['500g Harina sin preparar','400ml Agua (alta hidratación)','7g Levadura seca','10g Sal','2 cdas Aceite de oliva'],
-steps:['Alimenta masa madre.','Disuelve levadura en agua. Agrega harina. ¡MUY pegajosa!','Stretch & fold: estira y dobla desde cada lado, 4 veces.','Reposa 30 min. Repite stretch & fold 3 veces más (2h total).','Vuelca en mesa enharinada. Corta en 2-3 rectángulos. NO desgasifiques.','Estira suavemente cada pieza. Bandeja con papel. Reposo 30 min.','Hornea 230°C con recipiente de agua (vapor), 22-25 min.'],
-tip:'¡La ciabatta es pegajosa y está BIEN! No agregues harina extra. Moja tus manos.',timers:[{name:'Stretch & Fold',min:30},{name:'Fermentación',min:120},{name:'Reposo',min:30},{name:'Horneado',min:24}]},
-{day:9,emoji:'🫓',title:'Focaccia',subtitle:'Pan plano con aceite de oliva y toppings',difficulty:2,starter:true,totalTime:'3h',
-ingredients:['500g Harina sin preparar','350ml Agua tibia','7g Levadura seca','10g Sal','6 cdas Aceite de oliva extra virgen','Sal gruesa / Sal de Maras','Romero fresco','Tomates cherry','Aceitunas negras'],
+steps:['MASA MADRE: Mezcla 50g harina + 50g agua tibia en frasco limpio.','Sin grumos, consistencia de pasta espesa.','Tapa sin cerrar del todo (necesita aire). Lugar tibio.','Marca el nivel con liga. Desde mañana: alimentar cada 24h.','PAN DE AJO: Derrite mantequilla, mezcla con ajo picado y perejil.','Corta pan en rebanadas sin llegar al fondo. Rellena.','Envuelve en aluminio. Hornea 180°C, 15 min.'],
+tip:'Tu starter pasará fases: muchas burbujas (día 2-3), se calma (día 4-5), revive fuerte. No te desanimes — el "falso ascenso" del día 2-3 es bacterias Leuconostoc, NO levadura. La verdadera actividad viene día 5-7.',timers:[{name:'Horneado pan de ajo',min:15}],video:'https://www.youtube.com/results?search_query=joshua+weissman+sourdough+starter+guide',videoLabel:'Joshua Weissman: Guía de Masa Madre'},
+{day:4,title:'Pie de Limón',subtitle:'Cremoso con merengue dorado',difficulty:3,starter:true,totalTime:'2h 30m',
+ingredients:['Base: 200g Galletas de vainilla, 100g Mantequilla derretida','Relleno: 1 lata Leche condensada (Gloria 393g), 4 Yemas, 150ml Jugo de limón sutil (~12 limones), Ralladura de 2 limones','Merengue suizo: 4 Claras, 200g Azúcar, Pizca de sal'],
+steps:['Alimenta tu masa madre: descarta mitad, agrega 50g harina + 50g agua.','BASE: Tritura galletas hasta polvo. Mezcla con mantequilla derretida.','Presiona en molde de pie (24cm) fondo y lados. Hornea 170°C, 10 min. Enfría.','RELLENO: Mezcla leche condensada + yemas + jugo + ralladura. Vierte sobre base fría.','Hornea 170°C, 15 min hasta que cuaje (tiembla como gelatina al mover).','MERENGUE SUIZO: Calienta claras + azúcar + sal a baño maría, revolviendo hasta que el azúcar se disuelva (toca — sin granos).','Retira del calor y bate con batidora 5-7 min hasta picos firmes, brillantes y fríos. Cubre el relleno CALIENTE formando picos.','Hornea 180°C, 8-10 min hasta dorar las puntas. Refrigera 2h antes de servir.'],
+tip:'CLAVE: El merengue va sobre el relleno CALIENTE (directo del horno). Si pones merengue sobre relleno frío, llora y se separa. Cubre hasta los bordes sin dejar huecos. El limón sutil peruano es clave — es más ácido que el limón normal.',video:'https://www.youtube.com/results?search_query=sandra+plevisani+pie+de+limon',videoLabel:'Sandra Plevisani: Pie de Limón',timers:[{name:'Base',min:10},{name:'Relleno',min:15},{name:'Merengue',min:10},{name:'Refrigeración',min:120}]},
+{day:5,title:'Pastel de Nata',subtitle:'Custard tart portuguesa — Poor Things',difficulty:3,starter:true,totalTime:'1h 30m',
+ingredients:['Masa: 1 lámina hojaldre comprada (o 250g harina, 150g mantequilla fría, agua, sal)','Crema: 400ml Leche entera, 150g Azúcar, 30g Maicena, 6 Yemas, 1 rama Canela, Cáscara de 1 limón'],
+steps:['Alimenta masa madre.','CREMA: Hierve leche + canela + cáscara de limón 5 min. Retira canela y cáscara.','Aparte: bate yemas + azúcar + maicena hasta liso. Vierte leche caliente encima poco a poco.','Regresa a fuego medio, revuelve sin parar 2-3 min hasta espesar. Cubre con plástico tocando. Enfría.','MASA: Estira hojaldre fino (3mm). Enrolla bien apretado como un cilindro.','Corta rodajas de 1.5cm. Coloca cada rodaja en molde de muffin engrasado.','Con el pulgar mojado en agua, presiona el centro y sube la masa por las paredes.','Rellena ¾ con crema fría. NO hasta el tope — sube al hornear.','Hornea 250°C (máximo de tu horno) 12-15 min. Las manchas negras en la crema son BUENAS.','Enfría 5 min en molde, desmolda. Espolvorea canela. Come tibio.'],
+tip:'El secreto es el horno MUY caliente — las manchas quemadas en la crema son la firma del pastel de nata auténtico. Y la masa: enrolla el hojaldre en un cilindro apretado, corta en rodajas, y presiona con el pulgar en el molde. Así salen las capas espirales.',timers:[{name:'Crema',min:8},{name:'Horneado',min:14}],video:'https://www.youtube.com/watch?v=lWLCxui1Mw8',videoLabel:'Cupcake Jemma: Pastéis de Nata'},
+{day:6,title:'Tarta de Nueces y Miel',subtitle:'Crujiente, dulce, con nueces caramelizadas',difficulty:3,starter:true,totalTime:'2h',
+ingredients:['Masa: 200g Harina, 100g Mantequilla fría en cubos, 55g Azúcar impalpable, 1 Yema, 2 cdas Agua fría, Pizca de sal','Relleno: 200g Nueces pecanas o de castilla, 100g Miel, 80g Azúcar rubia, 60g Mantequilla, 80ml Crema de leche (Gloria), 1 cdta Vainilla, Pizca de sal gruesa'],
+steps:['Alimenta masa madre.','MASA: Mezcla harina + azúcar impalpable. Agrega mantequilla fría — corta con dedos hasta arena gruesa.','Agrega yema y agua. Forma disco, envuelve en plástico, refri 30 min.','Estira masa y forra molde de tarta (24cm). Pincha con tenedor. Hornea 180°C, 12 min.','RELLENO: Calienta miel + azúcar + mantequilla hasta que hierva. Cocina 2 min.','Retira del fuego, agrega crema, vainilla, sal. Mezcla. Agrega nueces.','Vierte sobre base. Hornea 175°C, 20-25 min hasta dorado burbujeante.','Enfría completamente — el relleno se pone firme y carameloso.'],
+tip:'La masa de tarta es lo contrario al pan: NO amasarla mucho. Solo unir. Tuesta las nueces 8 min a 170°C antes — cambia todo el sabor. El caramelo debe llegar a ámbar profundo (118°C si tienes termómetro) antes de agregar la crema.',timers:[{name:'Reposo masa',min:30},{name:'Base',min:12},{name:'Relleno',min:25}],video:'https://www.youtube.com/results?search_query=bigger+bolder+baking+walnut+caramel+tart',videoLabel:'Bigger Bolder Baking: French Walnut Tart'},
+{day:7,title:'Cinnamon Rolls',subtitle:'Suaves, pegajosos, con glaseado',difficulty:2,starter:true,totalTime:'3h',
+ingredients:['Masa: 500g Harina sin preparar, 240ml Leche tibia, 75g Mantequilla blanda, 75g Azúcar, 7g Levadura seca, 1 Huevo, 6g Sal','Relleno: 100g Mantequilla blanda, 150g Azúcar rubia (o blanca + 1 cda melaza), 2 cdas Canela molida','Glaseado: 120g Queso crema, 60g Mantequilla blanda, 150g Azúcar impalpable, 1 cdta Vainilla'],
+steps:['Alimenta masa madre.','MASA: Disuelve levadura en leche tibia con 1 cda azúcar. Espera 5 min hasta espumoso.','Mezcla harina, sal, azúcar. Agrega leche, huevo, mantequilla blanda. Amasa 10 min hasta suave y elástica.','Fermenta 1.5h en bowl aceitado tapado hasta duplicar.','RELLENO: Mezcla mantequilla blanda + azúcar rubia + canela hasta pasta untable.','Estira masa en rectángulo de 40x30cm sobre mesa enharinada.','Unta TODO el relleno dejando 1cm libre en el borde lejano.','Enrolla desde el lado largo hacia ti, bien apretado. Sella el borde con los dedos.','Corta 12 rodajas iguales con hilo dental (pasa por debajo, cruza arriba, jala).','Coloca en molde engrasado (redondo o rectangular) con 1cm de separación.','Cubre con plástico. Reposo 30 min hasta que se toquen entre sí.','Hornea 180°C, 22-25 min hasta dorados arriba pero suaves al tocar.','GLASEADO: Bate queso crema + mantequilla + azúcar impalpable + vainilla hasta cremoso.','Vierte glaseado sobre los rolls CALIENTES. Deja que se derrita y cubra todo.'],
+tip:'El truco del hilo dental para cortar es real — un cuchillo aplasta el rollo pero el hilo corta limpio. El glaseado VA sobre los rolls calientes, así se derrite y penetra. No pongas harina extra al estirar — la masa pegajosa = rolls suaves.',timers:[{name:'Fermentación',min:90},{name:'Reposo',min:30},{name:'Horneado',min:23}],video:'https://www.youtube.com/results?search_query=preppy+kitchen+cinnamon+rolls',videoLabel:'Preppy Kitchen: Cinnamon Rolls'},
+{day:8,title:'Mil Hojas + Sorbete de Pera',subtitle:'Hojaldre crujiente con sorbete casero',difficulty:4,starter:true,totalTime:'4h + congelado',
+ingredients:['Hojaldre: 1 lámina hojaldre comprada (o 250g harina, 200g mantequilla, agua, sal para casera)','Crema pastelera: 500ml Leche, 4 Yemas, 100g Azúcar, 40g Maicena, 1 cdta Vainilla','Sorbete: 4 Peras maduras, 150g Azúcar, 200ml Agua, Jugo de 1 limón','Azúcar impalpable para espolvorear'],
+steps:['Alimenta masa madre.','SORBETE (hacer primero): Pela y corta peras. Hierve azúcar + agua 3 min (almíbar).','Agrega peras al almíbar, cocina 10 min hasta tiernas. Agrega limón.','Licúa todo hasta liso. Vierte en recipiente plano, congela 4h. Cada hora revuelve con tenedor.','CREMA: Calienta leche. Bate yemas + azúcar + maicena aparte. Vierte leche caliente encima.','Regresa a fuego medio, revuelve sin parar hasta espesar (~3 min). Agrega vainilla. Enfría con plástico tocando superficie.','HOJALDRE: Estira, corta 3 rectángulos iguales. Pincha todo con tenedor. Espolvorea azúcar.','Hornea 200°C, 15-18 min hasta dorado y hojaldrado. Enfría completamente.','ARMA: Capa de hojaldre → crema → hojaldre → crema → hojaldre. Espolvorea azúcar impalpable.','Sirve con bola de sorbete de pera al lado. Corta con cuchillo serrado.'],
+tip:'TRUCO PRO: Pon una segunda bandeja ENCIMA del hojaldre los primeros 15 min — lo mantiene plano y crujiente. Sin peso, sube demasiado y no puedes apilar. El sorbete: revuelve con tenedor cada hora mientras congela para textura de granita.',timers:[{name:'Sorbete cocción',min:13},{name:'Crema pastelera',min:5},{name:'Horneado hojaldre',min:17},{name:'Congelado sorbete',min:240}],video:'https://www.youtube.com/watch?v=5QZN68CNdSg',videoLabel:'Bruno Albouze: Mille-Feuille'},
+{day:9,title:'Focaccia con Romero',subtitle:'Pan plano italiano con aceite de oliva',difficulty:2,starter:true,totalTime:'3h',
+ingredients:['500g Harina sin preparar','385ml Agua tibia (hidratación alta)','7g Levadura seca','10g Sal','6 cdas Aceite de oliva extra virgen','Sal gruesa / Sal de Maras','Romero fresco','Tomates cherry','Aceitunas negras'],
 steps:['Alimenta masa madre.','Mezcla harina, levadura, sal, agua. 3 cdas aceite.','Amasa 8 min o stretch & fold.','2 cdas aceite en bandeja. Coloca masa, voltea para cubrir.','Fermenta 1.5h en bandeja tapada.','Dedos aceitados: haz hoyitos por toda la superficie.','Agrega romero, tomates, aceitunas. Rocía aceite. Sal gruesa.','Hornea 220°C, 20-25 min hasta dorada.'],
-tip:'Los hoyitos atrapan aceite y crean textura. Sal de Maras hace toda la diferencia.',timers:[{name:'Amasado',min:8},{name:'Fermentación',min:90},{name:'Horneado',min:22}]},
-{day:10,emoji:'🫒',title:'Pan con Aceitunas',subtitle:'Pan rústico — último con levadura comercial',difficulty:3,starter:true,totalTime:'3h',
-ingredients:['500g Harina sin preparar','330ml Agua tibia','7g Levadura seca','10g Sal','100g Aceitunas negras picadas','2 cdas Aceite de oliva','Romero fresco'],
-steps:['Alimenta masa madre. ¿Duplica en 4-6h? ¡Casi lista!','Masa como pan básico. Amasa 10 min.','Incorpora aceitunas y romero al final. 2 min más.','Fermenta 1h.','Forma batard ovalado. Bandeja. Reposo 35 min.','3 cortes diagonales. Hornea 210°C, 30 min con vapor.','IMPORTANTE: alimentación extra esta noche. ¡Mañana primer sourdough!'],
-tip:'Si tu starter duplica en 6h o menos, ¡lista para pan! Si no, usa un poco de levadura de respaldo.',timers:[{name:'Amasado',min:12},{name:'Fermentación',min:60},{name:'Reposo',min:35},{name:'Horneado',min:30}]},
-{day:11,emoji:'🥖',title:'¡Primer Sourdough!',subtitle:'El gran día — tu primer pan de masa madre',difficulty:4,starter:true,totalTime:'8-24h',
+tip:'Los hoyitos deben ser AGRESIVOS — dedos aceitados hasta el fondo de la bandeja. Hoyitos tímidos = focaccia plana y densa. La masa es pegajosa y está BIEN — alta hidratación = alvéolos grandes y crujiente.',timers:[{name:'Amasado',min:8},{name:'Fermentación',min:90},{name:'Horneado',min:22}],video:'https://www.youtube.com/watch?v=HTD-z1wd0tw',videoLabel:'Ethan Chlebowski: Focaccia'},
+{day:10,title:'Volcán de Chocolate',subtitle:'Lava fundida por dentro',difficulty:3,starter:true,totalTime:'1h',
+ingredients:['150g Chocolate bitter (70%+)','120g Mantequilla sin sal','3 Huevos enteros','130g Azúcar','50g Harina sin preparar','Cocoa en polvo para moldes','Helado de vainilla para servir'],
+steps:['Alimenta masa madre. ¿Duplica en 4-6h? Casi lista para sourdough.','Precalienta horno a 210°C. Engrasa 6 ramequines con mantequilla generosa, luego espolvorea COCOA (no harina — deja residuo blanco).','Derrite chocolate + mantequilla a baño maría. Mezcla hasta liso.','Bate huevos + azúcar 3 min hasta espumoso y pálido.','Vierte chocolate tibio sobre huevos. Mezcla suavemente.','Tamiza harina encima, incorpora con espátula. Divide en moldes.','Hornea EXACTAMENTE 12 min a 210°C. Bordes firmes, centro tembloroso (2-3cm).','Espera 30 seg, voltea sobre plato. Levanta molde. Sirve con helado INMEDIATAMENTE.'],
+tip:'El timing es TODO. 210°C (no 220) por 12 min exactos. La masa debe estar a temperatura ambiente al entrar — fría del refri necesita 2 min extra. Prueba con un molde primero para calibrar TU horno.',timers:[{name:'Horneado',min:12}],video:'https://www.youtube.com/watch?v=6laBhpKfLqo',videoLabel:'Del\'s Cooking Twist: Volcán de Chocolate'},
+{day:11,title:'Primer Sourdough',subtitle:'El gran día — tu primer pan de masa madre',difficulty:4,starter:true,totalTime:'8-24h',
 ingredients:['100g Masa madre activa','400g Harina sin preparar','100g Harina integral','340ml Agua tibia','10g Sal','(Respaldo: 2g levadura seca)'],
-steps:['Alimenta starter por la mañana. Espera 4-6h hasta activa.','Prueba del flotador: cucharadita en agua. ¿Flota? ¡Lista!','Mezcla harinas + agua. Reposa 30 min (autólisis). Agrega starter y sal.','4 rondas de stretch & fold cada 30 min.','Fermenta 4-6h (o toda la noche en refri).','Forma bollo tenso: pliega bordes al centro, voltea, crea tensión.','Bowl enharinado (banneton improvisado). Refrigera toda la noche.','Hornea en olla/pyrex tapado: 240°C, 25 min tapado + 20 min destapado.'],
-tip:'¡No te estreses! Si starter no flota, agrega 2g levadura seca. No es trampa, es ser práctico.',timers:[{name:'Autólisis',min:30},{name:'Stretch & Fold',min:30},{name:'Fermentación',min:240},{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]},
-{day:12,emoji:'🥖',title:'Sourdough Round 2',subtitle:'Aprende de ayer y mejora',difficulty:4,starter:true,totalTime:'8-24h',
-ingredients:['120g Masa madre activa','450g Harina sin preparar','50g Harina integral','350ml Agua tibia','10g Sal'],
-steps:['Alimenta starter temprano.','Repite proceso del Día 11.','Ajusta: ¿masa pegajosa? Baja agua. ¿Poco sabor? Fermenta más.','Practica tensión al formar: superficie lisa como tambor.','Si no hubo buen "oído" (hoyos), más stretch & fold.','Refrigera toda la noche para scoring mañana.'],
-tip:'Cada pan te enseña algo. Toma fotos de la miga para comparar.',timers:[{name:'Autólisis',min:30},{name:'Stretch & Fold',min:30},{name:'Fermentación',min:240},{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]},
-{day:13,emoji:'🎨',title:'Scoring — Arte en Pan',subtitle:'Cortes decorativos en tu sourdough',difficulty:4,starter:true,totalTime:'24h',
+steps:['Alimenta starter por la mañana. Espera 4-6h hasta activa.','Prueba del flotador: cucharadita en agua. Flota = lista.','Mezcla harinas + agua. Reposa 30 min (autólisis). Agrega starter y sal.','4 rondas de stretch & fold cada 30 min. Usa recipiente recto con liga marcando el nivel inicial.','Fermenta hasta +50-75% de volumen (3-5h en Perú, más rápido por el clima cálido). O toda la noche en refri.','Forma bollo tenso: pliega bordes al centro, voltea, crea tensión en superficie.','Bowl enharinado (banneton improvisado). Refrigera 12-16h.','Precalienta olla/pyrex a 250°C por 45 min. Hornea 20 min tapado, baja a 230°C, 20-25 min destapado.'],
+tip:'Si starter no flota, agrega 2g levadura seca. En el clima peruano la fermentación va más rápido — vigila el volumen, no el reloj. Marca el nivel inicial y espera +50-75%.',timers:[{name:'Autólisis',min:30},{name:'Stretch & Fold',min:30},{name:'Fermentación',min:240},{name:'Horneado tapado',min:20},{name:'Horneado destapado',min:22}],video:'https://www.youtube.com/watch?v=NMglhwp2lNs',videoLabel:'The Bread Code: Receta Definitiva de Sourdough'},
+{day:12,title:'Turrones de Doña Pepa',subtitle:'El dulce del Señor de los Milagros',difficulty:4,starter:false,totalTime:'3h',
+ingredients:['Masa: 500g Harina, 225g Manteca vegetal o de cerdo, 8 Yemas, 2 cdas Anís en grano (tostar primero), 1 cdta Clavo molido, 1 cdta Sal, Ajonjolí tostado','Miel: 500g Chancaca, 500g Azúcar, 1 Membrillo en trozos, Rodajas de piña, 1 Manzana, Canela en rama, Clavo entero, Cáscara de naranja, 3 tazas Agua','Decoración: Grajeas de colores (confites)'],
+steps:['TUESTA anís y ajonjolí en sartén seca 2 min hasta que suelten aroma. Hierve anís en 4 cdas agua, cuela.','MASA: Mezcla harina, clavo, sal. Agrega manteca, yemas y agua de anís tostado.','Amasa 8 min. Masa firme. Envuelve en plástico, REFRIGERA mínimo 2h (ideal 12h — evita que se quiebren).','Saca de refri. Forma cilindros de 1cm grosor, 15cm largo. Pasa por ajonjolí tostado.','Hornea palitos a 180°C, 20-25 min hasta firmes (no dorados).','MIEL: Hierve chancaca + azúcar + frutas + especias + agua. Cocina 30-40 min revolviendo hasta miel espesa (punto bolita suave).','ARMA: Capas de palitos alternando dirección en molde. Baña cada capa con miel caliente.','Decora con grajeas de colores. Deja enfriar COMPLETAMENTE antes de cortar.'],
+tip:'CLAVE: Tuesta el anís y ajonjolí antes — activa los aceites y cambia todo el sabor. Y la masa DEBE reposar en frío, si no los palitos se quiebran al hornear. La miel debe llegar a punto bolita suave.',timers:[{name:'Horneado palitos',min:22},{name:'Miel de chancaca',min:35}],video:'https://www.youtube.com/watch?v=UKBVyJxl6W0',videoLabel:'Buenazo: Turrón de Doña Pepa'},
+{day:13,title:'Sourdough + Scoring',subtitle:'Cortes decorativos en tu pan',difficulty:4,starter:true,totalTime:'24h',
 ingredients:['120g Masa madre activa','500g Harina sin preparar','350ml Agua tibia','10g Sal','Hoja de afeitar o cuchillo afilado','Harina de arroz (opcional)'],
-steps:['Prepara masa como Día 11-12. Forma y refrigera.','Antes de hornear: espolvorea harina.','Con hoja de afeitar practica:','Básico: corte largo curvo (sonrisa) — el clásico.','Cruz: dos cortes perpendiculares en X.','Hojas: cortes curvos desde centro, como pétalos.','Corte rápido, decisivo, ángulo 30-45°.','Hornea inmediatamente: 240°C, 25 tapado + 20 destapado.'],
-tip:'Scoring permite expansión controlada. La masa FRÍA (de la refri) mantiene cortes definidos.',timers:[{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]},
-{day:14,emoji:'🏆',title:'Pan Maestro Final',subtitle:'¡Tu obra maestra sourdough!',difficulty:5,starter:true,totalTime:'24h',
-ingredients:['120g Masa madre activa','450g Harina sin preparar','50g Harina integral','350ml Agua tibia','10g Sal','Semillas opcionales'],
-steps:['¡Último día! Aplica todo lo aprendido.','Mejor masa madre — aliméntala temprano.','Autólisis, stretch & fold, fermenta con paciencia.','Máxima tensión al formar.','Refrigera toda la noche.','Tu mejor scoring. Sé creativo — es TU pan.','Hornea con vapor 240°C. Espera a que enfríe COMPLETAMENTE.','¡Toma foto! Has completado el reto 🎉'],
-tip:'¡FELICITACIONES! En 14 días: de cero a sourdough artesanal. Tu masa madre es parte de tu cocina. Aliméntala 1x/semana en la refri.',timers:[{name:'Autólisis',min:30},{name:'Stretch & Fold',min:30},{name:'Fermentación',min:240},{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]}
+steps:['Prepara masa como Día 11. Forma y refrigera toda la noche.','Antes de hornear: espolvorea harina.','Con hoja de afeitar practica:','Básico: corte largo curvo (sonrisa) — el clásico.','Cruz: dos cortes perpendiculares en X.','Hojas: cortes curvos desde centro, como pétalos.','Corte rápido, decisivo, ángulo 30-45°.','Hornea inmediatamente: 240°C, 25 tapado + 20 destapado.'],
+tip:'La hoja NUEVA y afilada + masa FRÍA de la refri = cortes limpios. Para la "oreja" clásica: cuchilla a 30° (casi horizontal). Para diseños decorativos (hojas, trigo): 45-90° y más superficial (3-5mm). Un solo movimiento rápido y decidido — si dudas, se pega.',timers:[{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}],video:'https://www.youtube.com/results?search_query=foodgeek+sourdough+scoring+techniques',videoLabel:'Foodgeek: Técnicas de Scoring'},
+{day:14,title:'Courtesan au Chocolat',subtitle:'La obra maestra de Mendl\'s — Grand Budapest Hotel',difficulty:5,starter:false,totalTime:'4h',
+ingredients:['Choux: 125ml Agua, 125ml Leche, 100g Mantequilla, 150g Harina, 4-5 Huevos, 1 cdta Azúcar, Pizca de sal','Ganache: 200g Chocolate bitter, 200ml Crema de leche caliente','Crema de relleno: 300ml Crema de leche, 3 cdas Azúcar impalpable, 1 cdta Vainilla, Colorante rosa (opcional)','Glaseado: 200g Chocolate blanco, Colorante rosa, 100g Azúcar impalpable, 2 cdas Leche','Decoración: Chocolate derretido para líneas, Frambuesas o fresas'],
+steps:['CHOUX: Hierve agua + leche + mantequilla + azúcar + sal. Retira del fuego, agrega TODA la harina de golpe.','Mezcla fuerte con cuchara de madera hasta que se despegue de las paredes (1-2 min a fuego bajo).','Pasa a bowl. Agrega huevos UNO A UNO, mezclando bien cada vez. La masa cae en V de la cuchara.','Manga pastelera: forma 3 tamaños de bolitas en bandeja (grande, mediana, pequeña). Hornea 200°C, 25 min. NO abrir el horno.','Baja a 180°C, 10-15 min más hasta dorado profundo (no dorado pálido). Apaga horno, deja adentro con puerta entreabierta 5 min. Enfría boca abajo.','GANACHE: Vierte crema caliente sobre chocolate picado. Espera 1 min, mezcla desde el centro hasta liso.','CREMA: Bate crema + azúcar + vainilla + colorante rosa hasta firme. Rellena los choux por la base.','GLASEADO: Derrite chocolate blanco, agrega colorante rosa + azúcar impalpable + leche hasta liso y vertible.','Baña el choux grande en glaseado. Deja secar. Repite con mediano y pequeño.','ARMA LA TORRE: Grande abajo (ganache entre capas), mediano encima, pequeño en la punta.','Decora: líneas de chocolate oscuro en zigzag, una frambuesa en la punta.','Presenta en cajita o plato elegante. Mendl\'s estaría orgulloso.'],
+tip:'FELICITACIONES — completaste el reto de 14 días. Choux sub-horneado COLAPSA al enfriar — debe estar dorado profundo, ligero y hueco al golpear. Deja secar en horno apagado con puerta abierta. Y los huevos: UNO A UNO, mezclando completamente antes del siguiente.',timers:[{name:'Choux horneado',min:25},{name:'Choux secado',min:12},{name:'Ganache',min:5}],video:'https://www.youtube.com/watch?v=GO5P3fLTwA0',videoLabel:'Binging with Babish: Courtesan au Chocolat (Grand Budapest Hotel)'}
 ];
-
-// ═══ DATA: CHALLENGE 2 — PAN PERUANO ═══
-const DAYS_2=[
-{day:1,emoji:'🥚',title:'Pan de Yema',subtitle:'Clásico pan peruano suave y dorado',difficulty:2,starter:false,totalTime:'3h',
-ingredients:['500g Harina sin preparar (Blanca Flor)','4 Yemas + 1 huevo entero','100g Mantequilla blanda (Laive)','100g Azúcar','150ml Leche tibia (Gloria)','7g Levadura seca (Fleischmann)','5g Sal','1 cdta Esencia de vainilla','1 yema + leche para pintar'],
-steps:['Disuelve levadura en leche tibia con 1 cda azúcar. Espera 5 min.','Mezcla harina, sal, azúcar restante.','Agrega yemas, huevo, mantequilla blanda y mezcla de levadura.','Amasa 15 min — debe quedar suave, sedosa, elástica.','Fermenta 1.5h hasta duplicar.','Divide en 10-12 bollos. Forma redondos.','Bandeja con papel manteca. Reposo 45 min cubiertos.','Pinta con yema + leche. Hornea 180°C, 20-25 min.'],
-tip:'El pan de yema peruano es más dulce y suave que el pan francés. El secreto está en las yemas extras — dan color dorado natural y textura sedosa.',timers:[{name:'Amasado',min:15},{name:'Fermentación',min:90},{name:'Reposo',min:45},{name:'Horneado',min:22}]},
-{day:2,emoji:'🍳',title:'Cachanga',subtitle:'Pan frito andino — crujiente y rápido',difficulty:1,starter:false,totalTime:'2h',
-ingredients:['500g Harina sin preparar','100g Manteca vegetal o mantequilla','200ml Agua tibia','5g Levadura seca','10g Sal','1 cda Azúcar','Aceite para freír'],
-steps:['Mezcla harina, sal, azúcar, levadura.','Agrega manteca en trocitos y agua tibia. Forma masa.','Amasa 8 min hasta masa suave.','Reposo 1 hora tapada.','Divide en 8-10 porciones. Estira ovaladas de 1cm grosor.','Calienta aceite a 170°C. Fríe 2-3 min por lado hasta dorar.','Escurre en papel toalla.','Sirve con queso fresco o chicharrón. ¡Desayuno peruano!'],
-tip:'La cachanga es el desayuno perfecto de la sierra. Debe quedar inflada y crujiente por fuera, suave por dentro. No te pases con el aceite — solo debe estar dorada.',timers:[{name:'Amasado',min:8},{name:'Reposo',min:60},{name:'Fritura (por tanda)',min:6}]},
-{day:3,emoji:'🫓',title:'Pan Chapla',subtitle:'Pan plano tradicional cusqueño',difficulty:1,starter:false,totalTime:'2h',
-ingredients:['500g Harina sin preparar','300ml Agua tibia','50g Manteca de cerdo o mantequilla','10g Sal','7g Levadura seca'],
-steps:['Mezcla harina, sal, levadura.','Agrega manteca y agua. Amasa 10 min.','Fermenta 45 min.','Divide en 6 porciones. Aplana cada una a disco de 15cm, 1.5cm grosor.','Marca con tenedor (patrón decorativo).','Hornea 230°C directamente sobre bandeja caliente, 12-15 min.','Debe quedar ligeramente dorada, con corteza crujiente fina.'],
-tip:'El chapla es ancestral, de los hornos de barro de Cusco. Se come con queso, mantequilla, o para acompañar sopas. Simple pero delicioso.',timers:[{name:'Amasado',min:10},{name:'Fermentación',min:45},{name:'Horneado',min:14}]},
-{day:4,emoji:'🥐',title:'Cachitos de Jamón',subtitle:'Los clásicos de la panadería peruana',difficulty:2,starter:false,totalTime:'3h',
-ingredients:['500g Harina sin preparar','150g Mantequilla fría','2 Huevos','150ml Leche tibia','50g Azúcar','7g Levadura seca','5g Sal','200g Jamón del país en tiras','1 yema para pintar'],
-steps:['Disuelve levadura en leche tibia con azúcar.','Mezcla harina y sal. Agrega mantequilla fría en cubitos — mezcla con dedos.','Agrega huevos y mezcla de levadura. Amasa 10 min.','Fermenta 1h.','Estira masa en círculo grande (~40cm). Corta en 12 triángulos.','Coloca tiras de jamón en base de cada triángulo.','Enrolla desde la base hacia la punta, curva en media luna.','Bandeja. Reposo 30 min. Pinta con yema. Hornea 180°C, 18-20 min.'],
-tip:'El cachito peruano NO es un croissant — es más pan que hojaldre. La mantequilla fría le da capas pero la masa es más firme. El jamón del país le da el sabor auténtico.',timers:[{name:'Amasado',min:10},{name:'Fermentación',min:60},{name:'Reposo',min:30},{name:'Horneado',min:19}]},
-{day:5,emoji:'🥖',title:'Pan para Chicharrón',subtitle:'El pan del sánguche más peruano',difficulty:2,starter:false,totalTime:'3h',
-ingredients:['500g Harina sin preparar','250ml Agua tibia','50g Manteca de cerdo','7g Levadura seca','1 cda Anís en grano','10g Sal','8g Azúcar','100g Camote cocido (batata)'],
-steps:['Hierve camote hasta suave. Haz puré.','Tuesta anís en sartén seca 1 min (hasta que huela rico).','Disuelve levadura en agua con azúcar.','Mezcla harina, sal, anís. Agrega manteca, puré de camote, agua con levadura.','Amasa 12 min. La masa será ligeramente amarilla por el camote.','Fermenta 1.5h.','Divide en 8 bollos. Aplana ligeramente (no tanto como chapla).','Reposo 30 min. Hornea 200°C, 20-25 min.'],
-tip:'El camote le da suavidad y color. El anís es la firma aromática. Este es el pan oficial del sánguche de chicharrón limeño — suave por dentro para absorber el jugo.',timers:[{name:'Amasado',min:12},{name:'Fermentación',min:90},{name:'Reposo',min:30},{name:'Horneado',min:22}]},
-{day:6,emoji:'🥟',title:'Empanadas de Carne',subtitle:'Empanadas al horno estilo peruano',difficulty:3,starter:false,totalTime:'2h 30m',
-ingredients:['Masa: 500g Harina, 100g Manteca, 1 huevo, 5g sal, 150ml agua fría','Relleno: 300g Carne molida, 1 cebolla, 2 cdas ají panca, 1 cdta comino, aceitunas de botija, 2 huevos duros, pasas, sal pimienta','1 huevo para pintar'],
-steps:['RELLENO: Sofríe cebolla, agrega carne, ají panca, comino. Cocina 10 min.','Agrega aceitunas picadas y pasas. Enfría completamente.','MASA: Mezcla harina y sal. Agrega manteca con dedos (como arena).','Agrega huevo y agua fría. Forma masa. Reposa 30 min en refri.','Estira y corta círculos de 15cm. Rellena, agrega trozo de huevo duro.','Cierra en media luna. Sella con tenedor presionando los bordes.','Pinta con huevo. Hornea 200°C, 25-30 min hasta doradas.'],
-tip:'El ají panca es la clave del sabor peruano. Las aceitunas de botija dan ese toque inconfundible. La masa debe estar FRÍA para que quede crujiente.',timers:[{name:'Cocinar relleno',min:15},{name:'Reposo masa',min:30},{name:'Horneado',min:28}]},
-{day:7,emoji:'🍞',title:'Pan de Anís',subtitle:'Pan aromático tradicional',difficulty:2,starter:false,totalTime:'3h',
-ingredients:['500g Harina sin preparar','200ml Leche tibia','80g Mantequilla blanda','80g Azúcar','2 Huevos','7g Levadura seca','1.5 cdas Anís en grano','5g Sal','Ajonjolí'],
-steps:['Tuesta el anís en sartén seca hasta que suelte aroma.','Disuelve levadura en leche tibia con 1 cda azúcar.','Mezcla harina, sal, azúcar, anís tostado.','Agrega huevos, mantequilla, mezcla de leche.','Amasa 12 min hasta masa suave.','Fermenta 1.5h.','Forma trenzas o bollos. Bandeja. Reposo 40 min.','Pinta con huevo, espolvorea ajonjolí. Hornea 180°C, 22-25 min.'],
-tip:'El anís tostado libera aceites esenciales que perfuman toda la masa. Es un pan clásico de panadería peruana — va perfecto con el café de la tarde.',timers:[{name:'Amasado',min:12},{name:'Fermentación',min:90},{name:'Reposo',min:40},{name:'Horneado',min:23}]},
-{day:8,emoji:'🍪',title:'Alfajores de Maicena',subtitle:'Galletas peruanas con manjar blanco',difficulty:2,starter:false,totalTime:'1h 30m',
-ingredients:['200g Maicena (Duryea)','100g Harina sin preparar','150g Mantequilla blanda','80g Azúcar impalpable','3 Yemas','1 cdta Polvo de hornear','1 cdta Esencia de vainilla','Ralladura de limón','250g Manjar blanco (Gloria)','Coco rallado'],
-steps:['Crema mantequilla con azúcar impalpable hasta blanquear.','Agrega yemas una a una, vainilla y ralladura.','Mezcla maicena, harina y polvo de hornear. Incorpora.','Masa suave. Envuelve en plástico, refri 30 min.','Estira a 5mm. Corta círculos de 4cm.','Hornea 170°C, 10-12 min — NO deben dorarse, solo la base.','Enfría. Une de a pares con manjar blanco generoso.','Rueda los bordes en coco rallado.'],
-tip:'El alfajor peruano es MÁS SUAVE que el argentino. La maicena le da esa textura que se deshace en la boca. No los hornees de más — deben quedar blancos.',timers:[{name:'Reposo en refri',min:30},{name:'Horneado',min:11}]},
-{day:9,emoji:'🍩',title:'Rosca de Manteca',subtitle:'Pan dulce anillado tradicional',difficulty:3,starter:false,totalTime:'3h 30m',
-ingredients:['500g Harina sin preparar','150g Manteca de cerdo o mantequilla','100g Azúcar','3 Huevos','7g Levadura seca','100ml Leche tibia','5g Sal','Ralladura de naranja','Azúcar para espolvorear'],
-steps:['Disuelve levadura en leche tibia.','Mezcla harina, sal, azúcar, ralladura.','Agrega huevos, manteca blanda y leche con levadura.','Amasa 15 min — masa muy suave y elástica.','Fermenta 2h (masa rica tarda más).','Divide en 8 porciones. Forma cilindros de 25cm.','Une extremos formando rosca. Bandeja. Reposo 40 min.','Pinta con huevo, espolvorea azúcar. Hornea 180°C, 20-25 min.'],
-tip:'La rosca de manteca es la reina de las panaderías peruanas. La manteca de cerdo le da un sabor inigualable, pero mantequilla funciona bien también.',timers:[{name:'Amasado',min:15},{name:'Fermentación',min:120},{name:'Reposo',min:40},{name:'Horneado',min:22}]},
-{day:10,emoji:'🍩',title:'Picarones',subtitle:'Donuts peruanos con miel de chancaca',difficulty:3,starter:false,totalTime:'3h',
-ingredients:['500g Camote amarillo','500g Zapallo macre','500g Harina sin preparar','14g Levadura seca','1 cda Anís en grano','1 cdta Clavo molido','Sal','Aceite para freír','Chancaca: 500g chancaca, canela, clavo, cáscara de naranja, 2 tazas agua'],
-steps:['MIEL: Hierve chancaca con canela, clavo, cáscara de naranja y agua. Reduce hasta espesar (~20 min). Reserva.','Hierve camote y zapallo hasta suaves. Haz puré fino.','Mezcla puré con harina, levadura, anís, clavo, sal.','Amasa hasta masa suave y ligeramente pegajosa.','Fermenta 1.5-2h hasta duplicar.','Moja tus manos. Toma porciones, forma rosquillas con los dedos.','Fríe en aceite a 170°C, 3-4 min por lado hasta doradas.','Sirve calientes bañados en miel de chancaca.'],
-tip:'Los picarones son el postre callejero más emblemático de Lima. El truco: las manos mojadas para formar y el aceite a temperatura correcta. La miel de chancaca es TODO.',timers:[{name:'Miel de chancaca',min:20},{name:'Fermentación',min:100},{name:'Fritura (por tanda)',min:8}]},
-{day:11,emoji:'🧈',title:'Bizcocho de Manteca',subtitle:'Galleta-pan mantecosa peruana',difficulty:2,starter:false,totalTime:'2h',
-ingredients:['500g Harina sin preparar','200g Manteca de cerdo','100g Azúcar','2 Huevos','7g Levadura seca','80ml Leche tibia','5g Sal','1 cdta Anís molido','Azúcar para decorar'],
-steps:['Disuelve levadura en leche tibia.','Mezcla harina, sal, azúcar, anís.','Agrega manteca, huevos y leche con levadura.','Amasa 10 min. Masa firme y manejable.','Fermenta 1h.','Estira a 1.5cm grosor. Corta con moldes o vaso.','Bandeja. Reposo 30 min. Espolvorea azúcar.','Hornea 180°C, 15-18 min hasta dorar ligeramente.'],
-tip:'El bizcocho peruano es más galleta que pan. Firme, mantecoso, perfecto para el té. En Huancayo los hacen con manteca de chancho — esa es la versión original.',timers:[{name:'Amasado',min:10},{name:'Fermentación',min:60},{name:'Reposo',min:30},{name:'Horneado',min:17}]},
-{day:12,emoji:'🎉',title:'Turrones de Doña Pepa',subtitle:'El dulce del Señor de los Milagros',difficulty:4,starter:false,totalTime:'3h',
-ingredients:['Masa: 500g Harina, 200g Manteca, 6 yemas, 2 cdas anís en grano, 1 cdta clavo molido, sal, ajonjolí','Miel: 500g Chancaca, 1 membrillo, rodajas de piña, canela, clavo, naranja, 3 tazas agua','Decoración: Grajeas de colores (confites)'],
-steps:['MASA: Hierve anís en 3 cdas agua, cuela. Reserva agua de anís.','Mezcla harina, clavo, sal. Agrega manteca, yemas y agua de anís.','Amasa 8 min. Masa firme. Divide en cilindros de 1cm grosor, 15cm largo.','Hornea palitos a 180°C, 15-18 min hasta firmes (no dorados).','MIEL: Hierve chancaca con membrillo, piña, canela, clavo, naranja, agua.','Cocina 30-40 min hasta miel espesa y oscura.','ARMA: Capas de palitos alternando dirección. Baña cada capa con miel.','Decora con grajeas de colores. Deja enfriar y corta en porciones.'],
-tip:'Los turrones son EL postre de octubre en Lima. La miel de chancaca con frutas es lo que los hace especiales. Es laborioso pero vale cada minuto. ¡Tradición pura!',timers:[{name:'Horneado palitos',min:17},{name:'Miel de chancaca',min:35}]},
-{day:13,emoji:'🥖',title:'Pan de Masa Madre Peruano',subtitle:'Sourdough con sabores peruanos',difficulty:4,starter:true,totalTime:'24h',
-ingredients:['120g Masa madre activa','450g Harina sin preparar','50g Harina integral','340ml Agua tibia','10g Sal','80g Aceitunas de botija picadas','2 cdas Ají amarillo en pasta (opcional)'],
-steps:['Alimenta starter por la mañana.','Mezcla harinas + agua. Autólisis 30 min.','Agrega starter y sal. Mezcla bien.','Si usas ají amarillo, agrégalo ahora.','4 rondas stretch & fold cada 30 min.','Incorpora aceitunas en el último fold.','Fermenta 4-6h. Forma. Refrigera toda la noche.','Hornea en olla: 240°C, 25 tapado + 20 destapado.'],
-tip:'¡Sourdough peruano! Las aceitunas de botija y el ají amarillo le dan un sabor único que no encontrarás en ninguna panadería del mundo. Es TU creación.',timers:[{name:'Autólisis',min:30},{name:'Stretch & Fold',min:30},{name:'Fermentación',min:240},{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20}]},
-{day:14,emoji:'🎄',title:'Panetón Casero',subtitle:'El rey de la mesa peruana — hecho en casa',difficulty:5,starter:false,totalTime:'6h',
-ingredients:['500g Harina de fuerza o sin preparar','150g Mantequilla blanda','120g Azúcar','6 Yemas','14g Levadura seca','120ml Leche tibia','100g Frutas confitadas','80g Pasas (remojadas en pisco)','Ralladura de naranja y limón','1 cdta Esencia de panetón (o vainilla)','Sal'],
-steps:['Remoja pasas en pisco (o jugo de naranja) 1h.','Disuelve levadura en leche tibia con 1 cda azúcar. Espera 10 min.','Mezcla harina, sal, azúcar. Agrega yemas y mezcla de levadura.','Amasa 10 min. Agrega mantequilla blanda poco a poco. Amasa 10 min más.','La masa debe pasar la prueba de la ventana — muy elástica.','Agrega frutas, pasas, ralladura. Mezcla suavemente.','Fermenta 2h. Desinfla. Forma bola. Coloca en molde de panetón (o pyrex).','Fermenta 2h más hasta que suba al borde. Hornea 170°C, 40-45 min.'],
-tip:'¡El panetón casero supera a cualquier Donofrio o Todino! El truco: amasar MUCHO para desarrollar el gluten, y doble fermentación larga. Las pasas en pisco son el toque secreto.',timers:[{name:'Amasado fase 1',min:10},{name:'Amasado fase 2',min:10},{name:'Fermentación 1',min:120},{name:'Fermentación 2',min:120},{name:'Horneado',min:43}]}
-];
-
-// ═══ SHOPPING DATA ═══
-const SHOPPING_1=[
-{id:'basicos1',title:'Básicos',subtitle:'Días 1-7',icon:'🛒',items:[
-{name:'Harina sin preparar 1kg (Blanca Flor)',qty:'3 bolsas'},{name:'Harina integral 1kg',qty:'1 bolsa'},
-{name:'Levadura seca instantánea (Fleischmann)',qty:'3 sobres'},{name:'Sal de mesa',qty:'1 bolsa'},
-{name:'Azúcar blanca',qty:'½ kg'},{name:'Aceite vegetal',qty:'1 botella'},
-{name:'Aceite de oliva extra virgen',qty:'1 botella chica'},{name:'Mantequilla sin sal (Laive)',qty:'200g'},
-{name:'Huevos',qty:'6 unidades'},{name:'Leche fresca (Gloria)',qty:'1 litro'},
-{name:'Miel de abeja',qty:'1 frasco chico'},{name:'Ajonjolí / semillas',qty:'1 bolsa'},
-{name:'Ajo fresco',qty:'1 cabeza'},{name:'Perejil fresco',qty:'1 atado'},
-{name:'Papel manteca',qty:'1 rollo'},{name:'Film plástico (Alusa)',qty:'1 rollo'},
-{name:'Frasco de vidrio con tapa (para starter)',qty:'1'}]},
-{id:'semana2_1',title:'Semana 2',subtitle:'Días 8-14',icon:'🫒',items:[
-{name:'Harina sin preparar 1kg',qty:'3 bolsas más'},{name:'Harina integral',qty:'500g'},
-{name:'Aceite de oliva extra virgen',qty:'1 botella'},{name:'Aceitunas negras sin pepa',qty:'1 frasco'},
-{name:'Romero fresco',qty:'1 atado'},{name:'Tomates cherry',qty:'1 bandeja'},
-{name:'Sal gruesa / Sal de Maras',qty:'1 bolsa'},{name:'Harina de arroz',qty:'1 bolsa chica'},
-{name:'Semillas variadas',qty:'1 bolsa'},{name:'Hojas de afeitar (para scoring)',qty:'1 paq'}]},
-{id:'utensilios1',title:'Utensilios',subtitle:'Lo que necesitas',icon:'🍳',items:[
-{name:'Bowl grande',qty:'1-2'},{name:'Rasqueta de masa (scraper)',qty:'1'},
-{name:'Bandeja para hornear',qty:'1-2'},{name:'Pyrex con tapa (para sourdough)',qty:'1'},
-{name:'Molde para pan de molde',qty:'1'},{name:'Trapos de cocina',qty:'2-3'},
-{name:'Balanza digital',qty:'1'},{name:'Rociador de agua',qty:'1'}]}
-];
-const SHOPPING_2=[
-{id:'basicos2',title:'Básicos Peruanos',subtitle:'Días 1-7',icon:'🛒',items:[
-{name:'Harina sin preparar 1kg (Blanca Flor)',qty:'3 bolsas'},{name:'Levadura seca (Fleischmann)',qty:'4 sobres'},
-{name:'Mantequilla sin sal (Laive)',qty:'400g'},{name:'Manteca de cerdo (o vegetal)',qty:'500g'},
-{name:'Huevos',qty:'12 unidades'},{name:'Leche fresca (Gloria)',qty:'1 litro'},
-{name:'Azúcar blanca',qty:'1 kg'},{name:'Sal',qty:'1 bolsa'},
-{name:'Anís en grano',qty:'1 bolsa'},{name:'Jamón del país',qty:'200g'},
-{name:'Camote amarillo',qty:'½ kg'},{name:'Aceite vegetal (para freír)',qty:'1 botella'},
-{name:'Aceitunas de botija',qty:'1 frasco'},{name:'Ají panca en pasta',qty:'1 frasco'},
-{name:'Comino molido',qty:'1 frasco'},{name:'Carne molida',qty:'300g'},
-{name:'Cebolla',qty:'2 unidades'},{name:'Ajonjolí',qty:'1 bolsa'},
-{name:'Esencia de vainilla',qty:'1 frasco'}]},
-{id:'semana2_2',title:'Semana 2 Peruana',subtitle:'Días 8-14',icon:'🇵🇪',items:[
-{name:'Maicena (Duryea)',qty:'200g'},{name:'Azúcar impalpable',qty:'250g'},
-{name:'Manjar blanco (Gloria)',qty:'1 frasco grande'},{name:'Coco rallado',qty:'1 bolsa'},
-{name:'Chancaca (panela)',qty:'1 kg'},{name:'Zapallo macre',qty:'½ kg'},
-{name:'Camote amarillo',qty:'½ kg'},{name:'Membrillo',qty:'1 unidad'},
-{name:'Canela en rama',qty:'1 paq'},{name:'Clavo de olor',qty:'1 frasquito'},
-{name:'Piña (rodajas)',qty:'1 lata o fresca'},{name:'Naranja',qty:'2 unidades'},
-{name:'Grajeas/confites de colores',qty:'1 bolsa'},{name:'Frutas confitadas',qty:'100g'},
-{name:'Pasas',qty:'100g'},{name:'Pisco (para las pasas)',qty:'opcional'},
-{name:'Harina integral',qty:'500g'},{name:'Ají amarillo en pasta',qty:'1 frasco'},
-{name:'Esencia de panetón',qty:'1 frasquito'},{name:'Molde de panetón',qty:'1'}]}
-];
-
 const TIMER_PRESETS=[
-{name:'Amasado',min:10,emoji:'👐'},{name:'Reposo',min:15,emoji:'😌'},
-{name:'Stretch & Fold',min:30,emoji:'🤲'},{name:'Fermentación',min:60,emoji:'⏳'},
-{name:'Fermentación larga',min:240,emoji:'🕐'},{name:'Horneado',min:30,emoji:'🔥'},
-{name:'Horneado tapado',min:25,emoji:'🫕'},{name:'Horneado destapado',min:20,emoji:'♨️'},
-{name:'Fritura',min:6,emoji:'🍳'},{name:'Miel chancaca',min:35,emoji:'🍯'}
-];
-
-// ═══ DATA: CHALLENGE 3 — MIXTO ═══
-const DAYS_3=[
-  {...DAYS_1[0],day:1},
-  {...DAYS_2[1],day:2},
-  {...DAYS_1[2],day:3},
-  {...DAYS_2[0],day:4},
-  {...DAYS_1[4],day:5},
-  {...DAYS_2[3],day:6},
-  {...DAYS_1[6],day:7},
-  {...DAYS_1[8],day:8},
-  {...DAYS_2[7],day:9},
-  {...DAYS_2[9],day:10},
-  {...DAYS_1[10],day:11},
-  {...DAYS_2[5],day:12},
-  {...DAYS_2[12],day:13},
-  {...DAYS_2[13],day:14},
+{name:'Amasado',min:10},{name:'Reposo',min:15},
+{name:'Stretch & Fold',min:30},{name:'Fermentación',min:60},
+{name:'Fermentación larga',min:240},{name:'Horneado',min:30},
+{name:'Horneado tapado',min:25},{name:'Horneado destapado',min:20},
+{name:'Refrigeración',min:120},{name:'Miel chancaca',min:35}
 ];
 
 const CHALLENGES=[
-{id:'pan-de-casa',name:'Pan de Casa',emoji:'🍞',subtitle:'De pan básico a sourdough',days:DAYS_1,shopping:SHOPPING_1},
-{id:'pan-peruano',name:'Pan Peruano',emoji:'🇵🇪',subtitle:'Pasteles y panes peruanos',days:DAYS_2,shopping:SHOPPING_2},
-{id:'mixto',name:'Lo Mejor de Ambos',emoji:'🥐',subtitle:'Pan artesanal + pasteles peruanos',days:DAYS_3,shopping:[]}
+{id:'pan-de-casa',name:'Pan de Casa',subtitle:'De pan básico a sourdough — 14 días',days:DAYS,shopping:[]}
 ];
+
 
 // ═══ STARTER GUIDE ═══
 const STARTER_GUIDE=[
-{title:'📐 Proporciones de Alimentación',body:`<div class="guide-measure"><span class="gm-qty">50g</span> Masa madre vieja (descartar el resto)</div><div class="guide-measure"><span class="gm-qty">50g</span> Harina sin preparar</div><div class="guide-measure"><span class="gm-qty">50g</span> Agua filtrada tibia (25-28°C)</div><p><strong>Proporción 1:1:1</strong> — siempre partes iguales de starter, harina y agua.</p><p><strong>Para hornear:</strong> La noche anterior, alimenta con más: 25g starter + 100g harina + 100g agua. Tendrás ~200g de starter activa por la mañana.</p>`},
-{title:'💧 Agua — Lo que debes saber',body:`<p><strong>Temperatura:</strong> 25-28°C (tibia, no caliente). Usa termómetro o toca con el dedo — debe sentirse apenas tibia.</p><p><strong>Tipo:</strong> Agua filtrada o hervida y enfriada. El cloro del grifo puede matar las bacterias buenas de tu starter.</p><p><strong>Truco peruano:</strong> Hierve agua del grifo, déjala enfriar a temperatura ambiente. Funciona perfecto.</p>`},
-{title:'📅 Rutina Diaria',body:`<p><strong>Si horneas seguido (diario/cada 2 días):</strong></p><p>Alimenta 2 veces al día: mañana y noche, a temperatura ambiente.</p><p><strong>Si horneas 1-2 veces por semana:</strong></p><p>Guarda en la refrigeradora. Alimenta 1 vez por semana. Saca la noche anterior a hornear, alimenta, deja a temp. ambiente toda la noche.</p><p><strong>Antes de hornear:</strong> Alimenta 4-6h antes. Debe duplicar su tamaño y pasar la prueba del flotador.</p>`},
-{title:'🔍 Señales de Salud',body:`<p>✅ <strong>Starter sana:</strong> Olor agradable a yogurt/frutas fermentadas, muchas burbujas, duplica en 4-8h, flota en agua.</p><p>⚠️ <strong>Starter lenta:</strong> Pocas burbujas, no sube mucho. Solución: aliméntala 2-3 veces en un día, lugar más tibio.</p><p>🚫 <strong>Moho (verde/negro/rosa):</strong> Descarta y empieza de nuevo. El líquido gris/oscuro encima es normal — es "hooch" (alcohol). Mezcla o descarta ese líquido y alimenta.</p><p>👃 <strong>Olores normales:</strong> Frutal, yogurt, levemente ácido. <strong>No normal:</strong> Podrido, a queso fuerte, a pintura.</p>`},
-{title:'🆘 Rescate — Starter Lenta',body:`<p>Si tu starter no responde después de varios días:</p><p>1. <strong>Cambia de harina:</strong> Usa harina integral o de centeno para 2-3 alimentaciones — tiene más nutrientes.</p><p>2. <strong>Más calor:</strong> Colócala cerca del horno encendido o en un lugar tibio (25-30°C ideal).</p><p>3. <strong>Alimenta más seguido:</strong> Cada 8h en vez de cada 12h.</p><p>4. <strong>Prueba con jugo de piña:</strong> Reemplaza el agua con jugo de piña las primeras 3 alimentaciones. La acidez ayuda.</p>`}
+{title:'<span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">straighten</span> Proporciones de Alimentación',body:`<div class="guide-measure"><span class="gm-qty">50g</span> Masa madre vieja (descartar el resto)</div><div class="guide-measure"><span class="gm-qty">50g</span> Harina sin preparar</div><div class="guide-measure"><span class="gm-qty">50g</span> Agua filtrada tibia (25-28°C)</div><p><strong>Proporción 1:1:1</strong> — siempre partes iguales de starter, harina y agua.</p><p><strong>Para hornear:</strong> La noche anterior, alimenta con más: 25g starter + 100g harina + 100g agua. Tendrás ~200g de starter activa por la mañana.</p>`},
+{title:'<span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">water_drop</span> Agua — Lo que debes saber',body:`<p><strong>Temperatura:</strong> 25-28°C (tibia, no caliente). Usa termómetro o toca con el dedo — debe sentirse apenas tibia.</p><p><strong>Tipo:</strong> Agua filtrada o hervida y enfriada. El cloro del grifo puede matar las bacterias buenas de tu starter.</p><p><strong>Truco peruano:</strong> Hierve agua del grifo, déjala enfriar a temperatura ambiente. Funciona perfecto.</p>`},
+{title:'<span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">edit_calendar</span> Rutina Diaria',body:`<p><strong>Si horneas seguido (diario/cada 2 días):</strong></p><p>Alimenta 2 veces al día: mañana y noche, a temperatura ambiente.</p><p><strong>Si horneas 1-2 veces por semana:</strong></p><p>Guarda en la refrigeradora. Alimenta 1 vez por semana. Saca la noche anterior a hornear, alimenta, deja a temp. ambiente toda la noche.</p><p><strong>Antes de hornear:</strong> Alimenta 4-6h antes. Debe duplicar su tamaño y pasar la prueba del flotador.</p>`},
+{title:'<span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">search</span> Señales de Salud',body:`<p>✅ <strong>Starter sana:</strong> Olor agradable a yogurt/frutas fermentadas, muchas burbujas, duplica en 4-8h, flota en agua.</p><p>⚠️ <strong>Starter lenta:</strong> Pocas burbujas, no sube mucho. Solución: aliméntala 2-3 veces en un día, lugar más tibio.</p><p>🚫 <strong>Moho (verde/negro/rosa):</strong> Descarta y empieza de nuevo. El líquido gris/oscuro encima es normal — es "hooch" (alcohol). Mezcla o descarta ese líquido y alimenta.</p><p>👃 <strong>Olores normales:</strong> Frutal, yogurt, levemente ácido. <strong>No normal:</strong> Podrido, a queso fuerte, a pintura.</p>`},
+{title:'<span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">emergency</span> Rescate — Starter Lenta',body:`<p>Si tu starter no responde después de varios días:</p><p>1. <strong>Cambia de harina:</strong> Usa harina integral o de centeno para 2-3 alimentaciones — tiene más nutrientes.</p><p>2. <strong>Más calor:</strong> Colócala cerca del horno encendido o en un lugar tibio (25-30°C ideal).</p><p>3. <strong>Alimenta más seguido:</strong> Cada 8h en vez de cada 12h.</p><p>4. <strong>Prueba con jugo de piña:</strong> Reemplaza el agua con jugo de piña las primeras 3 alimentaciones. La acidez ayuda.</p>`}
 ];
 
 // ═══ STARTER DIAGNOSTICS DATA ═══
@@ -636,40 +556,43 @@ const STARTER_DAY_EXPECTATIONS={
     info:'Día 7: Si duplica su tamaño en 6-8 horas, ¡casi lista! Si no, sigue alimentando — muchas starters necesitan 10-14 días.'}
 };
 
+// Material Symbol helper
+const MI=(name)=>`<span class="material-symbols-outlined">${name}</span>`;
+
 const STARTER_DIAGNOSTICS={
-  bubbles:{label:'Burbujas',emoji:'🫧',options:[
-    {id:'none',emoji:'⬜',label:'Ninguna',desc:'Sin burbujas visibles en la mezcla'},
-    {id:'few_small',emoji:'◽',label:'Pocas pequeñas',desc:'Algunas burbujas pequeñas, sobre todo en la superficie'},
-    {id:'many_small',emoji:'🔘',label:'Muchas pequeñas',desc:'Red densa de burbujas pequeñas por toda la masa'},
-    {id:'large_active',emoji:'🫧',label:'Grandes y activas',desc:'Burbujas grandes y pequeñas, se ven subir'}
+  bubbles:{label:'Burbujas',icon:MI('bubble_chart'),options:[
+    {id:'none',icon:MI('close'),label:'Ninguna',desc:'Sin burbujas visibles en la mezcla'},
+    {id:'few_small',icon:MI('scatter_plot'),label:'Pocas pequeñas',desc:'Algunas burbujas pequeñas, sobre todo en la superficie'},
+    {id:'many_small',icon:MI('grain'),label:'Muchas pequeñas',desc:'Red densa de burbujas pequeñas por toda la masa'},
+    {id:'large_active',icon:MI('bubble_chart'),label:'Grandes y activas',desc:'Burbujas grandes y pequeñas, se ven subir'}
   ]},
-  smell:{label:'Olor',emoji:'👃',options:[
-    {id:'flour_paste',emoji:'🌾',label:'Harina / neutro',desc:'Huele a harina cruda, sin olor fuerte'},
-    {id:'yogurt_fruity',emoji:'🍋',label:'Yogurt / frutal',desc:'Olor agradable, ácido suave, como yogurt natural'},
-    {id:'vinegary',emoji:'🍶',label:'Avinagrado',desc:'Olor ácido fuerte, como vinagre'},
-    {id:'acetone',emoji:'💅',label:'Acetona',desc:'Olor químico, como quitaesmalte de uñas'},
-    {id:'rotten',emoji:'🤢',label:'Podrido / fuerte',desc:'Olor desagradable, a queso viejo o huevos'},
-    {id:'musty_moldy',emoji:'🟤',label:'Moho / húmedo',desc:'Olor a sótano húmedo o a moho'}
+  smell:{label:'Olor',icon:MI('air'),options:[
+    {id:'flour_paste',icon:MI('grass'),label:'Harina / neutro',desc:'Huele a harina cruda, sin olor fuerte'},
+    {id:'yogurt_fruity',icon:MI('eco'),label:'Yogurt / frutal',desc:'Olor agradable, ácido suave, como yogurt natural'},
+    {id:'vinegary',icon:MI('science'),label:'Avinagrado',desc:'Olor ácido fuerte, como vinagre'},
+    {id:'acetone',icon:MI('warning'),label:'Acetona',desc:'Olor químico, como quitaesmalte de uñas'},
+    {id:'rotten',icon:MI('sentiment_very_dissatisfied'),label:'Podrido / fuerte',desc:'Olor desagradable, a queso viejo o huevos'},
+    {id:'musty_moldy',icon:MI('coronavirus'),label:'Moho / húmedo',desc:'Olor a sótano húmedo o a moho'}
   ]},
-  rise:{label:'Volumen',emoji:'📏',options:[
-    {id:'none',emoji:'➖',label:'Sin cambio',desc:'Mismo nivel que después de alimentar'},
-    {id:'slight',emoji:'📈',label:'Subió ~25%',desc:'Subió un poco, apenas se nota'},
-    {id:'good',emoji:'⬆️',label:'Subió ~50%',desc:'Subió claramente a la mitad del camino'},
-    {id:'doubled',emoji:'⏫',label:'Duplicó',desc:'Duplicó su tamaño desde la marca'},
-    {id:'tripled',emoji:'🚀',label:'Triplicó+',desc:'Más del doble de su tamaño'}
+  rise:{label:'Volumen',icon:MI('straighten'),options:[
+    {id:'none',icon:MI('remove'),label:'Sin cambio',desc:'Mismo nivel que después de alimentar'},
+    {id:'slight',icon:MI('trending_up'),label:'Subió ~25%',desc:'Subió un poco, apenas se nota'},
+    {id:'good',icon:MI('north'),label:'Subió ~50%',desc:'Subió claramente a la mitad del camino'},
+    {id:'doubled',icon:MI('keyboard_double_arrow_up'),label:'Duplicó',desc:'Duplicó su tamaño desde la marca'},
+    {id:'tripled',icon:MI('rocket_launch'),label:'Triplicó+',desc:'Más del doble de su tamaño'}
   ]},
-  surface:{label:'Superficie',emoji:'🔍',options:[
-    {id:'smooth',emoji:'🪞',label:'Lisa',desc:'Superficie plana, sin actividad visible'},
-    {id:'bubbly',emoji:'🫧',label:'Burbujeante',desc:'Burbujas rompiendo en la superficie'},
-    {id:'hooch',emoji:'🟫',label:'Líquido oscuro',desc:'Capa de líquido gris/marrón encima (hooch)'},
-    {id:'mold_spots',emoji:'🟢',label:'Manchas de moho',desc:'Puntos peludos de cualquier color'}
+  surface:{label:'Superficie',icon:MI('layers'),options:[
+    {id:'smooth',icon:MI('horizontal_rule'),label:'Lisa',desc:'Superficie plana, sin actividad visible'},
+    {id:'bubbly',icon:MI('waves'),label:'Burbujeante',desc:'Burbujas rompiendo en la superficie'},
+    {id:'hooch',icon:MI('water'),label:'Líquido oscuro',desc:'Capa de líquido gris/marrón encima (hooch)'},
+    {id:'mold_spots',icon:MI('report'),label:'Manchas de moho',desc:'Puntos peludos de cualquier color'}
   ]},
-  consistency:{label:'Consistencia',emoji:'🥄',options:[
-    {id:'thick_paste',emoji:'🧱',label:'Pasta espesa',desc:'Densa, difícil de revolver, mantiene su forma'},
-    {id:'pancake_batter',emoji:'🥞',label:'Masa de panqueque',desc:'Se vierte lentamente, espesa pero fluida'},
-    {id:'stretchy',emoji:'🧀',label:'Elástica',desc:'Se estira al levantar con cuchara, como hilos'},
-    {id:'runny',emoji:'💧',label:'Muy líquida',desc:'Muy aguada, se vierte como agua'},
-    {id:'dry_stiff',emoji:'🏜️',label:'Seca / dura',desc:'No se vierte, más como masa que como mezcla'}
+  consistency:{label:'Consistencia',icon:MI('texture'),options:[
+    {id:'thick_paste',icon:MI('square'),label:'Pasta espesa',desc:'Densa, difícil de revolver, mantiene su forma'},
+    {id:'pancake_batter',icon:MI('water_drop'),label:'Masa de panqueque',desc:'Se vierte lentamente, espesa pero fluida'},
+    {id:'stretchy',icon:MI('swap_vert'),label:'Elástica',desc:'Se estira al levantar con cuchara, como hilos'},
+    {id:'runny',icon:MI('opacity'),label:'Muy líquida',desc:'Muy aguada, se vierte como agua'},
+    {id:'dry_stiff',icon:MI('landscape'),label:'Seca / dura',desc:'No se vierte, más como masa que como mezcla'}
   ]}
 };
 
@@ -722,52 +645,34 @@ const PANTRY_CATALOG={
   chancaca:{label:'Chancaca (panela)',brand:'',storeLabel:'500g bloque',storeQty:500,unit:'g'},
   camote:{label:'Camote amarillo',brand:'',storeLabel:'½kg',storeQty:500,unit:'g'},
   zapallo:{label:'Zapallo macre',brand:'',storeLabel:'½kg',storeQty:500,unit:'g'},
+  chocolate:{label:'Chocolate bitter',brand:'Winters/Sol del Cusco',storeLabel:'200g tableta',storeQty:200,unit:'g'},
+  cocoa:{label:'Cocoa en polvo',brand:'',storeLabel:'200g bolsa',storeQty:200,unit:'g'},
+  leche_cond:{label:'Leche condensada',brand:'Gloria',storeLabel:'1 lata (393g)',storeQty:393,unit:'g'},
+  crema:{label:'Crema de leche',brand:'Gloria',storeLabel:'200ml caja',storeQty:200,unit:'ml'},
+  almendras:{label:'Almendras molidas',brand:'',storeLabel:'100g bolsa',storeQty:100,unit:'g'},
+  nueces:{label:'Nueces pecanas',brand:'',storeLabel:'100g bolsa',storeQty:100,unit:'g'},
+  galletas:{label:'Galletas de vainilla',brand:'',storeLabel:'200g paquete',storeQty:200,unit:'g'},
+  peras:{label:'Peras',brand:'Packham',storeLabel:'1kg',storeQty:1000,unit:'g'},
+  limones:{label:'Limones',brand:'',storeLabel:'6 unidades',storeQty:6,unit:'un'},
+  romero:{label:'Romero fresco',brand:'',storeLabel:'1 atado',storeQty:1,unit:'un'},
+  grajeas:{label:'Grajeas/confites',brand:'',storeLabel:'100g bolsa',storeQty:100,unit:'g'},
+  membrillo:{label:'Membrillo',brand:'',storeLabel:'1 unidad',storeQty:1,unit:'un'},
 };
 const SHOP_NEEDS={'pan-de-casa':{
-  1:{harina:500,levadura:7,sal:10,aceite_veg:15},
-  2:{harina:500,levadura:7,sal:10,aceite_oliva:15,ajonjoli:5},
+  1:{harina:250,huevos:1,aceite_veg:30,azucar:130,mantequilla:80,nueces:50,crema:200},
+  2:{chocolate:200,mantequilla:150,azucar:200,huevos:3,harina:80,cocoa:30},
   3:{harina:50,mantequilla:50},
-  4:{harina_int:300,harina:200,levadura:7,sal:12,miel:30,aceite_oliva:30},
-  5:{harina:500,leche:250,mantequilla:50,azucar:40,levadura:7,sal:8,huevos:2},
-  6:{harina:500,leche:280,mantequilla:50,azucar:30,levadura:7,sal:8,huevos:3,ajonjoli:5},
-  7:{harina:50},
-  8:{harina:500,levadura:7,sal:10,aceite_oliva:30},
-  9:{harina:500,levadura:7,sal:10,aceite_oliva:90},
-  10:{harina:500,levadura:7,sal:10,aceite_oliva:30},
+  4:{galletas:200,mantequilla:80,leche_cond:393,huevos:4,limones:6,azucar:120},
+  5:{leche:200,crema:200,azucar:150,maicena:30,huevos:6,mantequilla:150,harina:250},
+  6:{harina:200,mantequilla:160,azucar_imp:40,huevos:1,nueces:200,miel:100,crema:80,azucar:80},
+  7:{harina:500,leche:240,mantequilla:235,azucar:225,levadura:7,huevos:1,azucar_imp:150,crema:120},
+  8:{harina:250,mantequilla:280,azucar:250,huevos:5,leche:500,maicena:40,peras:600,limones:1},
+  9:{harina:500,levadura:7,sal:10,aceite_oliva:90,romero:1},
+  10:{chocolate:150,mantequilla:120,huevos:3,azucar:130,harina:50,cocoa:10},
   11:{harina:400,harina_int:100,sal:10},
-  12:{harina:450,harina_int:50,sal:10},
+  12:{harina:500,manteca:225,huevos:8,anis:10,chancaca:500,azucar:500,membrillo:1,grajeas:100},
   13:{harina:500,sal:10,harina_arroz:20},
-  14:{harina:450,harina_int:50,sal:10}
-},'pan-peruano':{
-  1:{harina:500,mantequilla:100,azucar:100,leche:150,levadura:7,sal:5,huevos:6},
-  2:{harina:500,manteca:100,levadura:5,sal:10,azucar:15,aceite_veg:300},
-  3:{harina:500,manteca:50,levadura:7,sal:10},
-  4:{harina:500,mantequilla:150,leche:150,azucar:50,levadura:7,sal:5,huevos:3},
-  5:{harina:500,manteca:50,levadura:7,sal:10,azucar:8,camote:100,anis:5},
-  6:{harina:500,manteca:100,huevos:4,sal:5},
-  7:{harina:500,mantequilla:80,leche:200,azucar:80,levadura:7,sal:5,huevos:2,anis:15,ajonjoli:10},
-  8:{maicena:200,harina:100,mantequilla:150,azucar_imp:80,huevos:3,manjar:250},
-  9:{harina:500,manteca:150,azucar:100,levadura:7,sal:5,huevos:3,leche:100},
-  10:{harina:500,camote:500,zapallo:500,levadura:14,anis:5,chancaca:500,aceite_veg:500},
-  11:{harina:500,manteca:200,azucar:100,levadura:7,sal:5,huevos:2,leche:80,anis:5},
-  12:{harina:500,manteca:200,huevos:6,anis:10,chancaca:500},
-  13:{harina:450,harina_int:50,sal:10},
-  14:{harina:500,mantequilla:150,azucar:120,levadura:14,leche:120,huevos:6}
-},'mixto':{
-  1:{harina:500,levadura:7,sal:10,aceite_veg:15},
-  2:{harina:500,manteca:100,levadura:5,sal:10,azucar:15,aceite_veg:300},
-  3:{harina:50,mantequilla:50},
-  4:{harina:500,mantequilla:100,azucar:100,leche:150,levadura:7,sal:5,huevos:6},
-  5:{harina:500,leche:250,mantequilla:50,azucar:40,levadura:7,sal:8,huevos:2},
-  6:{harina:500,mantequilla:150,leche:150,azucar:50,levadura:7,sal:5,huevos:3},
-  7:{harina:50},
-  8:{harina:500,levadura:7,sal:10,aceite_oliva:90},
-  9:{maicena:200,harina:100,mantequilla:150,azucar_imp:80,huevos:3,manjar:250},
-  10:{harina:500,camote:500,zapallo:500,levadura:14,anis:5,chancaca:500,aceite_veg:500},
-  11:{harina:400,harina_int:100,sal:10},
-  12:{harina:500,manteca:100,huevos:4,sal:5},
-  13:{harina:450,harina_int:50,sal:10},
-  14:{harina:500,mantequilla:150,azucar:120,levadura:14,leche:120,huevos:6}
+  14:{harina:150,huevos:5,mantequilla:100,leche:125,chocolate:400,crema:500,azucar_imp:300}
 }};
 
 // ═══ STATE ═══
@@ -829,19 +734,10 @@ function updateHeader(){
 // ═══ PLAN PAGE ═══
 function renderChallengeTabs(){
   const el=document.getElementById('challengeTabs');
-  el.innerHTML=CHALLENGES.map(c=>{
-    const done=(state.completedDays[c.id]||[]).length;
-    return `<div class="challenge-tab${c.id===state.activeChallenge?' active':''}" data-ch="${c.id}">
-      <div class="ct-emoji">${c.emoji}</div><div class="ct-name">${c.name}</div>
-      <div class="ct-progress">${done}/14 completados</div></div>`;
-  }).join('');
-  el.querySelectorAll('.challenge-tab').forEach(t=>{
-    t.addEventListener('click',()=>{
-      state.activeChallenge=t.dataset.ch;
-      state.activeShopTab=getChallenge().shopping[0].id;
-      saveState();renderChallengeTabs();renderPlan();updateHeader();
-    });
-  });
+  const done=(state.completedDays['pan-de-casa']||[]).length;
+  el.innerHTML=`<div style="text-align:center;margin-bottom:4px">
+    <div style="font-family:'Patrick Hand',cursive;font-size:1rem;color:var(--stone)">${done}/14 completados</div>
+  </div>`;
 }
 
 function renderPlan(){
@@ -881,6 +777,7 @@ function openRecipeSheet(dayNum){
     <div class="sheet-section"><h3>Pasos</h3>
       <ol class="step-list">${d.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
     <div class="sheet-section"><div class="sheet-tip">${d.tip}</div></div>
+    ${d.video?`<div class="sheet-section"><a href="${d.video}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:rgba(196,113,59,0.1);border:1.5px solid var(--linen);border-radius:255px 15px 225px 15px/15px 225px 15px 255px;color:var(--bark);text-decoration:none;font-size:0.85rem;transition:border-color 0.2s"><span class="material-symbols-outlined" style="font-size:28px;color:var(--clay)">play_circle</span><span><strong style="color:var(--clay)">${d.videoLabel||'Ver tutorial'}</strong><br><span style="font-size:0.75rem;color:var(--stone)">YouTube — paso a paso en video</span></span></a></div>`:''}
     ${d.timers.length?`<div class="sheet-section"><h3>Timers</h3><div class="sheet-timers">
       ${d.timers.map(t=>`<button class="sheet-timer-btn" data-name="${t.name}" data-min="${t.min}">${t.name} — ${t.min} min</button>`).join('')}</div></div>`:''}`;
   document.getElementById('sheetContent').querySelectorAll('.sheet-timer-btn').forEach(btn=>{
@@ -895,28 +792,183 @@ document.getElementById('sheetOverlay').addEventListener('click',closeSheet);
 // ═══ STARTER PAGE ═══
 function getStarterActivity(){
   const f=state.starterFeedings.length;
-  if(f===0)return{level:0,label:'Sin iniciar',emoji:'😴',desc:'Inicia tu masa madre'};
-  if(f<4)return{level:1,label:'Recién nacida',emoji:'🌱',desc:'Sigue alimentando 2x/día'};
-  if(f<10)return{level:2,label:'Despertando',emoji:'🫧',desc:'Mostrando señales de vida'};
-  if(f<18)return{level:3,label:'Activa',emoji:'💪',desc:'¡Casi lista para pan!'};
-  return{level:4,label:'¡Muy activa!',emoji:'🔥',desc:'¡Lista para sourdough!'};
+  if(f===0)return{level:0,label:'Sin iniciar',icon:'bedtime',desc:'Inicia tu masa madre'};
+  if(f<4)return{level:1,label:'Recién nacida',icon:'eco',desc:'Sigue alimentando 2x/día'};
+  if(f<10)return{level:2,label:'Despertando',icon:'bubble_chart',desc:'Mostrando señales de vida'};
+  if(f<18)return{level:3,label:'Activa',icon:'fitness_center',desc:'¡Casi lista para pan!'};
+  return{level:4,label:'¡Muy activa!',icon:'local_fire_department',desc:'¡Lista para sourdough!'};
 }
 
-function renderJarSVG(level){
-  const dH=Math.min(75,20+(level||0)*14);const bCount=(level||0)*4;
-  let bubbles='';
-  for(let i=0;i<bCount;i++){const sz=4+Math.random()*8;const l=10+Math.random()*80;const du=2+Math.random()*3;const de=Math.random()*3;const tr=60+Math.random()*120;
-    bubbles+=`<div class="bubble" style="width:${sz}px;height:${sz}px;left:${l}%;bottom:5%;--dur:${du}s;--del:${de}s;--travel:${tr}px"></div>`}
-  return `<div class="jar-wrapper">
-    <svg class="jar-svg" viewBox="0 0 160 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="42" y="8" width="76" height="18" rx="4" fill="#C07C5A" opacity="0.3" stroke="#C07C5A" stroke-width="1.5"/>
-      <path d="M38 26 C38 26 32 34 32 48 L32 190 C32 210 44 222 62 222 L98 222 C116 222 128 210 128 190 L128 48 C128 34 122 26 122 26" fill="rgba(192,124,90,0.04)" stroke="#C07C5A" stroke-width="1.8" stroke-linecap="round"/>
-      <rect x="34" y="${Math.round(222-(222-48)*(dH/100))}" width="92" height="${Math.round((222-48)*(dH/100))}" rx="0" fill="#F3DFD0" opacity="0.6" clip-path="url(#jarClip)"/>
-      <defs><clipPath id="jarClip"><path d="M32 48 L32 190 C32 210 44 222 62 222 L98 222 C116 222 128 210 128 190 L128 48 Z"/></clipPath></defs>
-      <ellipse cx="80" cy="${Math.round(222-(222-48)*(dH/100))}" rx="46" ry="4" fill="#E8C4A0" opacity="0.5"/>
-      <line x1="50" y1="80" x2="50" y2="180" stroke="#C07C5A" opacity="0.06" stroke-width="0.8"/>
-      <line x1="110" y1="80" x2="110" y2="180" stroke="#C07C5A" opacity="0.06" stroke-width="0.8"/>
-    </svg>${bubbles}</div>`;
+function renderJarSVG(checkinOrLevel,opts){
+  const o=opts||{};
+  let checkin=(typeof checkinOrLevel==='object'&&checkinOrLevel)?checkinOrLevel:{};
+  if(typeof checkinOrLevel==='number'){checkin={_level:checkinOrLevel}}
+
+  // Rise → fill height
+  const riseMap={none:20,slight:32,good:50,doubled:65,tripled:82};
+  let dH=checkin.rise?riseMap[checkin.rise]||25:25;
+  if(checkin._level!==undefined)dH=Math.min(80,20+checkin._level*14);
+
+  // Bubbles → SVG dots
+  const bubMap={none:0,few_small:4,many_small:10,large_active:16};
+  const bCount=checkin.bubbles?bubMap[checkin.bubbles]||0:(checkin._level||0)*3;
+  let bubSvg='';
+  for(let i=0;i<bCount;i++){
+    const x=15+Math.random()*70;const y=10+Math.random()*75;
+    const r=checkin.bubbles==='large_active'?(2+Math.random()*6):(1.5+Math.random()*3.5);
+    const op=0.12+Math.random()*0.22;
+    bubSvg+=`<circle cx="${x}%" cy="${y}%" r="${r}" fill="var(--clay)" opacity="${op}"/>`;
+  }
+
+  // Surface → top of dough
+  let surfaceHtml='';
+  if(checkin.surface==='bubbly'){
+    surfaceHtml='<div style="position:absolute;top:-4px;left:10%;right:10%;height:8px;border-radius:50%;background:rgba(196,113,59,0.12)"></div><div style="position:absolute;top:-6px;left:25%;width:12px;height:12px;border-radius:50%;background:rgba(196,113,59,0.1)"></div><div style="position:absolute;top:-3px;right:20%;width:8px;height:8px;border-radius:50%;background:rgba(196,113,59,0.1)"></div>';
+  } else if(checkin.surface==='hooch'){
+    surfaceHtml='<div style="position:absolute;top:-2px;left:5%;right:5%;height:6px;background:rgba(92,61,46,0.35);border-radius:3px"></div>';
+  } else if(checkin.surface==='mold_spots'){
+    surfaceHtml='<div style="position:absolute;top:-4px;left:20%;width:10px;height:10px;border-radius:50%;background:rgba(125,184,103,0.5)"></div><div style="position:absolute;top:-2px;right:25%;width:7px;height:7px;border-radius:50%;background:rgba(125,184,103,0.4)"></div><div style="position:absolute;top:-5px;left:50%;width:8px;height:8px;border-radius:50%;background:rgba(125,184,103,0.45)"></div>';
+  }
+
+  // Consistency → fill opacity + texture
+  const consMap={thick_paste:0.28,pancake_batter:0.15,stretchy:0.18,runny:0.08,dry_stiff:0.32};
+  const fillOp=checkin.consistency?consMap[checkin.consistency]||0.15:0.15;
+  // Stretchy → vertical stretch lines inside
+  let stretchHtml='';
+  if(checkin.consistency==='stretchy'){
+    stretchHtml='<div style="position:absolute;left:30%;top:10%;bottom:10%;width:1px;background:var(--clay-light);opacity:0.3"></div><div style="position:absolute;left:50%;top:5%;bottom:15%;width:1px;background:var(--clay-light);opacity:0.25"></div><div style="position:absolute;left:70%;top:12%;bottom:8%;width:1px;background:var(--clay-light);opacity:0.3"></div>';
+  }
+  // Dry/stiff → crack lines
+  let crackHtml='';
+  if(checkin.consistency==='dry_stiff'){
+    crackHtml='<svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible" xmlns="http://www.w3.org/2000/svg"><line x1="20%" y1="30%" x2="35%" y2="50%" stroke="var(--linen)" stroke-width="1" opacity="0.5"/><line x1="60%" y1="20%" x2="75%" y2="45%" stroke="var(--linen)" stroke-width="1" opacity="0.4"/><line x1="45%" y1="55%" x2="55%" y2="75%" stroke="var(--linen)" stroke-width="0.8" opacity="0.35"/></svg>';
+  }
+  // Runny → wavy horizontal lines
+  let runnyHtml='';
+  if(checkin.consistency==='runny'){
+    runnyHtml='<svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible" xmlns="http://www.w3.org/2000/svg"><path d="M10%,35% Q30%,30% 50%,35% T90%,35%" fill="none" stroke="var(--clay-light)" stroke-width="0.8" opacity="0.3"/><path d="M10%,55% Q30%,50% 50%,55% T90%,55%" fill="none" stroke="var(--clay-light)" stroke-width="0.8" opacity="0.25"/><path d="M10%,75% Q30%,70% 50%,75% T90%,75%" fill="none" stroke="var(--clay-light)" stroke-width="0.8" opacity="0.2"/></svg>';
+  }
+
+  // Smell → tint shift + vapor lines
+  let fillColor=`rgba(196,113,59,${fillOp})`;
+  let vaporHtml='';
+  if(checkin.smell==='yogurt_fruity'){
+    fillColor=`rgba(196,130,70,${fillOp})`;
+    vaporHtml='<div style="position:absolute;top:-20px;left:35%;font-size:10px;color:var(--clay-light);opacity:0.4;animation:rise 3s ease infinite">~</div><div style="position:absolute;top:-24px;left:55%;font-size:10px;color:var(--clay-light);opacity:0.3;animation:rise 3s ease 0.5s infinite">~</div>';
+  } else if(checkin.smell==='vinegary'){
+    fillColor=`rgba(190,140,60,${fillOp})`;
+    vaporHtml='<div style="position:absolute;top:-22px;left:30%;font-size:12px;color:var(--clay);opacity:0.4;animation:rise 2.5s ease infinite">~</div><div style="position:absolute;top:-18px;left:55%;font-size:14px;color:var(--clay);opacity:0.35;animation:rise 2.5s ease 0.4s infinite">~</div><div style="position:absolute;top:-26px;left:45%;font-size:10px;color:var(--clay);opacity:0.3;animation:rise 2.5s ease 0.8s infinite">~</div>';
+  } else if(checkin.smell==='acetone'){
+    fillColor=`rgba(180,130,80,${fillOp})`;
+    vaporHtml='<div style="position:absolute;top:-24px;left:25%;font-size:14px;color:var(--danger);opacity:0.35;animation:rise 2s ease infinite">~</div><div style="position:absolute;top:-20px;left:50%;font-size:16px;color:var(--danger);opacity:0.3;animation:rise 2s ease 0.3s infinite">~</div><div style="position:absolute;top:-28px;left:65%;font-size:12px;color:var(--danger);opacity:0.25;animation:rise 2s ease 0.7s infinite">~</div>';
+  } else if(checkin.smell==='rotten'){
+    fillColor=`rgba(140,100,60,${fillOp+0.05})`;
+    vaporHtml='<div style="position:absolute;top:-22px;left:30%;font-size:14px;color:var(--danger);opacity:0.45;animation:rise 2s ease infinite">~</div><div style="position:absolute;top:-28px;left:50%;font-size:16px;color:var(--danger);opacity:0.35;animation:rise 2s ease 0.3s infinite">~</div><div style="position:absolute;top:-18px;left:65%;font-size:12px;color:var(--danger);opacity:0.4;animation:rise 2s ease 0.6s infinite">~</div>';
+  } else if(checkin.smell==='musty_moldy'){
+    fillColor=`rgba(110,90,60,${fillOp+0.08})`;
+    vaporHtml='<div style="position:absolute;top:-20px;left:35%;font-size:16px;color:var(--danger);opacity:0.5;animation:rise 1.8s ease infinite">~</div><div style="position:absolute;top:-26px;left:55%;font-size:14px;color:var(--danger);opacity:0.4;animation:rise 1.8s ease 0.4s infinite">~</div>';
+  } else if(checkin.smell==='flour_paste'){
+    // neutral — no vapor
+  }
+
+  // Bread buddy mood
+  const hasDanger=o.hasDanger||false;
+  const hasSelections=!!(checkin.bubbles||checkin.smell||checkin.rise||checkin.surface||checkin.consistency);
+  let mood='sleep';
+  if(o.showStars)mood='celebrate';
+  else if(hasDanger)mood='sick';
+  else if(hasSelections){
+    const goodSigns=['few_small','many_small','large_active','yogurt_fruity','slight','good','doubled','tripled','bubbly','pancake_batter','stretchy'].filter(v=>
+      [checkin.bubbles,checkin.smell,checkin.rise,checkin.surface,checkin.consistency].includes(v)).length;
+    const badSigns=['rotten','hooch','dry_stiff','runny'].filter(v=>
+      [checkin.bubbles,checkin.smell,checkin.rise,checkin.surface,checkin.consistency].includes(v)).length;
+    if(goodSigns>=3)mood='happy';
+    else if(badSigns>=2)mood='mad';
+    else if(goodSigns>=1)mood='normal';
+    else mood='normal';
+  }
+  const moodAnim={sleep:'breadIdle 3s ease-in-out infinite',normal:'breadIdle 2.5s ease-in-out infinite',happy:'breadHappy 1.2s ease-in-out infinite',mad:'breadMad 0.4s ease-in-out infinite',sick:'breadSick 1.5s ease-in-out infinite',celebrate:'breadCelebrate 1s ease-in-out infinite'};
+  // Sourdough boule bread buddy
+  const crustColor=mood==='sick'?'#8B9B6B':'#C4913B';
+  const crumbColor=mood==='sick'?'#A0AB7B':'#E2C48A';
+  const darkLine=mood==='sick'?'#6B7B4B':'#8B6530';
+  const cheekColor=mood==='happy'||mood==='celebrate'?'#E8A47A':'transparent';
+  // Score marks on top — the signature sourdough look
+  const scoreMarks=`<path d="M14 10 Q21 6 28 10" fill="none" stroke="${darkLine}" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/><path d="M16 7 Q21 4 26 7" fill="none" stroke="${darkLine}" stroke-width="1" stroke-linecap="round" opacity="0.4"/>`;
+  // Flour dusting
+  const flour='<circle cx="16" cy="9" r="1" fill="white" opacity="0.15"/><circle cx="24" cy="7" r="0.8" fill="white" opacity="0.12"/><circle cx="20" cy="5" r="0.6" fill="white" opacity="0.1"/><circle cx="28" cy="11" r="0.7" fill="white" opacity="0.1"/>';
+  // Eyes
+  let eyesL='',eyesR='';
+  if(mood==='sleep'){eyesL='<line x1="14" y1="17" x2="18" y2="17" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/>';eyesR='<line x1="24" y1="17" x2="28" y2="17" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/>';}
+  else if(mood==='sick'){eyesL='<line x1="14" y1="15" x2="18" y2="19" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/><line x1="18" y1="15" x2="14" y2="19" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/>';eyesR='<line x1="24" y1="15" x2="28" y2="19" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="15" x2="24" y2="19" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/>';}
+  else if(mood==='mad'){eyesL='<circle cx="16" cy="17" r="1.8" fill="${darkLine}"/><line x1="12" y1="13" x2="19" y2="15" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/>';eyesR='<circle cx="26" cy="17" r="1.8" fill="${darkLine}"/><line x1="23" y1="15" x2="30" y2="13" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/>';}
+  else{eyesL='<circle cx="16" cy="17" r="2" fill="${darkLine}"/>';eyesR='<circle cx="26" cy="17" r="2" fill="${darkLine}"/>';}
+  if(mood==='happy'||mood==='celebrate'){eyesL+='<circle cx="16.6" cy="16.3" r="0.7" fill="white" opacity="0.8"/>';eyesR+='<circle cx="26.6" cy="16.3" r="0.7" fill="white" opacity="0.8"/>';}
+  // Mouth
+  let mouth='';
+  if(mood==='sleep')mouth='<path d="M18 22 Q21 24 24 22" fill="none" stroke="${darkLine}" stroke-width="1" stroke-linecap="round"/>';
+  else if(mood==='happy'||mood==='celebrate')mouth='<path d="M16 22 Q21 27 26 22" fill="none" stroke="${darkLine}" stroke-width="1.5" stroke-linecap="round"/>';
+  else if(mood==='mad')mouth='<path d="M17 24 Q21 21 25 24" fill="none" stroke="${darkLine}" stroke-width="1.3" stroke-linecap="round"/>';
+  else if(mood==='sick')mouth='<path d="M17 23 Q21 21 25 23" fill="none" stroke="${darkLine}" stroke-width="1.2" stroke-linecap="round"/>';
+  else mouth='<line x1="18" y1="23" x2="24" y2="23" stroke="${darkLine}" stroke-width="1.2" stroke-linecap="round"/>';
+  // Extras
+  let extras='';
+  if(mood==='sleep')extras='<text x="30" y="14" font-size="7" fill="${darkLine}" opacity="0.5" font-family="Patrick Hand, cursive">z</text><text x="34" y="9" font-size="5" fill="${darkLine}" opacity="0.35" font-family="Patrick Hand, cursive">z</text>';
+  if(mood==='celebrate')extras='<text x="8" y="6" font-size="5" fill="var(--clay)">✦</text><text x="32" y="4" font-size="4" fill="var(--clay)">✦</text><text x="4" y="16" font-size="4" fill="var(--clay)">✦</text>';
+  if(mood==='sick')extras='<circle cx="30" cy="22" r="2" fill="#8B9B6B" opacity="0.4"/><path d="M31 24 Q32 27 31 29" fill="none" stroke="#8B9B6B" stroke-width="0.8" opacity="0.4"/>';
+  // Little feet
+  const feet=`<ellipse cx="15" cy="28" rx="4" ry="2" fill="${crustColor}" opacity="0.7"/><ellipse cx="27" cy="28" rx="4" ry="2" fill="${crustColor}" opacity="0.7"/>`;
+  // Assemble sourdough buddy
+  const b=`<svg viewBox="0 0 42 32" width="56" height="42" xmlns="http://www.w3.org/2000/svg">
+    ${feet}
+    <ellipse cx="21" cy="18" rx="15" ry="11" fill="${crustColor}"/>
+    <ellipse cx="21" cy="14" rx="13" ry="10" fill="${crumbColor}"/>
+    <path d="M10 12 Q15 4 21 5 Q27 4 32 12" fill="${crustColor}"/>
+    <path d="M12 10 Q17 3 21 4.5 Q25 3 30 10" fill="${crumbColor}" opacity="0.6"/>
+    ${scoreMarks}${flour}
+    <circle cx="10" cy="20" r="2.5" fill="${cheekColor}" opacity="0.35"/>
+    <circle cx="32" cy="20" r="2.5" fill="${cheekColor}" opacity="0.35"/>
+    ${eyesL.replace(/\$\{darkLine\}/g,darkLine)}${eyesR.replace(/\$\{darkLine\}/g,darkLine)}
+    ${mouth.replace(/\$\{darkLine\}/g,darkLine)}
+    ${extras.replace(/\$\{darkLine\}/g,darkLine)}
+  </svg>`.replace(/\$\{darkLine\}/g,darkLine);
+  const buddyHtml=`<div class="bread-buddy" style="animation:${moodAnim[mood]}">${b}</div>`;
+
+  // Danger detection
+  let dangerBadge='';
+  if(hasDanger){
+    dangerBadge=`<div id="jarWarning" style="position:absolute;top:-8px;right:-8px;width:28px;height:28px;border-radius:50%;background:var(--danger);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;cursor:pointer;z-index:5;border:2px solid var(--snow);animation:starPulse 2s ease infinite">!</div>`;
+  }
+
+  // Stars for day 7 completion
+  const showStars=o.showStars||false;
+  let starsHtml='';
+  if(showStars){
+    starsHtml=`
+      <span class="material-symbols-outlined" style="position:absolute;top:-18px;left:-12px;font-size:22px;color:var(--clay);animation:starPulse 1.5s ease infinite">star</span>
+      <span class="material-symbols-outlined" style="position:absolute;top:-10px;right:-16px;font-size:18px;color:var(--clay-light);animation:starPulse 1.5s ease 0.3s infinite">star</span>
+      <span class="material-symbols-outlined" style="position:absolute;top:20px;left:-20px;font-size:14px;color:var(--clay);animation:starPulse 1.5s ease 0.6s infinite">auto_awesome</span>
+      <span class="material-symbols-outlined" style="position:absolute;bottom:30px;right:-18px;font-size:16px;color:var(--clay-light);animation:starPulse 1.5s ease 0.9s infinite">auto_awesome</span>
+      <span class="material-symbols-outlined" style="position:absolute;bottom:-8px;left:20px;font-size:20px;color:var(--clay);animation:starPulse 1.5s ease 1.2s infinite">star</span>`;
+  }
+
+  // Dough top line style
+  const topBorder=checkin.surface==='smooth'||!checkin.surface?'2px dashed var(--clay-light)':'2px solid var(--clay-light)';
+  // Jar border color shifts with danger
+  const jarBorder=hasDanger?'var(--danger)':'var(--clay-light)';
+
+  return `<div id="starterJar" style="position:relative;width:192px;height:256px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:16px;border:4px solid ${jarBorder};border-radius:255px 15px 225px 15px/15px 225px 15px 255px;background:rgba(196,113,59,0.06);filter:drop-shadow(0 0 10px rgba(196,113,59,0.1));transition:border-color 0.3s">
+    ${starsHtml}${dangerBadge}
+    <div style="position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:128px;height:32px;border:4px solid ${jarBorder};border-radius:9999px;background:var(--snow);transition:border-color 0.3s"></div>
+    <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);width:144px;height:8px;border:2px solid rgba(196,113,59,0.2);border-radius:9999px"></div>
+    <div style="width:100%;height:${dH}%;background:${fillColor};border-radius:0 0 12px 12px;border-top:${topBorder};display:flex;align-items:center;justify-content:center;position:relative;overflow:visible;transition:height 0.5s ease,background 0.3s">
+      ${surfaceHtml}${stretchHtml}${crackHtml}${runnyHtml}
+      <svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible" xmlns="http://www.w3.org/2000/svg">${bubSvg}</svg>
+      ${vaporHtml}
+      ${bCount===0&&!checkin.consistency?'<span class="material-symbols-outlined" style="font-size:32px;color:var(--clay-light);opacity:0.3">bubble_chart</span>':''}
+    </div>
+    ${buddyHtml}
+  </div>`;
 }
 
 // ═══ STARTER ROUTER ═══
@@ -942,6 +994,7 @@ function renderStarter(){
 function renderCreationMode(){
   const mc=document.getElementById('starterModeContent');
   const currentDay=state.starter.creationDay;
+  const dayLabels={1:'<span class="material-symbols-outlined" style="font-size:16px">cookie</span>',2:'1',3:'2',4:'3',5:'4',6:'5',7:'6'};
   let dayNav='<div class="creation-days">';
   for(let d=1;d<=7;d++){
     const checkin=state.starter.dailyCheckins[d];
@@ -951,7 +1004,7 @@ function renderCreationMode(){
     if(isCurrent)cls+=' current';
     if(isCompleted)cls+=' completed';
     else if(checkin)cls+=' has-data';
-    dayNav+=`<button class="${cls}" data-cday="${d}">${isCompleted?'✓':d}</button>`;
+    dayNav+=`<button class="${cls}" data-cday="${d}">${isCompleted?'✓':dayLabels[d]}</button>`;
   }
   dayNav+='</div>';
   mc.innerHTML=dayNav+'<div id="creationDayContent"></div>';
@@ -969,22 +1022,22 @@ function renderCreationDay1(){
   const isCompleted=state.starter.dailyCheckins[1]&&state.starter.dailyCheckins[1].completed;
   el.innerHTML=`
     <div class="setup-hero">
-      <div class="setup-hero-emoji">🫙</div>
+      <div style="display:flex;justify-content:center;margin-bottom:16px">${renderJarSVG(0)}</div>
       <div class="setup-hero-title">Crea tu Masa Madre</div>
       <div class="setup-hero-sub">Todo empieza con harina, agua y paciencia</div>
     </div>
     <div class="setup-section">
-      <h3>🛒 Lo que necesitas</h3>
-      <div class="setup-item"><span class="setup-item-emoji">🫙</span> Frasco de vidrio 500ml-1L (de mermelada, aceitunas, etc.)</div>
-      <div class="setup-item"><span class="setup-item-emoji">🌾</span> Harina sin preparar (Blanca Flor / Nicolini) — NO preparada</div>
-      <div class="setup-item"><span class="setup-item-emoji">💧</span> Agua filtrada o hervida y enfriada (sin cloro)</div>
-      <div class="setup-item"><span class="setup-item-emoji">⚖️</span> Balanza digital (en gramos)</div>
-      <div class="setup-item"><span class="setup-item-emoji">🍴</span> Tenedor o cuchara para mezclar</div>
-      <div class="setup-item"><span class="setup-item-emoji">📏</span> Liga / elástico para marcar el nivel</div>
-      <div class="setup-item"><span class="setup-item-emoji">🧻</span> Trapo o tapa suelta (necesita respirar)</div>
+      <h3><span class="material-symbols-outlined" style="font-size:20px">shopping_cart</span> Lo que necesitas</h3>
+      <div class="setup-item"><span class="setup-item-emoji material-symbols-outlined">cookie</span> Frasco de vidrio 500ml-1L (de mermelada, aceitunas, etc.)</div>
+      <div class="setup-item"><span class="setup-item-emoji material-symbols-outlined">grass</span> Harina sin preparar (Blanca Flor / Nicolini) — NO preparada</div>
+      <div class="setup-item"><span class="setup-item-emoji material-symbols-outlined">water_drop</span> Agua filtrada o hervida y enfriada (sin cloro)</div>
+      <div class="setup-item"><span class="setup-item-emoji material-symbols-outlined">scale</span> Balanza digital (en gramos)</div>
+      <div class="setup-item"><span class="setup-item-emoji material-symbols-outlined">restaurant</span> Tenedor o cuchara para mezclar</div>
+      <div class="setup-item"><span class="setup-item-emoji material-symbols-outlined">straighten</span> Liga / elástico para marcar el nivel</div>
+      <div class="setup-item"><span class="setup-item-emoji material-symbols-outlined">dry_cleaning</span> Trapo o tapa suelta (necesita respirar)</div>
     </div>
     <div class="setup-section">
-      <h3>👩‍🍳 Preparación — Día 1</h3>
+      <h3><span class="material-symbols-outlined" style="font-size:20px">bakery_dining</span> Preparación</h3>
       <div class="setup-steps"><ol>
         <li>Limpia el frasco con agua caliente. Sin residuos de jabón.</li>
         <li><strong>Pesa 50g de harina sin preparar</strong> directo en el frasco. Si tienes harina integral, usa 25g integral + 25g sin preparar (mejor arranque).</li>
@@ -1013,9 +1066,26 @@ function renderCreationDayCheckin(day){
   const el=document.getElementById('creationDayContent');
   const checkin=state.starter.dailyCheckins[day]||{};
   const expectations=STARTER_DAY_EXPECTATIONS[day]||{};
+  const displayDay=day-1; // day 1=prep, day 2=Día 1, etc.
+  const isDay7Done=day===7&&checkin.completed;
+
+  // Check for danger selections
+  const exp=STARTER_DAY_EXPECTATIONS[day]||{};
+  const cats=['bubbles','smell','rise','surface','consistency'];
+  const alwaysBadItems=['mold_spots','musty_moldy','acetone'];
+  let hasDanger=false;
+  cats.forEach(cat=>{
+    const val=checkin[cat];if(!val)return;
+    if(alwaysBadItems.includes(val)){hasDanger=true;return}
+    const expectedForCat=exp[cat]||[];
+    if(expectedForCat.length>0&&!expectedForCat.includes(val))hasDanger=true;
+  });
+
+  // Adaptive jar at top
+  let html=`<div style="display:flex;justify-content:center;margin:8px 0 16px">${renderJarSVG(checkin,{showStars:isDay7Done,hasDanger})}</div>`;
 
   // Day info banner
-  let html=`<div class="day-info-banner"><strong>Día ${day}:</strong> ${expectations.info||''}</div>`;
+  html+=`<div class="day-info-banner"><strong>Día ${displayDay}:</strong> ${expectations.info||''}</div>`;
 
   // Feeding reminder
   html+=`<div class="diag-tip good" style="margin:0 auto 20px">
@@ -1028,17 +1098,28 @@ function renderCreationDayCheckin(day){
     const diag=STARTER_DIAGNOSTICS[cat];
     const selected=checkin[cat]||'';
     const colClass=diag.options.length>4?' three-col':'';
+    const exp=STARTER_DAY_EXPECTATIONS[day]||{};
+    const expectedForCat=exp[cat]||[];
     html+=`<div class="diag-section">
-      <div class="diag-label">${diag.emoji} ${diag.label}</div>
+      <div class="diag-label"><span class="diag-icon">${diag.icon||''}</span> ${diag.label}</div>
       <div class="diag-options${colClass}">
         ${diag.options.map(opt=>{
           const isSel=selected===opt.id;
-          const isDanger=(cat==='surface'&&opt.id==='mold_spots')||(cat==='smell'&&opt.id==='musty_moldy');
+          const alwaysBad=['mold_spots','musty_moldy','acetone'];
+          const neverGreen=['rotten','acetone','musty_moldy','mold_spots','hooch','dry_stiff','runny'];
+          const isDanger=alwaysBad.includes(opt.id);
+          const isExpected=expectedForCat.includes(opt.id);
+          const isConcerning=neverGreen.includes(opt.id);
           let cls='diag-option';
-          if(isSel&&isDanger)cls+=' warning';
-          else if(isSel)cls+=' selected';
+          if(isSel)cls+=' selected';
+          let badge='';
+          if(isSel&&isDanger)badge='<span class="diag-badge bad">!</span>';
+          else if(isSel&&isExpected&&!isConcerning)badge='<span class="diag-badge good">✓</span>';
+          else if(isSel&&!isExpected&&expectedForCat.length>0)badge='<span class="diag-badge bad">!</span>';
+          // Concerning but expected → no badge (neutral), it's normal but not "good"
           return `<div class="${cls}" data-cat="${cat}" data-val="${opt.id}">
-            <div class="diag-emoji">${opt.emoji}</div>
+            ${badge}
+            <div class="diag-icon">${opt.icon||''}</div>
             <div class="diag-name">${opt.label}</div>
             <div class="diag-desc">${opt.desc}</div>
           </div>`;
@@ -1049,7 +1130,7 @@ function renderCreationDayCheckin(day){
 
   // Notes
   html+=`<div class="diag-section">
-    <div class="diag-label">📝 Notas personales</div>
+    <div class="diag-label"><span class="diag-icon material-symbols-outlined">edit_note</span> Notas personales</div>
     <textarea class="notes-input" id="checkinNotes" rows="2" placeholder="Observaciones, fotos tomadas, dudas...">${checkin.notes||''}</textarea>
   </div>`;
 
@@ -1057,20 +1138,31 @@ function renderCreationDayCheckin(day){
   html+='<div id="diagTips"></div>';
 
   // Navigation buttons
+  const prevLabel=day===2?'Prep':`Día ${day-2}`;
+  const nextLabel=`Día ${day}`;
   html+=`<div style="display:flex;gap:10px;width:100%;max-width:400px;margin-top:8px">
-    ${day>1?`<button class="btn btn-secondary" id="prevDay">← Día ${day-1}</button>`:''}
-    <button class="btn btn-primary" id="completeDay" style="flex:2">${checkin.completed?'✓ Completado — actualizar':'Completar día '+day}</button>
-    ${day<7?`<button class="btn btn-secondary" id="nextDay">Día ${day+1} →</button>`:''}
+    ${day>1?`<button class="btn btn-secondary" id="prevDay">← ${prevLabel}</button>`:''}
+    <button class="btn btn-primary" id="completeDay" style="flex:2">${checkin.completed?'✓ Completado — actualizar':'Completar día '+displayDay}</button>
+    ${day<7?`<button class="btn btn-secondary" id="nextDay">${nextLabel} →</button>`:''}
   </div>`;
 
   // Readiness check button (from day 7)
   if(day>=7){
     html+=`<div style="width:100%;max-width:400px;margin-top:16px">
-      <button class="btn btn-secondary" id="readinessBtn" style="width:100%;border-color:var(--sage);color:var(--sage)">🔍 ¿Mi starter está lista?</button>
+      <button class="btn btn-secondary" id="readinessBtn" style="width:100%;border-color:var(--clay);color:var(--clay)"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">search</span> ¿Mi starter está lista?</button>
     </div>`;
   }
 
   el.innerHTML=html;
+
+  // Event: jar warning badge click → scroll to tips
+  const jarWarn=document.getElementById('jarWarning');
+  if(jarWarn){
+    jarWarn.addEventListener('click',()=>{
+      const tips=document.getElementById('diagTips');
+      if(tips)tips.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  }
 
   // Event: visual picker selection
   el.querySelectorAll('.diag-option').forEach(opt=>{
@@ -1078,12 +1170,8 @@ function renderCreationDayCheckin(day){
       const cat=opt.dataset.cat;const val=opt.dataset.val;
       if(!state.starter.dailyCheckins[day])state.starter.dailyCheckins[day]={date:new Date().toISOString()};
       state.starter.dailyCheckins[day][cat]=val;saveState();
-      // Update selection UI
-      opt.closest('.diag-options').querySelectorAll('.diag-option').forEach(o=>o.classList.remove('selected','warning'));
-      const isDanger=(cat==='surface'&&val==='mold_spots')||(cat==='smell'&&val==='musty_moldy');
-      opt.classList.add(isDanger?'warning':'selected');
-      // Show diagnostics
-      renderDiagnosticTips(day);
+      // Re-render to update badges and selection
+      renderCreationDayCheckin(day);
     });
   });
 
@@ -1178,7 +1266,7 @@ function renderDiagnosticTips(day){
     // Check if any selections made
     const hasSel=['bubbles','smell','rise','surface','consistency'].some(c=>checkin[c]);
     if(hasSel){
-      tipsEl.innerHTML='<div class="diag-tip good" style="margin:0 auto">✅ <strong>Todo se ve normal para el día '+day+'.</strong> ¡Sigue así!</div>';
+      tipsEl.innerHTML='<div class="diag-tip good" style="margin:0 auto"><span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle">check_circle</span> <strong>Todo se ve normal para el día '+day+'.</strong> ¡Sigue así!</div>';
     }else{
       tipsEl.innerHTML='';
     }
@@ -1198,7 +1286,7 @@ function renderReadinessCheck(){
 
   let html=`
     <div class="setup-hero">
-      <div class="setup-hero-emoji">🔍</div>
+      <div class="setup-hero-emoji"><span class="material-symbols-outlined" style="font-size:3.5rem;color:var(--clay)">search</span></div>
       <div class="setup-hero-title">¿Tu starter está lista?</div>
       <div class="setup-hero-sub">Marca cada criterio que tu starter cumple</div>
     </div>
@@ -1252,7 +1340,7 @@ function renderReadinessCheck(){
       state.starter.creationCompleted=true;saveState();
       resultEl.innerHTML=`
         <div class="congrats-screen">
-          <div class="congrats-emoji">🎉🍞</div>
+          <div class="congrats-emoji"><span class="material-symbols-outlined" style="font-size:3.5rem;color:var(--clay)">celebration</span></div>
           <div class="congrats-title">¡Tu masa madre está lista!</div>
           <div class="congrats-text">¡Felicitaciones! Tu starter cumple todos los criterios. Está lista para hacer pan sourdough. Ahora pasa a modo mantenimiento para seguir cuidándola.</div>
           <button class="btn btn-primary" id="goMaintenance" style="margin:0 auto;display:block;padding:16px 32px">Ir a Mantenimiento →</button>
@@ -1306,7 +1394,7 @@ function renderMaintenanceMode(){
   const recent=[...state.starterFeedings].reverse().slice(0,5);
 
   mc.innerHTML=`
-    ${renderJarSVG(act.level)}
+    ${renderJarSVG({_level:act.level},{showStars:act.level>=4})}
     <div class="starter-status"><div class="starter-level">${act.label}</div>
       <div class="starter-sublevel">${act.desc} — ${state.starterFeedings.length} alimentaciones</div></div>
     <div class="section-divider" style="width:100%;max-width:360px;text-align:center">${monthName}</div>
@@ -1486,7 +1574,7 @@ function sendNotification(t,b){if('Notification'in window&&Notification.permissi
 function renderChat(){
   const c=document.getElementById('chatContainer');
   if(!state.apiKey){
-    c.innerHTML=`<div class="api-setup"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M36 20c0 7.7-7 14-15.5 14a17 17 0 01-6.9-1.4L6 36l3.1-6.9A13 13 0 016 20C6 12.3 13 6 20.5 6S36 12.3 36 20z" fill="#F3DFD0" stroke="#C07C5A" stroke-width="2"/><circle cx="15" cy="20" r="1.5" fill="#C07C5A"/><circle cx="21" cy="20" r="1.5" fill="#C07C5A"/><circle cx="27" cy="20" r="1.5" fill="#C07C5A"/></svg><h3>Tu Asistente Panadero</h3>
+    c.innerHTML=`<div class="api-setup"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M36 20c0 7.7-7 14-15.5 14a17 17 0 01-6.9-1.4L6 36l3.1-6.9A13 13 0 016 20C6 12.3 13 6 20.5 6S36 12.3 36 20z" fill="#D4A07A" stroke="#C4713B" stroke-width="2"/><circle cx="15" cy="20" r="1.5" fill="#C4713B"/><circle cx="21" cy="20" r="1.5" fill="#C4713B"/><circle cx="27" cy="20" r="1.5" fill="#C4713B"/></svg><h3>Tu Asistente Panadero</h3>
       <p>Conecta tu API key de Anthropic para hacer preguntas. El chat sabe tu día, receta y estado del starter.</p>
       <input type="password" class="api-input" id="apiKeyInput" placeholder="sk-ant-...">
       <button class="btn btn-primary" id="saveApiKey" style="width:100%;max-width:320px">Guardar API Key</button>
@@ -1554,8 +1642,8 @@ function fmtMd(t){let h=escH(t);h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong
 
 // ═══ PWA ═══
 function setupPWA(){
-  const m={name:'Pan de Casa',short_name:'Pan de Casa',start_url:'.',display:'standalone',background_color:'#FBF7F2',theme_color:'#FBF7F2',orientation:'portrait',
-    icons:[{src:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="100" fill="#FBF7F2"/><ellipse cx="256" cy="280" rx="180" ry="120" fill="#F3DFD0" stroke="#C07C5A" stroke-width="12"/><path d="M140 250c40-70 90-90 116-90s76 20 116 90" fill="none" stroke="#C07C5A" stroke-width="8" stroke-linecap="round"/><line x1="256" y1="170" x2="256" y2="260" stroke="#C07C5A" stroke-width="8" stroke-linecap="round"/></svg>'),sizes:'512x512',type:'image/svg+xml',purpose:'any'}]};
+  const m={name:'Pan de Casa',short_name:'Pan de Casa',start_url:'.',display:'standalone',background_color:'#1A0F0A',theme_color:'#1A0F0A',orientation:'portrait',
+    icons:[{src:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="100" fill="#1A0F0A"/><ellipse cx="256" cy="280" rx="180" ry="120" fill="#D4A07A" stroke="#C4713B" stroke-width="12"/><path d="M140 250c40-70 90-90 116-90s76 20 116 90" fill="none" stroke="#C4713B" stroke-width="8" stroke-linecap="round"/><line x1="256" y1="170" x2="256" y2="260" stroke="#C4713B" stroke-width="8" stroke-linecap="round"/></svg>'),sizes:'512x512',type:'image/svg+xml',purpose:'any'}]};
   const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/json'}));document.head.appendChild(l)}
 
 // ═══ INIT ═══
